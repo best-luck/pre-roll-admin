@@ -1,6 +1,7 @@
 import { addItemToCart, createCheckout } from '@src/lib/dutchie/checkout';
 import { getSessionData } from '@src/lib/session/getSession';
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiResponse } from 'next'
+import { NextRequest } from 'next/server';
 import { z } from 'zod'
  
 const schema = z.object({
@@ -10,7 +11,7 @@ const schema = z.object({
 });
  
 export default async function handler(
-  req: NextApiRequest,
+  req: NextRequest,
   res: NextApiResponse
 ) {
   try {

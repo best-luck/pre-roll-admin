@@ -1,7 +1,6 @@
 import { addItemToCart, createCheckout, getCart } from '@src/lib/dutchie/checkout';
 import { getSessionData } from '@src/lib/session/getSession';
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { z } from 'zod'
  
 const schema = z.object({
@@ -15,7 +14,7 @@ type ResponseData = {
 }
  
 export async function POST(
-  req: NextApiRequest,
+  req: NextRequest,
 ) {
   try {
     const body = await req.json();
