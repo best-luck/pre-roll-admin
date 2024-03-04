@@ -1,5 +1,5 @@
-import ModalWrapper from '../../components/shared/common/UI/modals/ModalWrapper';
-import AgeRestrictComponent from '../../components/shared/pages/restrict/AgeRestrict';
+import ModalWrapper from '@src/components/shared/common/UI/modals/ModalWrapper';
+import AgeRestrictComponent from '@src/components/shared/pages/restrict/AgeRestrict';
  
 export default function Page() {
   return (
