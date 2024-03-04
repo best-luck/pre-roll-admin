@@ -20,8 +20,8 @@ export default function CartTable({ items }: { items: CartProductType[] }) {
       </thead>
       <tbody>
         {
-          items.map((item: CartProductType) => (
-            <tr className="text-center border-b checkout-product">
+          items.map((item: CartProductType, index: number) => (
+            <tr className="text-center border-b checkout-product" key={`cart-item-${index}`}>
               <td>
                 <button>
                   <FontAwesomeIcon icon={faClose} />
