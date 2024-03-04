@@ -1,8 +1,14 @@
 "use client";
 
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { ProductType } from "../../../../../lib/types/product";
-import Carousel from "react-elastic-carousel";
 import Product from "../product";
+// Import Swiper styles
+import "@src/styles/swiper/swiper.min.css";
+import "@src/styles/swiper/navigation.min.css";
+import "@src/styles/swiper/scrollbar.min.css";
+import "@src/styles/swiper/pagination.min.css";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -15,11 +21,26 @@ const breakPoints = [
 export default function ProductsSlier({ products }: { products: ProductType[] }) {
   return (
     <div>
-      <Carousel breakPoints={breakPoints}>
+      <Swiper
+        // install Swiper modules
+        modules={[Navigation, Pagination, A11y]}
+        spaceBetween={50}
+        slidesPerView={3}
+        navigation
+        pagination={{ clickable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log('slide change')}
+      >
         {
-          products.map((product, index) => <Product key={`product-slider-${product.id}`} display="Cart" product={product} />)
+          products.map((product, index) => (
+            <SwiperSlide
+              key={`product-slider-${product.id}`}
+            >
+              <Product display="Cart" product={product} />
+            </SwiperSlide>
+          ))
         }
-      </Carousel>
+      </Swiper>
     </div>
   );
 }

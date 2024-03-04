@@ -1,5 +1,5 @@
 export default async function Banner() {
-  return <header>
+  return <div>
 
-  </header>;
+  </div>;
 }

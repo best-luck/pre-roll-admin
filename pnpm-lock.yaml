@@ -110,6 +110,9 @@ importers:
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
+      swiper:
+        specifier: ^11.0.7
+        version: 11.0.7
       swr:
         specifier: ^2.2.5
         version: 2.2.5(react@18.2.0)
@@ -4102,6 +4105,11 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /swiper@11.0.7:
+    resolution: {integrity: sha512-cDfglW1B6uSmB6eB6pNmzDTNLmZtu5bWWa1vak0RU7fOI9qHjMzl7gVBvYSl34b0RU2N11HxxETJqQ5LeqI1cA==}
+    engines: {node: '>= 4.7.0'}
     dev: false
 
   /swr@2.2.5(react@18.2.0):

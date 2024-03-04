@@ -9,6 +9,7 @@ import "./style.scss";
 import Link from 'next/link';
 import { useState } from "react";
 import { addItemToCart } from "@src/lib/actions/checkout";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface ProductProps {
   product: ProductType
@@ -16,7 +17,8 @@ interface ProductProps {
 
 export default function ProductCart({ product }: ProductProps) {
 
-  const retailerId: string = getRetailerId();
+  const pathname = usePathname();
+  const retailerId: string = pathname?.split('/')[3]||'';
   const [loading, setLoading] = useState<boolean>(false);
 
   const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {

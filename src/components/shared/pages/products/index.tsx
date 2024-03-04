@@ -3,6 +3,9 @@
 import { useMemo } from "react";
 import { CategorizedProductsType, ProductType } from "../../../../lib/types/product";
 import ProductsByCategory from "./bycategory";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus, faShop } from "@fortawesome/free-solid-svg-icons";
 
 export default function CategorizedProducts(props: { products: ProductType[], categories: string[] }) {
 

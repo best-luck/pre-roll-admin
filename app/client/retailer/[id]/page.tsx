@@ -1,3 +1,4 @@
+import CartButton from "@src/components/shared/common/UI/cart/CartButton";
 import CategorizedProducts from "@src/components/shared/pages/products";
 import RetailerBanner from "@src/components/shared/pages/reatilers/banner";
 import RetailerCategories from "@src/components/shared/pages/reatilers/category";
@@ -22,6 +23,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
       <RetailerBanner retailer={retailer} />
       <RetailerCategories categories={categories} />
       <CategorizedProducts products={products} categories={categories} />
+      <CartButton />
     </div>
   )
 }
