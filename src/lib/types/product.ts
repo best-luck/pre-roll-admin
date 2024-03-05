@@ -28,7 +28,7 @@ export interface ProductType {
   potencyThc: ProductPotencyType,
   staffPick: boolean,
   strainType: string;
-  suncategory: string;
+  subcategory: string;
   [key: string]: any;
 }
 
