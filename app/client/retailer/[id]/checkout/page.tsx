@@ -6,6 +6,11 @@ import { getCart } from "@src/lib/dutchie/checkout";
 import { getSessionData } from "@src/lib/session/getSession";
 import { CartType } from "@src/lib/types/checkout";
 
+export const metadata = {
+  title: "Parc Cannabis Checkout",
+  description: "Parc Cannabis Checkout"
+}
+
 export default async function Page({ params: { id } }: { params: { id: string } }) {
 
   const session = await getSessionData();
