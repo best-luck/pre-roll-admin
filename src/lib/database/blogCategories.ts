@@ -28,7 +28,6 @@ export default async function getBlogCategories( q: string = '' ) {
       result = await sql`
           SELECT * FROM blogcategories;
       `;
-      console.log(result);
   }
 
   const cats = result.rows as BlogCategory[];

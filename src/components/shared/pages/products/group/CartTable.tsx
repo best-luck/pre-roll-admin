@@ -1,11 +1,31 @@
+"use client";
+
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CartProductType } from "@src/lib/types/checkout";
 import Image from "next/image";
 
 import "./style.scss";
+import { getRetailerId } from "@src/lib/functions/client/helper";
+import { removeItemFromCart } from "@src/lib/actions/frontend/checkout";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function CartTable({ items }: { items: CartProductType[] }) {
+
+  const retailerId = getRetailerId();
+  const router = useRouter();
+  const removeItem = (itemId: string) => {
+    removeItemFromCart(retailerId, itemId)
+      .then(() => {
+        router.refresh();
+        toast.success('Item removed from cart!');
+      })
+      .catch(err => {
+
+      });
+  }
+  
   return (
     <table className="table-layout w-full">
       <thead>
@@ -23,7 +43,7 @@ export default function CartTable({ items }: { items: CartProductType[] }) {
           items.map((item: CartProductType, index: number) => (
             <tr className="text-center border-b checkout-product" key={`cart-item-${index}`}>
               <td>
-                <button>
+                <button onClick={() => removeItem(item.id)}>
                   <FontAwesomeIcon icon={faClose} />
                 </button>
               </td>

@@ -1,13 +1,11 @@
-import Banner from '@src/components/layout/banner';
-import Footer from '@src/components/layout/footer';
-import Header from '@src/components/layout/header';
 import 'src/styles/globals.css';
 import 'src/styles/fontawesome.css';
+import '@src/styles/ReactToastify.min.css';
 
 export const metadata = {
-  title: 'Next.js App Router + NextAuth + Tailwind CSS',
+  title: 'Parc Cannabis',
   description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
+    'Parc Cannabis Dispensary'
 };
 
 export default function RootLayout({

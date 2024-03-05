@@ -3,6 +3,8 @@ import Footer from '@src/components/layout/footer';
 import Header from '@src/components/layout/header';
 import 'src/styles/globals.css';
 import 'src/styles/fontawesome.css';
+import { ToastContainer } from 'react-toastify';
+import AgeRestrictModal from '@src/components/shared/common/UI/modals/AgeRestrict';
 
 export const metadata = {
   title: 'Next.js App Router + NextAuth + Tailwind CSS',
@@ -17,11 +19,23 @@ export default function RootLayout({
 }) {
 
   return (
-    <body className="h-full">
+    <>
       <Header />
       <Banner />
       {children}
       <Footer />
-    </body>
+      <AgeRestrictModal />
+      <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={true}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+    </>
   );
 }

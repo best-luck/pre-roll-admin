@@ -8,7 +8,7 @@ import { getRetailerId } from "@src/lib/functions/client/helper";
 import "./style.scss";
 import Link from 'next/link';
 import { useState } from "react";
-import { addItemToCart } from "@src/lib/actions/checkout";
+import { addItemToCart } from "@src/lib/actions/frontend/checkout";
 import { usePathname, useSearchParams } from "next/navigation";
 
 interface ProductProps {

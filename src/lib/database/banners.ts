@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 
-interface Banner {
-    id: number;
+export interface BannerType {
+    id?: number;
     heading: string;
     subheading: string;
     image: string;
@@ -29,5 +29,27 @@ export default async function getBanners() {
 
     const result = await sql`SELECT * FROM banners;`;
 
-    return result.rows as Banner[];
+    return result.rows as BannerType[];
+}
+
+export async function createBanner(data: BannerType) {
+    await createBannersTable();
+
+    try {
+        const result = await sql`INSERT INTO banners (heading, subheading, image, mobile_image, link, cta)
+                VALUES (${data.heading}, ${data.subheading}, ${data.image}, ${data.mobile_image}, ${data.link}, ${data.cta});`;
+        return true;
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+export async function deleteBannerAction(id: number) {
+    try {
+        const result = await sql`DELETE FROM banners WHERE id=${id}`;
+        return true;
+    } catch (err) {
+        return false;
+    }
 }

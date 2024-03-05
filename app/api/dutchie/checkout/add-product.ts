@@ -16,7 +16,6 @@ export default async function handler(
 ) {
   try {
     const parsed = schema.parse(req.body);
-    console.log(parsed);
     const { productId, retailerId, quantity } = parsed;
     const session = await getSessionData();
     let checkoutId = session[`checkoutid-${retailerId}`];

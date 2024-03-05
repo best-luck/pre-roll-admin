@@ -1,15 +1,23 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { ProductType } from "../../../../../lib/types/product";
 import Image from "next/image";
+import "./style.scss";
+import Link from "next/link";
+import { getRetailerId } from "@src/lib/functions/client/helper";
 
 interface ProductProps {
   product: ProductType
 }
 
 export default function ProductShow(props: ProductProps) {
+
+  const retailerId = getRetailerId();
+
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="product-container bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="bg-black">
         <Image
           src={props.product.image}
@@ -24,12 +32,13 @@ export default function ProductShow(props: ProductProps) {
         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white line-clamp-3">
           {props.product.description}
         </h5>
-        <a
-          href="#"
+        <Link
+          href={`/client/retailer/${retailerId}/product/${props.product.id}`}
+          className="font-bold"
         >
           Shop Now
           <FontAwesomeIcon className="ms-3" icon={faArrowRight} />
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import { faInstagram, faFacebook, faTwitter } from "@fortawesome/free-brands-svg
 export default async function Footer() {
   return <footer className="bg-black">
     <div className="container m-auto py-10">
-      <Image alt="logo" src="/images/logo.png" width={100} height={50} />
+      <Image alt="logo" src="/images/logo.webp" width={100} height={50} />
       <div className="flex justify-between mt-3 border-b border-gray-500 pb-10">
         <div>
           <p className="text-white">Open Daily 9am-9pm</p>

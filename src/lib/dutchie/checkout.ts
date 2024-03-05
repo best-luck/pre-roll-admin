@@ -1,5 +1,5 @@
 import { callDutchie } from "./reqeuest"
-import { ADD_TO_CART, CREATE_CHECKOUT, GET_CART_CONTENTS } from "./schemas/checkout";
+import { ADD_TO_CART, CREATE_CHECKOUT, GET_CART_CONTENTS, REMOVE_ITEM_FROM_CART } from "./schemas/checkout";
 
 export const createCheckout = async (retailerId: string, orderType: string="PICKUP", pricingType: string="MEDICAL") => {
   try {
@@ -23,6 +23,15 @@ export const getCart = async (retailerId: string, checkoutId: string) => {
 export const addItemToCart = async (retailerId: string, checkoutId: string, quantity: number, option: string, productId: string) => {
   try {
     const res = await callDutchie(ADD_TO_CART, { retailerId, checkoutId, quantity, option, productId });
+    return res;
+  } catch (err) {
+    return {};
+  }
+}
+
+export const removeItemFromCart = async (retailerId: string, checkoutId: string, itemId: string) => {
+  try {
+    const res = await callDutchie(REMOVE_ITEM_FROM_CART, { retailerId, checkoutId, itemId });
     return res;
   } catch (err) {
     return {};

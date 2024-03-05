@@ -7,6 +7,16 @@ import { getRetailerProduct } from "@src/lib/dutchie/products";
 import { SELECT_OPTION_TYPE } from "@src/lib/types/general";
 import Image from "next/image";
 
+export async function generateMetadata({ params: { id, productId } }: { params: { id: string, productId: string } }) {
+  
+  const product = await getRetailerProduct(id, productId);
+
+  return {
+    title: product.name,
+    description: product.description,
+  }
+}
+
 export default async function Page({ params: { id, productId } }: { params: { id: string, productId: string } }) {
 
   const product = await getRetailerProduct(id, productId);

@@ -1,7 +1,6 @@
 import LoginForm from "./form";
 
 export default function Page() {
-  console.log('admin login page')
   return (
     <div className="container m-auto">
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">

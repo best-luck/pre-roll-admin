@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 
-interface Blog {
-    id: number;
+export interface BlogType {
+    id?: number;
     slug: string;
     title: string;
     content: string;
@@ -9,9 +9,10 @@ interface Blog {
     image: string;
     meta_title: string;
     meta_description: string;
-    category_id: string;
-    created_at: string;
-    updated_at: string;
+    category_id: number;
+    author: string;
+    created_at?: string;
+    updated_at?: string;
 }
 
 const createBlogsTable = async () => {
@@ -39,14 +40,51 @@ export default async function getBlogs( q: string ) {
     let result;
     if ( q.length > 2 ) {
         result = await sql`
-            SELECT * FROM blogs WHERE title ILIKE ${'%' + q + '%'};
+            SELECT id, author, excerpt, title, slug, content, meta_title, meta_description FROM blogs WHERE title ILIKE ${'%' + q + '%'};
         `;
     } else {
         result = await sql`
-            SELECT * FROM blogs;
+            SELECT id, author, excerpt, title, slug, content, meta_title, meta_description FROM blogs;
         `;
     }
 
-    const blogs = result.rows as Blog[];
+    const blogs = result.rows as BlogType[];
     return blogs;
+}
+
+export async function getBlog(slug: string) {
+    const result = await sql`
+        SELECT id, author, excerpt, title, slug, content, meta_title, meta_description, image, created_at FROM blogs WHERE slug=${slug} LIMIT 1;
+    `;
+    return result.rows[0] as BlogType;
+}
+
+export async function deleteBlog(id: number) {
+    try {
+        const result = await sql`
+            DELETE FROM blogs WHERE id=${id};
+        `;
+        return true;
+    } catch(err) {
+        return false;
+    }
+}
+
+export async function createBlog(data: BlogType) {
+    try {
+        await createBlogsTable();
+        const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        const res = await sql`INSERT INTO blogs (title, author, slug, content, excerpt, image, meta_title, meta_description, category_id, created_at, updated_at)
+                VALUES (${data.title}, ${data.author}, ${data.slug}, ${data.content}, ${data.excerpt}, ${data.image}, ${data.meta_title}, ${data.meta_description}, ${data.category_id}, ${date}, ${date});`;
+        return {
+            message: 'Blog created!',
+            status: 'OK'
+        };
+    } catch(err) {
+        console.log(err);
+        return {
+            message: 'Something went wrong!',
+            status: 'Fail'
+        };
+    }
 }

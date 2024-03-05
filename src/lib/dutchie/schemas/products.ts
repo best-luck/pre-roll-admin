@@ -52,6 +52,23 @@ query GetAllProducts( $retailerId: ID! ) {
 }
 `;
 
+export const GET_CATEGORIZRD_PRODUCT = `
+${PRODUCT_FRAGMENT}
+query GetProductsInACategory(
+  $retailerId: ID!
+  $category: Category
+) {
+  menu(
+    retailerId: $retailerId
+    filter: { category: $category }
+  ) {
+    products {
+      ...productFragment
+    }
+  }
+}
+`;
+
 export const GET_PRODUCT_DATA = `
 ${PRODUCT_FRAGMENT}
 # Return data on a single product

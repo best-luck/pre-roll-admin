@@ -9,3 +9,13 @@ export const addItemToCart = async (retailerId: string, productId: String, quant
     })
   })
 }
+
+export const removeItemFromCart = async (retailerId: string, itemId: string) => {
+  return fetch('/api/dutchie/checkout/remove-product', {
+    method: 'POST',
+    body: JSON.stringify({
+      retailerId,
+      itemId
+    })
+  })
+}

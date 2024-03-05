@@ -4,11 +4,12 @@ import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Select from "@src/components/shared/common/UI/select";
 import Variants from "@src/components/shared/common/UI/variants";
-import { addItemToCart } from "@src/lib/actions/checkout";
+import { addItemToCart } from "@src/lib/actions/frontend/checkout";
 import { getRetailerId } from "@src/lib/functions/client/helper";
 import { SELECT_OPTION_TYPE } from "@src/lib/types/general";
 import { ProductType, ProductVariantType } from "@src/lib/types/product";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const quantityOptions: SELECT_OPTION_TYPE[] = [
   {label: 1, value: 1},
@@ -27,6 +28,7 @@ export default function ProductMain({ product }: { product: ProductType }) {
 
   const [variant, setVariant] = useState<ProductVariantType|null>(null);
   const [quantity, setQuantity] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const retailerId = getRetailerId();
 
   const onSelect = (variant: ProductVariantType) => {
@@ -38,11 +40,19 @@ export default function ProductMain({ product }: { product: ProductType }) {
   }
 
   const addToCart = async () => {
+    if (!variant) {
+      toast.error('Please select order option');
+      return;
+    }
+    setIsLoading(true);
     addItemToCart(retailerId, product.id, quantity, variant?.option||'')
       .then(res => {
-        console.log(res);
+        toast.success("Added to Cart");
+        setIsLoading(false);
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setIsLoading(false);
+      })
   }
 
   return (
@@ -58,9 +68,12 @@ export default function ProductMain({ product }: { product: ProductType }) {
         <Select
           options={quantityOptions}
           className="w-[100px]"
-          onChange={onChange} />
-        <button className="ms-5 rounded-full bg-blue-500 uppercase py-3 px-5 text-white font-bold" onClick={addToCart}>
-          <FontAwesomeIcon icon={faCartArrowDown} className="me-3" /> add to cart
+          onChange={onChange}
+          name="quantity" />
+        <button className="ms-5 rounded-full bg-blue-500 uppercase py-3 px-5 text-white font-bold" onClick={addToCart} disabled={isLoading}>
+          {
+            isLoading? "Loading...":<><FontAwesomeIcon icon={faCartArrowDown} className="me-3" /> add to cart</>
+          }
         </button>
       </div>
       <p className="mt-5 text-gray-500 text-md">{product.description}</p>

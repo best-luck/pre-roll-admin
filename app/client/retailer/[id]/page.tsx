@@ -6,11 +6,15 @@ import { getRetailerProducts } from "@src/lib/dutchie/products";
 import { getRetailerDetails } from "@src/lib/dutchie/retailers"
 import { ProductType } from "@src/lib/types/product";
 
-export const metadata = {
-  title: 'Retailer Page',
-  description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
-};
+export async function generateMetadata({ params: { id } }: { params: { id: string } }) {
+  
+  const retailer = await getRetailerDetails(id);
+
+  return {
+    title: retailer.name,
+    description: retailer.description,
+  }
+}
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
 

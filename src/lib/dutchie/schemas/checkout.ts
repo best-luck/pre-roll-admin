@@ -263,3 +263,24 @@ query GetCartContents(
   }
 }
 `;
+
+export const REMOVE_ITEM_FROM_CART = `
+${ADDRESS_FRAGMENT}
+${ITEM_FRAGMENT}
+${PRICE_SUMMARY_FRAGMENT}
+${PRODUCT_FRAGMENT}
+${CHECKOUT_FRAGMENT}
+mutation removeItemFromCart(
+  $retailerId: ID!
+  $checkoutId:ID!
+  $itemId: ID!
+) {
+  removeItem(
+    retailerId: $retailerId
+    checkoutId: $checkoutId
+    itemId: $itemId
+  ) {
+    ...checkoutFragment
+  }
+}
+`;

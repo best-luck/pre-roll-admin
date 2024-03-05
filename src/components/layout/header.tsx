@@ -9,11 +9,11 @@ export default async function Header() {
       <div className="flex justify-between border-b borer-gray-500 pb-3">
         <div className="flex gap-5 text-white uppercase">
           <Link href="/">
-            <Image alt="logo" src="/images/logo.png" width={100} height={50}></Image>
+            <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
           </Link>
-          <Link className="font-bold text-md" href="/">Shop</Link>
-          <Link className="font-bold text-md" href="/">Deals</Link>
-          <Link className="font-bold text-md" href="/">Rewards</Link>
+          <Link className="font-bold text-md" href="/client">Shop</Link>
+          <Link className="font-bold text-md" href="/client">Deals</Link>
+          <Link className="font-bold text-md" href="/client">Rewards</Link>
         </div>
         <SearchBox
           placeholder="Search everything at PARC Cannabis"

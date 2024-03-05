@@ -14,10 +14,8 @@ export default function Form() {
   const [state, formAction] = useFormState(createBlogCategoryAction, initialState);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const slugRef = useRef<HTMLInputElement | null>(null);
-  console.log(state);
 
   useEffect(() => {
-    console.log(state)
     if (nameRef.current) {
       nameRef.current.value = '';
     }
@@ -58,6 +56,7 @@ export default function Form() {
           <Button
             onClick={() => {}}
             className="bg-cyan-400 text-white mt-3"
+            type="submit"
             >
             Add New
           </Button>

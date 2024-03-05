@@ -24,9 +24,15 @@ export default function ProductsSlier({ products }: { products: ProductType[] })
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={50}
-        slidesPerView={3}
+        spaceBetween={30}
+        slidesPerView={1}
         navigation
+        breakpoints={{
+          500: { slidesPerView: 2 },
+          700: { slidesPerView: 3 },
+          900: { slidesPerView: 4 },
+          1200: { slidesPerView: 5 },
+        }}
         pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
