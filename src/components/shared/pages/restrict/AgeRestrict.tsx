@@ -40,7 +40,9 @@ export default function AgeRestrictComponent(props: Props) {
             </button>
           </div>
         </> : <>
-        <h1 className="uppercase font-bold text-2xl mx-3 md:text-xl mt-3 text-center">WE'RE SORRY, WE TAKE SERIOUSLY OUR RESPONSIBILITY TO LIMIT WEBSITE ACCESS TO ADULTS 21 YEARS AND OLDER OR HAVE A MEDICAL CARD.</h1>
+        <h1 className="uppercase font-bold text-2xl mx-3 md:text-xl mt-3 text-center">
+          WE&rsquo;RE SORRY, WE TAKE SERIOUSLY OUR RESPONSIBILITY TO LIMIT WEBSITE ACCESS TO ADULTS 21 YEARS AND OLDER OR HAVE A MEDICAL CARD.
+        </h1>
         <button
           className="uppercase bg-transparent border rounded-lg px-3 py-2 mt-3"
           onClick={() => setUnderAge(false)}
