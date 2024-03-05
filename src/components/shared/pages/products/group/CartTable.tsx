@@ -27,6 +27,7 @@ export default function CartTable({ items }: { items: CartProductType[] }) {
   }
   
   return (
+    items.length ?
     <table className="table-layout w-full">
       <thead>
         <tr className="border-y border-gray-200">
@@ -65,6 +66,7 @@ export default function CartTable({ items }: { items: CartProductType[] }) {
           ))
         }
       </tbody>
-    </table>
+    </table>:
+    <h1 className="font-bold text-xl text-gray-400">No Items Yet</h1>
   )
 }

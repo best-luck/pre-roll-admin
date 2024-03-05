@@ -2,7 +2,7 @@ import { faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CartTotal from "@src/components/shared/common/UI/cart/CarTotal";
 import CartTable from "@src/components/shared/pages/products/group/CartTable";
-import { getCart } from "@src/lib/dutchie/checkout";
+import { createCheckout, getCart } from "@src/lib/dutchie/checkout";
 import { getSessionData } from "@src/lib/session/getSession";
 import { CartType } from "@src/lib/types/checkout";
 
@@ -14,7 +14,26 @@ export const metadata = {
 export default async function Page({ params: { id } }: { params: { id: string } }) {
 
   const session = await getSessionData();
-  const checkout: CartType = await getCart(id, session[`checkoutid-${id}`]);
+  let checkout: CartType = await getCart(id, session[`checkoutid-${id}`]);
+  if (!session[`checkoutid-${id}`]) {
+    checkout = {
+      items: [],
+      priceSummary: {
+        discounts: 0,
+        fees: 0,
+        total: 0,
+        subtotal: 0,
+        mixAndMatch: 0,
+        rewards: 0,
+        taxes: 0
+      },
+      orderType: '',
+      pricingType: '',
+      redirectUrl: '',
+      createdAt: '',
+      updatedAt: '',
+    }
+  }
   const { items } = checkout;
 
   return (
