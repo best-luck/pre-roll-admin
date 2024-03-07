@@ -29,9 +29,12 @@ export default function Form(props: BannerFormProps) {
   });
   const router = useRouter();
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    props.saveBanner(banner);
+    const res: any = await props.saveBanner(banner);
+    if (!res) {
+      router.push("/admin/banner");
+    }
   }
 
   const imageCallback = async (e: any) => {

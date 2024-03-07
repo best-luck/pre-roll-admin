@@ -2,6 +2,8 @@ import { BannerType, createBanner } from "@src/lib/database/banners";
 import Form from "./form";
 import fs from 'fs';
 import { revalidatePath } from "next/cache";
+import util from 'util';
+import { saveBufferToFile } from "@src/lib/functions/server/helper";
 
 export default async function Page() {
 
@@ -15,16 +17,15 @@ export default async function Page() {
 
     // Generate a unique filename or use the original filename
     const fullpath = `/images/blogs/${new Date().getTime()}.png`;
-
-    // Save the file to the desired location
-    fs.writeFile('public'+fullpath, buffer, async (error) => {
-      console.log(error);
-      if (!error) {
-        data.image=fullpath;
-        const res = await createBanner(data);
-        revalidatePath("/admin/banner", "layout");
-      }
-    });
+    const error = await saveBufferToFile('public'+fullpath, buffer)
+    console.log(error);
+    if (!error) {
+      data.image=fullpath;
+      const res = await createBanner(data);
+      revalidatePath("/admin/banner", "layout");
+      return "";
+    }
+    return error;
   }
 
   return (
