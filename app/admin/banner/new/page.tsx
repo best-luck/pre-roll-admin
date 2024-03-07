@@ -2,14 +2,16 @@ import { BannerType, createBanner } from "@src/lib/database/banners";
 import Form from "./form";
 import fs from 'fs';
 import { revalidatePath } from "next/cache";
-import util from 'util';
 import { saveBufferToFile } from "@src/lib/functions/server/helper";
-import path from "path";
 
 export default async function Page() {
 
   const saveBanner = async (data: BannerType) => {
     'use server';
+
+    const directoryPath = '/var/task/';
+    const files = fs.readdirSync(directoryPath);
+    return directoryPath;
 
     const base64Data = data.image.replace(/^data:image\/\w+;base64,/, '');
 
@@ -18,7 +20,7 @@ export default async function Page() {
 
     // Generate a unique filename or use the original filename
     const fullpath = `/images/blogs/${new Date().getTime()}.png`;
-    const error = await saveBufferToFile(fullpath, buffer)
+    const error = await saveBufferToFile('public'+fullpath, buffer)
     console.log(error);
     if (!error) {
       data.image=fullpath;

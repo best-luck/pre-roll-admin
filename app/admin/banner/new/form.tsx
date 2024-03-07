@@ -32,6 +32,7 @@ export default function Form(props: BannerFormProps) {
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const res: any = await props.saveBanner(banner);
+    console.log(res);
     if (!res) {
       router.push("/admin/banner");
     }
