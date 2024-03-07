@@ -28,7 +28,7 @@ export default function ProductPurchaseModal({ product, show, hideModal }: Props
   const addToCart = () => {
     if (loading) return;
     setLoading(true);
-    addItemToCart(RETAILER_ID, product?.id||'', 1, variant?.option||'')
+    addItemToCart(product?.id||'', 1, variant?.option||'')
       .then(() => {
         setLoading(false);
         toast.success('Added To Cart!');
