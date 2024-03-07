@@ -58,7 +58,7 @@ export default function Form(props: BannerFormProps) {
 
   return (
     <div className="w-3/4 m-auto shadow rounded-[20px] bg-white p-5 mt-5">
-      <form onSubmit={onSubmit}>
+      <form action={props.saveBanner}>
         <div className="mt-5">
           <label className="font-bold mb-3">Heading</label>
           <input 
