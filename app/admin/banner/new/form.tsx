@@ -14,7 +14,7 @@ import { ChangeEvent, useState } from 'react';
 // const Editor = dynamic(() => import("@src/components/shared/common/UI/CKEditor"), { ssr: false });
 
 interface BannerFormProps {
-  saveBanner: (data: BannerType) => void;
+  saveBanner: (data: FormData) => void;
 }
 
 export default function Form(props: BannerFormProps) {
@@ -31,11 +31,12 @@ export default function Form(props: BannerFormProps) {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const res: any = await props.saveBanner(banner);
+    const formData = new FormData(event.currentTarget);
+    const res: any = await props.saveBanner(formData);
     console.log(res);
-    if (!res) {
-      router.push("/admin/banner");
-    }
+    // if (!res) {
+    //   router.push("/admin/banner");
+    // }
   }
 
   const imageCallback = async (e: any) => {
