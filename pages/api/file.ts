@@ -1,5 +1,6 @@
 import { put } from "@vercel/blob";
 import type { NextApiResponse, NextApiRequest } from "next";
+import { NextResponse } from "next/server";
 
 export default async function handler(
   request: NextApiRequest,
