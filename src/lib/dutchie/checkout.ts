@@ -16,7 +16,6 @@ export const getCart = async (checkoutId: string) => {
     const res = await callDutchie(GET_CART_CONTENTS, { retailerId, checkoutId });
     return res.data.checkout;
   } catch (err) {
-    console.log(err);
     return {};
   }
 }

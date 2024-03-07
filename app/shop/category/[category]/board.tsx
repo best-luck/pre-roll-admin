@@ -19,7 +19,6 @@ interface Props {
 export default function Board(props: Props) {
 
   const { specials, special } = props;
-  const searchParams = useSearchParams();
 
   const [products, setProducts] = useState<ProductType[]>(props.products);
   const [category, setCategory] = useState(props.category);

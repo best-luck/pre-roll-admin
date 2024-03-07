@@ -4,7 +4,6 @@ import RetailerBanner from "@src/components/shared/pages/reatilers/banner";
 import RetailerCategories from "@src/components/shared/pages/reatilers/category";
 import { getRetailerProducts } from "@src/lib/dutchie/products";
 import { getRetailerDetails, getRetailerMenu } from "@src/lib/dutchie/retailers"
-import { getRetailerId } from "@src/lib/functions/client/helper";
 import { RETAILER_ID } from "@src/lib/static/vars";
 import { ProductType } from "@src/lib/types/product";
 

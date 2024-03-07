@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 export default function SidebarCart({ show, hide }: { show: boolean, hide: () => void }) {
 
   const [cart, setCart] = useState<CartType|null>(null);
-  console.log(cart);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,7 +42,7 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
         <div className="shadow-lg py-5 px-5 flex justify-between">
           <div>
             <p className="text-md font-bold">Shopping Cart</p>
-            <p className="text-sm">Subtotal: ${((cart?.priceSummary.subtotal||0) / 100).toFixed(2)}</p>
+            <p className="text-sm">Subtotal: ${((cart?.priceSummary?.subtotal||0) / 100).toFixed(2)}</p>
           </div>
           <Button onClick={hide} className="border-2 border-black" type="button">
             <FontAwesomeIcon icon={faClose} className="mr-3" />Close
@@ -67,7 +66,7 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
           </Link>
           <div className="p-5">
             {
-              cart?.items.map((item: CartProductType) => (
+              cart?.items?.map((item: CartProductType) => (
                 <CartItem
                   item={item}
                   key={`cart-item-${item.id}`}
@@ -85,7 +84,7 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
           </Link>
           <div className="flex mt-5">
             <div className="flex-1">
-              <p className="text-md font-bold text-gray-600">Subtotal: ${((cart?.priceSummary.subtotal||0) / 100).toFixed(2)}</p>
+              <p className="text-md font-bold text-gray-600">Subtotal: ${((cart?.priceSummary?.subtotal||0) / 100).toFixed(2)}</p>
               <p className="text-sm">*Cannabis and Sales tax will be added at checkout.</p>
             </div>
             <div className="flex-1">

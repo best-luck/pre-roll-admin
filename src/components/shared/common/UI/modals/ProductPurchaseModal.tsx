@@ -43,9 +43,6 @@ export default function ProductPurchaseModal({ product, show, hideModal }: Props
     if (product)
       setVariant(product?.variants[0])
   }, [product]);
-
-  console.log(product, variant);
-
   return (
     <ModalWrapper show={show}>
       {
