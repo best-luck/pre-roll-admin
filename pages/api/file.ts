@@ -6,7 +6,7 @@ export default async function handler(
   request: NextApiRequest,
   response: NextApiResponse
 ) {
-  const filename = request.query.filename;
+  const filename = request.query.filename?.toString()||'';
 
   const blob = await put(filename, request, { // The important change, not `request.body` but `request`
     access: 'public',
