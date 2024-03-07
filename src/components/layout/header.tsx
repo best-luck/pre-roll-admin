@@ -14,7 +14,7 @@ export default async function Header() {
             <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
           </Link>
           <Link className="font-bold text-md" href="/shop">Shop</Link>
-          <Link className="font-bold text-md" href="/shop">Deals</Link>
+          <Link className="font-bold text-md" href="/deals">Deals</Link>
           <Link className="font-bold text-md" href="/shop">Rewards</Link>
         </div>
         <SearchBox

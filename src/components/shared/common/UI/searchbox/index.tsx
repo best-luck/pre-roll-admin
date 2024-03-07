@@ -26,7 +26,7 @@ export default function SearchBox(props: SearchBoxProps) {
   }, [query]);
 
   return (
-    <form className="max-w-xl">   
+    <div className="max-w-xl">   
       <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
       <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -36,6 +36,6 @@ export default function SearchBox(props: SearchBoxProps) {
           </div>
           <input type="search" id="default-search" onChange={onChange} className="block w-full px-4 py-2 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-transparent focus:ring-blue-500" placeholder={props.placeholder} required />
       </div>
-    </form>
+    </div>
   )
 }
