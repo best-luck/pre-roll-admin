@@ -25,7 +25,7 @@ export default async function handler(
       checkoutId = checkout.id;
     }
 
-    await addItemToCart(retailerId, checkoutId, quantity, "", productId);
+    await addItemToCart(checkoutId, quantity, "", productId);
     res.status(200).json({ message: 'Hello from Next.js!' })
   } catch(err) {
     console.log(err);
