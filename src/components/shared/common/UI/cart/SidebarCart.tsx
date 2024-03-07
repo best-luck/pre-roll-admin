@@ -40,7 +40,7 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
   }
 
   const proceedToCheckout = () => {
-    router.replace(`https://checkout.northcannabisco.com/checkouts/${DISPENSARY_ID}/${cart.id}`);
+    router.replace(`https://checkout.northcannabisco.com/checkouts/${DISPENSARY_ID}/${cart?.id}`);
   }
 
   return (
