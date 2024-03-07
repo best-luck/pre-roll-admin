@@ -18,7 +18,7 @@ export default async function Page() {
 
     // Generate a unique filename or use the original filename
     const fullpath = `/images/blogs/${new Date().getTime()}.png`;
-    const error = await saveBufferToFile('./public'+fullpath, buffer)
+    const error = await saveBufferToFile(fullpath, buffer)
     console.log(error);
     if (!error) {
       data.image=fullpath;
