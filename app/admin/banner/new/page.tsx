@@ -11,8 +11,9 @@ export default async function Page() {
     'use server';
 
     const imageFile = formData.get('image') as File;
-    console.log('here', imageFile.name, imageFile)
-    const blob = await put(imageFile.name, imageFile, {
+    console.log('here', imageFile.name, imageFile);
+    const readStream = await imageFile.stream();
+    const blob = await put(imageFile.name, readStream, {
       access: 'public',
     });
     console.log('here1')
