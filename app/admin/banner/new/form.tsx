@@ -8,7 +8,7 @@ import { BlogCategory } from '@src/lib/database/blogCategories';
 import { convertImage } from '@src/lib/functions/client/helper';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 
 // const Editor = dynamic(() => import("@src/components/shared/common/UI/CKEditor"), { ssr: false });
@@ -28,6 +28,7 @@ export default function Form(props: BannerFormProps) {
     cta: ''
   });
   const router = useRouter();
+  const imageRef = useRef<HTMLInputElement|null>(null);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,11 +43,21 @@ export default function Form(props: BannerFormProps) {
   const imageCallback = async (e: any) => {
     if (!e.target || !e.target.files || !e.target.files[0]) return;
 
-    const image = await convertImage(e);
-    setBanner({
-      ...banner,
-      image
-    })
+    const file = imageRef?.current?.files && imageRef.current.files[0];
+
+    const response = await fetch(
+      `/api/file?filename=${file?.name}`,
+      {
+        method: 'POST',
+        body: file,
+      },
+    );
+
+    // const image = await convertImage(e);
+    // setBanner({
+    //   ...banner,
+    //   image
+    // })
   }
 
   const updateBanner = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +70,33 @@ export default function Form(props: BannerFormProps) {
   return (
     <div className="w-3/4 m-auto shadow rounded-[20px] bg-white p-5 mt-5">
       <form action={props.saveBanner}>
+        <div className="mt-5">
+          <label className="font-bold mb-3" htmlFor="heading">Heading</label>
+          <input 
+            id="heading"
+            name="heading"
+            type="text"
+            autoComplete="heading"
+            placeholder="Heading"
+            onChange={updateBanner}
+            required
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+        
+        <div className="mt-3">
+          <label className="font-bold mb-3">Subheading</label>
+          <input 
+            id="subheading"
+            name="subheading"
+            type="text"
+            autoComplete="subheading"
+            placeholder="subheading"
+            required
+            onChange={updateBanner}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
 
         <div className="mt-3">
           <label className="font-bold mb-3">Image</label>
@@ -70,6 +108,35 @@ export default function Form(props: BannerFormProps) {
             placeholder="Image"
             required
             onChange={imageCallback}
+            ref={imageRef}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+
+        <div className="mt-3">
+          <label className="font-bold mb-3">Link</label>
+          <input 
+            id="link"
+            name="link"
+            type="text"
+            autoComplete="link"
+            placeholder="Link"
+            required
+            onChange={updateBanner}
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+          />
+        </div>
+
+        <div className="mt-3">
+          <label className="font-bold mb-3">CTA</label>
+          <input 
+            id="cta"
+            name="cta"
+            type="text"
+            autoComplete="cta"
+            placeholder="CTA"
+            required
+            onChange={updateBanner}
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
           />
         </div>
