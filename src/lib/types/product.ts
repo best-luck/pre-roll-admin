@@ -36,7 +36,7 @@ export interface CategorizedProductsType {
   [key: string]: ProductType[]
 }
 
-export type ProductDisplayType = "Cart"|"Type";
+export type ProductDisplayType = "Cart"|"Type"|"Listing";
 
 export interface ProductVariantType {
   id: string;

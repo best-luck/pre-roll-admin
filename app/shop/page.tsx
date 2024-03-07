@@ -3,12 +3,16 @@ import CategorizedProducts from "@src/components/shared/pages/products";
 import RetailerBanner from "@src/components/shared/pages/reatilers/banner";
 import RetailerCategories from "@src/components/shared/pages/reatilers/category";
 import { getRetailerProducts } from "@src/lib/dutchie/products";
-import { getRetailerDetails } from "@src/lib/dutchie/retailers"
+import { getRetailerDetails, getRetailerMenu } from "@src/lib/dutchie/retailers"
+import { getRetailerId } from "@src/lib/functions/client/helper";
+import { RETAILER_ID } from "@src/lib/static/vars";
 import { ProductType } from "@src/lib/types/product";
 
-export async function generateMetadata({ params: { id } }: { params: { id: string } }) {
+export async function generateMetadata() {
   
+  const id = RETAILER_ID;
   const retailer = await getRetailerDetails(id);
+  const specials = await getRetailerMenu(id);
 
   return {
     title: retailer.name,
@@ -16,8 +20,9 @@ export async function generateMetadata({ params: { id } }: { params: { id: strin
   }
 }
 
-export default async function Page({ params: { id } }: { params: { id: string } }) {
+export default async function Page() {
 
+  const id = RETAILER_ID;
   const retailer = await getRetailerDetails(id);
   const products: ProductType[] = await getRetailerProducts(id);
   const categories = Array.from(new Set(products.map((product: ProductType) => product.category)));
@@ -27,7 +32,6 @@ export default async function Page({ params: { id } }: { params: { id: string } 
       <RetailerBanner retailer={retailer} />
       <RetailerCategories categories={categories} />
       <CategorizedProducts products={products} categories={categories} />
-      <CartButton />
     </div>
   )
 }

@@ -20,7 +20,7 @@ export default function AgeRestrictModal() {
   }, []);
 
   return (
-    passed? '' : <ModalWrapper>
+    <ModalWrapper show={!passed}>
       <AgeRestrictComponent
         confirmModal={confirmModal} />
     </ModalWrapper>

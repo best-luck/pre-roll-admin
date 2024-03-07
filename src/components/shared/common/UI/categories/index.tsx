@@ -1,6 +1,5 @@
 import Category from "./category";
-
-const categories = ["shop all", "bulk flower", "pre-pack flower", "pre-rolls", "vapes", "edibles", "extracts", "topicals", "tinctures", "accessories"]
+import { CATEGORIES as categories } from "@src/lib/static/vars";
 
 export default function Categories() {
 

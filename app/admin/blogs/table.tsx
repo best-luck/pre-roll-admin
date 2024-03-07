@@ -19,7 +19,7 @@ export default function Table(props: BlogTableProps) {
   const [state, deleteAction] = useFormState(deleteBlogAction, {});
 
   const viewBlog = (blog: BlogType) => {
-    router.push(`/client/blog/${blog.slug}`)
+    router.push(`/shop/blog/${blog.slug}`)
   }
 
   const deleteBlog = async (blog: BlogType) => {

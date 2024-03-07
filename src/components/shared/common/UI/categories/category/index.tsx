@@ -1,6 +1,7 @@
 "use client";
 
 import { getRetailerId } from "@src/lib/functions/client/helper";
+import { RETAILER_ID } from "@src/lib/static/vars";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -11,9 +12,9 @@ export default function Category({
 }) {
 
   const router = useRouter();
-  const retailerId = getRetailerId();
+  const retailerId = RETAILER_ID;
   const viewCategory = () => {
-    router.push(`${retailerId}/category/${category}`)
+    router.push(`/shop/category/${category}`)
   }
 
   return (

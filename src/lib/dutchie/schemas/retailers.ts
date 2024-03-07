@@ -1,3 +1,5 @@
+import { PRODUCT_FRAGMENT } from "./checkout";
+
 export const GET_RETAILERS = `
   query GetRetailerIds {
     retailers {
@@ -149,3 +151,52 @@ query GetSpecialsList( $retailerId: ID! ) {
   }
 }
 `;
+
+export const GET_SPECIAL_FRAGMENT = `
+fragment specialFragment on Special {
+  id
+  name
+  type
+  redemptionLimit
+  menuType
+  emailConfiguration {
+    description
+    descriptionHtml
+    subject
+    heading
+    enabled
+  }
+  scheduleConfiguration {
+    startStamp
+    endStamp
+    days
+    startTime
+    endTime
+    setEndDate
+    endDate
+  }
+  menuDisplayConfiguration {
+    name
+    description
+    image
+  }
+}
+`;
+
+export const MENU_BY_CUSTOM_SECTION = `
+${PRODUCT_FRAGMENT}
+query MenuByCustomSection(
+  $retailerId: ID!
+) {
+  menu(
+    retailerId: $retailerId
+    filter: { menuSection: { type: CUSTOM_SECTION, name: "Popular Flower" } }
+    pagination: {limit: 50, offset: 0}
+    sort: { direction: ASC, key: NAME }
+  ) {
+    products {
+      ...productFragment
+    }
+  }
+}
+`

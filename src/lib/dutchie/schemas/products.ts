@@ -9,6 +9,7 @@ fragment productFragment on Product {
   descriptionHtml
   id
   image
+  slug
   images {
     id
     url
@@ -44,7 +45,11 @@ fragment productFragment on Product {
 export const GET_ALL_PRODUCTS = `
 ${PRODUCT_FRAGMENT}
 query GetAllProducts( $retailerId: ID! ) {
-  menu( retailerId: $retailerId ) {
+  menu( 
+    retailerId: $retailerId
+    pagination: { offset: 0, limit: 25 }
+    sort: { direction: ASC, key: NAME }
+  ) {
     products {
       ...productFragment
     }
@@ -61,6 +66,8 @@ query GetProductsInACategory(
   menu(
     retailerId: $retailerId
     filter: { category: $category }
+    pagination: { offset: 0, limit: 100 }
+    sort: { direction: ASC, key: NAME }
   ) {
     products {
       ...productFragment
@@ -82,6 +89,151 @@ query GetProductData(
   	id: $productId
   ) {
     ...productFragment
+  }
+}
+`;
+
+export const FILTER_RETAILER_PRODUCTS = `
+${PRODUCT_FRAGMENT}
+query GetAllProducts(
+  $retailerId: ID!
+  $categories: [Category!]
+  $strainTypes: [StrainType!]
+  $brandIds: [String!]
+  $effects: [Effects!]
+  $weights: [String!]
+  $search: String!
+) {
+  menu(
+    retailerId: $retailerId
+    filter: {
+      strainTypes: $strainTypes,
+      brandIds: $brandIds,
+      effects: $effects,
+      categories: $categories,
+      weights: $weights,
+      search: $search
+  	}
+    pagination: {limit: 50, offset: 0}
+    sort: { direction: ASC, key: NAME }
+  ) {
+    products {
+      ...productFragment
+    }
+  }
+}
+`;
+
+export const FILTER_RETAILER_PRODUCTS_WEIGHTS = `
+${PRODUCT_FRAGMENT}
+query GetAllProducts(
+  $retailerId: ID!
+  $categories: [Category!]
+  $strainTypes: [StrainType!]
+  $brandIds: [String!]
+  $effects: [Effects!]
+  $search: String!
+) {
+  menu(
+    retailerId: $retailerId
+    filter: {
+      strainTypes: $strainTypes,
+      brandIds: $brandIds,
+      effects: $effects,
+      categories: $categories,
+      search: $search
+  	}
+    pagination: {limit: 50, offset: 0}
+    sort: { direction: ASC, key: NAME }
+  ) {
+    products {
+      ...productFragment
+    }
+  }
+}
+`;
+
+export const GET_RETAILER_SPECIALS = `
+${PRODUCT_FRAGMENT}
+query GetAllProducts(
+  $retailerId: ID!
+  $strainTypes: [StrainType!]
+  $brandIds: [String!]
+  $effects: [Effects!]
+  $weights: [String!]
+  $specialIds: [String!]
+  $search: String!
+) {
+  menu(
+    retailerId: $retailerId
+    filter: {
+      strainTypes: $strainTypes,
+      brandIds: $brandIds,
+      effects: $effects,
+      weights: $weights,
+      menuSection: {
+        type: SPECIALS,
+        specialId: $specialIds
+      },
+      search: $search
+  	}
+    pagination: {limit: 50, offset: 0}
+    sort: { direction: ASC, key: NAME }
+  ) {
+    products {
+      ...productFragment
+    }
+  }
+}
+`;
+
+export const GET_RETAILER_SPECIALS_WITHOUT_WEIGHTS = `
+${PRODUCT_FRAGMENT}
+query GetAllProducts(
+  $retailerId: ID!
+  $strainTypes: [StrainType!]
+  $brandIds: [String!]
+  $effects: [Effects!]
+  $weights: [String!]
+  $specialIds: [String!]
+  $search: String!
+) {
+  menu(
+    retailerId: $retailerId
+    filter: {
+      strainTypes: $strainTypes,
+      brandIds: $brandIds,
+      effects: $effects,
+      weights: $weights,
+      menuSection: {
+        type: SPECIALS,
+        specialId: $specialIds
+      },
+      search: $search
+  	}
+    pagination: {limit: 50, offset: 0}
+    sort: { direction: ASC, key: NAME }
+  ) {
+    products {
+      ...productFragment
+    }
+  }
+}
+`;
+
+export const STRING_SERACH_PRODUCTS = `
+${PRODUCT_FRAGMENT}
+query GetAllProducts(
+  $retailerId: ID!
+  $search: String!
+) {
+  menu(
+    retailerId: $retailerId
+    filter: { search: $search }
+  ) {
+    products {
+      ...productFragment
+    }
   }
 }
 `;

@@ -1,11 +1,9 @@
 'use client';
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CategorizedProductsType, ProductType } from "../../../../lib/types/product";
 import ProductsByCategory from "./bycategory";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faShop } from "@fortawesome/free-solid-svg-icons";
+import ProductPurchaseModal from "../../common/UI/modals/ProductPurchaseModal";
 
 export default function CategorizedProducts(props: { products: ProductType[], categories: string[] }) {
 
@@ -18,13 +16,36 @@ export default function CategorizedProducts(props: { products: ProductType[], ca
         products[product.category].push(product);
     });
     return products;
-  }, [props.products, categories])
+  }, [props.products, categories]);
+  const [isPurchaseModalVisible, setIsPurchaseModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType|null>(null);
+
+  useEffect(() => {
+    if (selectedProduct)
+      setIsPurchaseModalVisible(true);
+  }, [selectedProduct]);
+
+  useEffect(() => {
+    if (!isPurchaseModalVisible)
+      setSelectedProduct(null);
+  }, [isPurchaseModalVisible]);
 
   return (
     <div className="mt-3">
       {
-        categories.map(category => <ProductsByCategory key={`products-by-category-${category}`} category={category} products={categorizedProducts[category]} />)
+        categories.map(category => (
+          <ProductsByCategory 
+            key={`products-by-category-${category}`}
+            category={category}
+            products={categorizedProducts[category]}
+            selectProduct={setSelectedProduct} />
+        ))
       }
+      <ProductPurchaseModal
+        product={selectedProduct}
+        show={isPurchaseModalVisible}
+        hideModal={() => setIsPurchaseModalVisible(false)}
+        />
     </div>
   );
 }

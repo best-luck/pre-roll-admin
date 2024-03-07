@@ -13,10 +13,9 @@ import { toast } from "react-toastify";
 
 export default function CartTable({ items }: { items: CartProductType[] }) {
 
-  const retailerId = getRetailerId();
   const router = useRouter();
   const removeItem = (itemId: string) => {
-    removeItemFromCart(retailerId, itemId)
+    removeItemFromCart(itemId)
       .then(() => {
         router.refresh();
         toast.success('Item removed from cart!');

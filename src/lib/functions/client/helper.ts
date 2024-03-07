@@ -1,9 +1,9 @@
 'use client';
 
+import { RETAILER_ID } from "@src/lib/static/vars";
+
 export function getRetailerId (): string {
-  if (typeof window !== undefined)
-    return window?.location?.pathname.split('/')[3];
-  return "";
+  return RETAILER_ID;
 }
 
 export const convertImage = async (event: any) => {

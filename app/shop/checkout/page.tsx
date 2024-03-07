@@ -14,7 +14,7 @@ export const metadata = {
 export default async function Page({ params: { id } }: { params: { id: string } }) {
 
   const session = await getSessionData();
-  let checkout: CartType = await getCart(id, session[`checkoutid-${id}`]);
+  let checkout: CartType = await getCart(session[`checkoutid-${id}`]);
   if (!session[`checkoutid-${id}`]) {
     checkout = {
       items: [],

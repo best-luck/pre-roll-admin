@@ -11,7 +11,7 @@ import { ProductType, ProductVariantType } from "@src/lib/types/product";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const quantityOptions: SELECT_OPTION_TYPE[] = [
+export const quantityOptions: SELECT_OPTION_TYPE[] = [
   {label: 1, value: 1},
   {label: 2, value: 2},
   {label: 3, value: 3},
@@ -29,7 +29,6 @@ export default function ProductMain({ product }: { product: ProductType }) {
   const [variant, setVariant] = useState<ProductVariantType|null>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const retailerId = getRetailerId();
 
   const onSelect = (variant: ProductVariantType) => {
     setVariant(variant);
@@ -45,7 +44,7 @@ export default function ProductMain({ product }: { product: ProductType }) {
       return;
     }
     setIsLoading(true);
-    addItemToCart(retailerId, product.id, quantity, variant?.option||'')
+    addItemToCart(product.id, quantity, variant?.option||'')
       .then(res => {
         toast.success("Added to Cart");
         setIsLoading(false);
@@ -57,7 +56,7 @@ export default function ProductMain({ product }: { product: ProductType }) {
 
   return (
     <div className="pb-10 border-b">
-      <p className="text-gray-400 font-bold text-sm">{product.brand.name}</p>
+      <p className="text-gray-400 font-bold text-sm">{product?.brand?.name}</p>
       <p className="font-bold text-3xl">{product.name}</p>
       <div className="mt-5">
         <Variants

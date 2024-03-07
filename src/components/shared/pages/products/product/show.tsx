@@ -33,7 +33,7 @@ export default function ProductShow(props: ProductProps) {
           {props.product.description}
         </h5>
         <Link
-          href={`/client/retailer/${retailerId}/product/${props.product.id}`}
+          href={`/shop/product/${props.product.slug}`}
           className="font-bold"
         >
           Shop Now

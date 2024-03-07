@@ -1,4 +1,6 @@
-export const addItemToCart = async (retailerId: string, productId: String, quantity: number, option: string) => {
+import { RETAILER_ID as retailerId } from "@src/lib/static/vars"
+
+export const addItemToCart = async (productId: String, quantity: number, option: string) => {
   return fetch('/api/dutchie/checkout/add-product', {
     method: 'POST',
     body: JSON.stringify({
@@ -10,7 +12,7 @@ export const addItemToCart = async (retailerId: string, productId: String, quant
   })
 }
 
-export const removeItemFromCart = async (retailerId: string, itemId: string) => {
+export const removeItemFromCart = async (itemId: string) => {
   return fetch('/api/dutchie/checkout/remove-product', {
     method: 'POST',
     body: JSON.stringify({

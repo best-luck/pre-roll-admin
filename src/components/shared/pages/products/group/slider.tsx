@@ -1,5 +1,3 @@
-"use client";
-
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ProductType } from "../../../../../lib/types/product";
@@ -18,20 +16,21 @@ const breakPoints = [
   { width: 1200, itemsToShow: 5 },
 ];
 
-export default function ProductsSlier({ products }: { products: ProductType[] }) {
+export default function ProductsSlier({ products, selectProduct }: { products: ProductType[], selectProduct: (p: ProductType) => void; }) {
   return (
     <div>
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={30}
+        spaceBetween={5}
         slidesPerView={1}
         navigation
         breakpoints={{
-          500: { slidesPerView: 2 },
-          700: { slidesPerView: 3 },
-          900: { slidesPerView: 4 },
-          1200: { slidesPerView: 5 },
+          500: { slidesPerView: 1 },
+          700: { slidesPerView: 2 },
+          900: { slidesPerView: 3 },
+          1200: { slidesPerView: 4 },
+          1400: { slidesPerView: 5 },
         }}
         pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
@@ -42,7 +41,10 @@ export default function ProductsSlier({ products }: { products: ProductType[] })
             <SwiperSlide
               key={`product-slider-${product.id}`}
             >
-              <Product display="Cart" product={product} />
+              <Product
+                display="Cart"
+                product={product}
+                selectProduct={selectProduct} />
             </SwiperSlide>
           ))
         }

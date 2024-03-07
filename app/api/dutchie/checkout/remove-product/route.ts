@@ -27,9 +27,9 @@ export async function POST(
       await session.save();
       checkoutId = checkout.id;
     }
-    const resp = await removeItemFromCart(retailerId, checkoutId, itemId);
+    const cart = await removeItemFromCart(checkoutId, itemId);
     
-    return Response.json({ status: 'OK' })
+    return Response.json({ cart })
   } catch(err) {
     return Response.error()
   }

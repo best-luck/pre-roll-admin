@@ -97,6 +97,7 @@ fragment productFragment on Product {
   descriptionHtml
   id
   image
+  slug
   images {
     id
     url

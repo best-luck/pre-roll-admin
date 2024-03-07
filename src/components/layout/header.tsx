@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import SearchBox from "../shared/common/UI/searchbox";
 import Link from "next/link";
@@ -11,9 +13,9 @@ export default async function Header() {
           <Link href="/">
             <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
           </Link>
-          <Link className="font-bold text-md" href="/client">Shop</Link>
-          <Link className="font-bold text-md" href="/client">Deals</Link>
-          <Link className="font-bold text-md" href="/client">Rewards</Link>
+          <Link className="font-bold text-md" href="/shop">Shop</Link>
+          <Link className="font-bold text-md" href="/shop">Deals</Link>
+          <Link className="font-bold text-md" href="/shop">Rewards</Link>
         </div>
         <SearchBox
           placeholder="Search everything at PARC Cannabis"

@@ -20,7 +20,6 @@ export async function POST(
     const body = await req.json();
     const { productId, retailerId, quantity, option } = body;
     const session = await getSessionData();
-    console.log(session);
     let checkoutId = session[`checkoutid-${retailerId}`];
     if (!checkoutId) {
       const checkout = await createCheckout(retailerId);
@@ -28,10 +27,9 @@ export async function POST(
       await session.save();
       checkoutId = checkout.id;
     }
-    const resp = await getCart(retailerId, checkoutId)
+    const resp = await getCart(checkoutId)
 
-    const res = await addItemToCart(retailerId, checkoutId, quantity, option, productId);
-    console.log(res);
+    const res = await addItemToCart(checkoutId, quantity, option, productId);
     return Response.json({ status: 'OK' })
   } catch(err) {
     return Response.error()

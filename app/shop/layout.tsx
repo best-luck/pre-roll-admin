@@ -5,11 +5,11 @@ import 'src/styles/globals.css';
 import 'src/styles/fontawesome.css';
 import { ToastContainer } from 'react-toastify';
 import AgeRestrictModal from '@src/components/shared/common/UI/modals/AgeRestrict';
+import CartButton from '@src/components/shared/common/UI/cart/CartButton';
 
 export const metadata = {
-  title: 'Next.js App Router + NextAuth + Tailwind CSS',
-  description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
+  title: 'Parc Cannabis',
+  description:'Parc Cannabis'
 };
 
 export default function RootLayout({
@@ -36,6 +36,7 @@ export default function RootLayout({
           draggable
           pauseOnHover
         />
+      <CartButton />
     </>
   );
 }

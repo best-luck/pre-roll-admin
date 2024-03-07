@@ -7,7 +7,6 @@ export default function RetailerBanner({
 }) {
   return (
     <div>
-      <h1 className="text-xl">{retailer.name}</h1>
     </div>
   )
 }

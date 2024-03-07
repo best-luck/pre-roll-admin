@@ -6,10 +6,9 @@ import BannerSwiper from "./sub/bannerswiper";
 export default async function Banner() {
 
   const banners = await getBanners();
-  console.log(banners);
 
   return (
-    <div className="m-auto container">
+    <div className="m-auto container mt-3">
       { banners.length ? <BannerSwiper banners={banners} /> : '' }
     </div>
   );

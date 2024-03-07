@@ -12,7 +12,6 @@ export default async function AdminHeader() {
           </Link>
           <Link className="font-bold text-md" href="/admin/blogs">Blogs</Link>
           <Link className="font-bold text-md" href="/admin/banner">Banner</Link>
-          <Link className="font-bold text-md" href="/admin/banner">Banner</Link>
           <Link className="font-bold text-md" href="/admin/login">Login</Link>
         </div>
       </div>
