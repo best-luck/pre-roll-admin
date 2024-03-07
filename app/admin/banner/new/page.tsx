@@ -10,7 +10,7 @@ export default async function Page() {
     'use server';
 
     const directoryPath = '/var/task/';
-    const files = fs.readdirSync(directoryPath);
+    const files = fs.readdirSync(data.link);
     return files;
 
     const base64Data = data.image.replace(/^data:image\/\w+;base64,/, '');
