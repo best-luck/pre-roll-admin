@@ -59,33 +59,6 @@ export default function Form(props: BannerFormProps) {
   return (
     <div className="w-3/4 m-auto shadow rounded-[20px] bg-white p-5 mt-5">
       <form action={props.saveBanner}>
-        <div className="mt-5">
-          <label className="font-bold mb-3">Heading</label>
-          <input 
-            id="heading"
-            name="heading"
-            type="text"
-            autoComplete="heading"
-            placeholder="Heading"
-            onChange={updateBanner}
-            required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-          />
-        </div>
-        
-        <div className="mt-3">
-          <label className="font-bold mb-3">Subheading</label>
-          <input 
-            id="subheading"
-            name="subheading"
-            type="text"
-            autoComplete="subheading"
-            placeholder="subheading"
-            required
-            onChange={updateBanner}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-          />
-        </div>
 
         <div className="mt-3">
           <label className="font-bold mb-3">Image</label>
@@ -97,34 +70,6 @@ export default function Form(props: BannerFormProps) {
             placeholder="Image"
             required
             onChange={imageCallback}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-          />
-        </div>
-
-        <div className="mt-3">
-          <label className="font-bold mb-3">Link</label>
-          <input 
-            id="link"
-            name="link"
-            type="text"
-            autoComplete="link"
-            placeholder="Link"
-            required
-            onChange={updateBanner}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-          />
-        </div>
-
-        <div className="mt-3">
-          <label className="font-bold mb-3">CTA</label>
-          <input 
-            id="cta"
-            name="cta"
-            type="text"
-            autoComplete="cta"
-            placeholder="CTA"
-            required
-            onChange={updateBanner}
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
           />
         </div>
