@@ -31,4 +31,5 @@ export interface CartType {
   redirectUrl: string;
   createdAt: string;
   updatedAt: string;
+  id: string;
 }

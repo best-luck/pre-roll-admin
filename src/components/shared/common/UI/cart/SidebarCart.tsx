@@ -9,11 +9,14 @@ import { CartProductType, CartType } from "@src/lib/types/checkout";
 import CartItem from "@src/components/shared/pages/products/product/cartitem";
 import { removeItemFromCart } from "@src/lib/actions/frontend/checkout";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { DISPENSARY_ID } from "@src/lib/static/vars";
 
 export default function SidebarCart({ show, hide }: { show: boolean, hide: () => void }) {
 
   const [cart, setCart] = useState<CartType|null>(null);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     (async() => {
@@ -34,6 +37,10 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
       .catch(err => {
         setLoading(false);
       });
+  }
+
+  const proceedToCheckout = () => {
+    router.replace(`https://checkout.northcannabisco.com/checkouts/${DISPENSARY_ID}/${cart.id}`);
   }
 
   return (
@@ -88,7 +95,7 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
               <p className="text-sm">*Cannabis and Sales tax will be added at checkout.</p>
             </div>
             <div className="flex-1">
-              <Button className="bg-gray-500 rounded-[50px] text-white w-full font-bold" type="button" onClick={() => {}}>Proceed to Checkout</Button>
+              <Button className="bg-gray-500 rounded-[50px] text-white w-full font-bold" type="button" onClick={proceedToCheckout}>Proceed to Checkout</Button>
             </div>
           </div>
         </div>
