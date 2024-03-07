@@ -17,6 +17,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   let checkout: CartType = await getCart(session[`checkoutid-${id}`]);
   if (!session[`checkoutid-${id}`]) {
     checkout = {
+      id: '',
       items: [],
       priceSummary: {
         discounts: 0,
