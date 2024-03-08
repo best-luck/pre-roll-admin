@@ -2,6 +2,7 @@
 
 import { createBanner } from '@src/lib/database/banners';
 import { uploadFileToCloudinary } from '@src/lib/functions/server/helper';
+import { revalidatePath } from 'next/cache';
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
@@ -21,6 +22,7 @@ export async function POST(request: Request) {
       image: secure_url
     };
     await createBanner(data);
+    revalidatePath('/', 'layout');
     return Response.json({ status: "OK" });
   } catch (err) {
     return Response.json({ err });

@@ -21,7 +21,7 @@ export async function createBlogAction(formData: FormData) {
     category_id: parseInt(formData.get("category_id")?.toString()||'-1'),
   }
   const res = await createBlog(data);
-  revalidatePath("/admin/blogs")
+  revalidatePath('/', 'layout');
   return res;
 }
 
