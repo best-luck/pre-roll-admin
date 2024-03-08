@@ -32,9 +32,23 @@ export default function Form(props: BannerFormProps) {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const res: any = await props.saveBanner(formData);
-    console.log(res);
+    let file = null;
+    if (imageRef?.current?.files) file = imageRef?.current?.files[0];
+    const response = await fetch(
+      `/api/files?filename=${file?.name}`,
+      {
+        method: 'POST',
+        body: file,
+      },
+    );
+    console.log(response);
+
+    // const newBlob = (await response.json()) as PutBlobResult;
+
+    // setBlob(newBlob);
+    // const formData = new FormData(event.currentTarget);
+    // const res: any = await props.saveBanner(formData);
+    // console.log(res);
   }
 
   const imageCallback = async (e: any) => {
