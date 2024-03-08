@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import { addBlogCategory } from "../database/blogCategories";
 import { revalidatePath } from "next/cache";
-import { BlogType, createBlog, deleteBlog } from "../database/blogs";
+import { BlogType, createBlog, deleteBlog, updateBlog } from "../database/blogs";
 import { uploadFileToCloudinary } from "../functions/server/helper";
 
 export async function createBlogAction(formData: FormData) {
@@ -50,4 +50,14 @@ export async function deleteBlogAction(prevState: any, formData: FormData) {
       message: 'Something went wrong!'
     }
   }
+}
+
+export async function updateBlogAction(blog: BlogType) {
+  if (!blog.image.startsWith('https://')) {
+    const { secure_url } = await uploadFileToCloudinary(blog.image);
+    blog.image = secure_url;
+  }
+  const res = await updateBlog(blog);
+  revalidatePath("/admin/blog", "layout");
+  return res;
 }

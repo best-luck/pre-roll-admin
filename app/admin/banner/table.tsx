@@ -1,9 +1,10 @@
 "use client";
 
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@src/components/shared/common/UI/button";
 import { BannerType } from "@src/lib/database/banners";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -50,6 +51,10 @@ export default function Table(props: BannerTableProps) {
                     type="button">
                     <FontAwesomeIcon icon={faTrash} />
                   </Button>
+
+                  <Link href={`/admin/banner/edit/${banner.id}`} className="px-3 text-white bg-blue-500 rounded-lg flex justify-center items-center">
+                    <FontAwesomeIcon icon={faEdit} />
+                  </Link>
                 </div>
               </td>
             </tr>

@@ -28,6 +28,10 @@ export default function Table(props: BlogTableProps) {
     const res = await deleteAction(formData);
   }
 
+  const editBlog = async (blog: BlogType) => {
+    router.push(`/admin/blogs/edit/${blog.slug}`);
+  }
+
   return (
     <table className="border-collapse border border-slate-400 w-full mb-5">
       <thead>
@@ -58,6 +62,12 @@ export default function Table(props: BlogTableProps) {
                     onClick={() => deleteBlog(blog)}
                     type="button">
                     <FontAwesomeIcon icon={faTrash} />
+                  </Button>
+                  <Button
+                    className="bg-rose-400 mx-3"
+                    onClick={() => editBlog(blog)}
+                    type="button">
+                    <FontAwesomeIcon icon={faEdit} />
                   </Button>
                 </div>
               </td>

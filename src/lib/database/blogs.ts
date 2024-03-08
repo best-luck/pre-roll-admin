@@ -54,7 +54,7 @@ export default async function getBlogs( q: string ) {
 
 export async function getBlog(slug: string) {
     const result = await sql`
-        SELECT id, author, excerpt, title, slug, content, meta_title, meta_description, image, created_at FROM blogs WHERE slug=${slug} LIMIT 1;
+        SELECT * FROM blogs WHERE slug=${slug} LIMIT 1;
     `;
     return result.rows[0] as BlogType;
 }
@@ -78,6 +78,34 @@ export async function createBlog(data: BlogType) {
                 VALUES (${data.title}, ${data.author}, ${data.slug}, ${data.content}, ${data.excerpt}, ${data.image}, ${data.meta_title}, ${data.meta_description}, ${data.category_id}, ${date}, ${date});`;
         return {
             message: 'Blog created!',
+            status: 'OK'
+        };
+    } catch(err) {
+        console.log(err);
+        return {
+            message: 'Something went wrong!',
+            status: 'Fail'
+        };
+    }
+}
+
+export async function updateBlog(data: BlogType) {
+    try {
+        await createBlogsTable();
+        const res = await sql`
+            UPDATE blogs
+                SET title=${data.title},
+                    author=${data.author},
+                    slug=${data.slug},
+                    content=${data.content},
+                    excerpt=${data.excerpt},
+                    image=${data.image},
+                    meta_title=${data.meta_title},
+                    meta_description=${data.meta_description},
+                    category_id=${data.category_id}
+                WHERE id=${data.id};`;
+        return {
+            message: 'Blog Updated!',
             status: 'OK'
         };
     } catch(err) {
