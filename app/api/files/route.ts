@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     await createBanner(data);
     return Response.json({ status: "OK" });
   } catch (err) {
-    return Response.error();
+    return Response.json({ err });
   }
 }
 
