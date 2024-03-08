@@ -40,11 +40,11 @@ export default async function getBlogs( q: string ) {
     let result;
     if ( q.length > 2 ) {
         result = await sql`
-            SELECT id, author, excerpt, title, slug, image, content, meta_title, meta_description FROM blogs WHERE title ILIKE ${'%' + q + '%'};
+            SELECT * FROM blogs WHERE title ILIKE ${'%' + q + '%'};
         `;
     } else {
         result = await sql`
-            SELECT id, author, excerpt, title, image, slug, content, meta_title, meta_description FROM blogs;
+            SELECT * FROM blogs;
         `;
     }
 

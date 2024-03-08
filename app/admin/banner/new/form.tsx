@@ -3,6 +3,7 @@
 import Button from '@src/components/shared/common/UI/button';
 import { BannerType } from '@src/lib/database/banners';
 import { convertImage } from '@src/lib/functions/client/helper';
+import { revalidatePath } from 'next/cache';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useRef, useState } from 'react';
 
@@ -40,7 +41,8 @@ export default function Form(props: BannerFormProps) {
         body: JSON.stringify(data),
       },
     );
-    router.push("/admin/banner");
+    await router.refresh();
+    router.replace("/admin/banner");
   }
 
   const updateBanner = (event: ChangeEvent<HTMLInputElement>) => {
