@@ -1,5 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: 'dx84l6icz',
+  api_key: '882141798269339',
+  api_secret: 'DpIY03fyhFQmoDaF0e94BLf8a7Y',
+});
 
 export const saveBufferToFile = (location: string, buffer: Buffer) => {
   return new Promise((resolve: any, reject: any) => {
@@ -12,3 +19,8 @@ export const saveBufferToFile = (location: string, buffer: Buffer) => {
     });
   });
 };
+
+export const uploadFileToCloudinary = async (image: any) => {
+  const uploadResponse = await cloudinary.uploader.upload(image, {});
+  return uploadResponse;
+}

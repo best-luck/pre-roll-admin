@@ -1,21 +1,30 @@
-import { put } from '@vercel/blob';
-import { NextResponse } from 'next/server';
+//@ts-ignore
 
-export async function POST(request: Request): Promise<NextResponse> {
-  const { searchParams } = new URL(request.url);
-  const filename = searchParams.get('filename')||'';
+import { createBanner } from '@src/lib/database/banners';
+import { uploadFileToCloudinary } from '@src/lib/functions/server/helper';
+const cloudinary = require('cloudinary').v2;
 
-  // ⚠️ The below code is for App Router Route Handlers only
-  const blob = await put(filename, request.body||new Blob(), {
-    access: 'public',
-  });
+cloudinary.config({
+ cloud_name: 'dx84l6icz',
+ api_key: '882141798269339',
+ api_secret: 'DpIY03fyhFQmoDaF0e94BLf8a7Y',
+});
 
-  // Here's the code for Pages API Routes:
-  // const blob = await put(filename, request, {
-  //   access: 'public',
-  // });
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { image } = body;
 
-  return NextResponse.json(blob);
+    const { secure_url } = await uploadFileToCloudinary(image);
+    const data = {
+      ...body,
+      image: secure_url
+    };
+    await createBanner(data);
+    return Response.json({ status: "OK" });
+  } catch (err) {
+    return Response.error();
+  }
 }
 
 // The next lines are required for Pages API Routes only

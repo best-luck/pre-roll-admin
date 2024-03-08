@@ -4,10 +4,10 @@ import Button from '@src/components/shared/common/UI/button';
 import Select from '@src/components/shared/common/UI/select';
 import { createBlogAction } from '@src/lib/actions/blog';
 import { BlogCategory } from '@src/lib/database/blogCategories';
+import { createBlog } from '@src/lib/database/blogs';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useFormState } from 'react-dom';
 
 
 const Editor = dynamic(() => import("@src/components/shared/common/UI/CKEditor"), { ssr: false });
@@ -23,17 +23,17 @@ const initialState = {
 
 export default function Form(props: BlogFormProps) {
 
-  const [statem, formAction] = useFormState(createBlogAction, initialState);
   const options = props.categories.map(c => ({label: c.name, value: c.id}))
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string>("");
   const router = useRouter();
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event?.currentTarget);
     formData.set("image", image);
-    formAction(formData);
+    const res = await createBlogAction(formData);
+    router.push("/admin/blogs");
   }
 
   const imageCallback = async (e: any) => {

@@ -7,7 +7,7 @@ export function getRetailerId (): string {
 }
 
 export const convertImage = async (event: any) => {
-  const file = event.target.files?.[0];
+  const file = event?.target?.files?.[0]||event;
 
   if (file) {
     try {

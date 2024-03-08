@@ -1,20 +1,13 @@
 "use client";
 
 import Button from '@src/components/shared/common/UI/button';
-import Select from '@src/components/shared/common/UI/select';
-import { createBlogAction } from '@src/lib/actions/blog';
 import { BannerType } from '@src/lib/database/banners';
-import { BlogCategory } from '@src/lib/database/blogCategories';
 import { convertImage } from '@src/lib/functions/client/helper';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, useRef, useState } from 'react';
 
 
-// const Editor = dynamic(() => import("@src/components/shared/common/UI/CKEditor"), { ssr: false });
-
 interface BannerFormProps {
-  saveBanner: (data: FormData) => void;
 }
 
 export default function Form(props: BannerFormProps) {
@@ -34,35 +27,20 @@ export default function Form(props: BannerFormProps) {
     event.preventDefault();
     let file = null;
     if (imageRef?.current?.files) file = imageRef?.current?.files[0];
+    const base64 = await convertImage(file);
+    const data = {
+      ...banner,
+      image: base64
+    };
+
     const response = await fetch(
-      `/api/files?filename=${file?.name}`,
+      `/api/files`,
       {
         method: 'POST',
-        body: file,
+        body: JSON.stringify(data),
       },
     );
-    console.log(response);
-
-    // const newBlob = (await response.json()) as PutBlobResult;
-
-    // setBlob(newBlob);
-    // const formData = new FormData(event.currentTarget);
-    // const res: any = await props.saveBanner(formData);
-    // console.log(res);
-  }
-
-  const imageCallback = async (e: any) => {
-    // if (!e.target || !e.target.files || !e.target.files[0]) return;
-
-    // const file = imageRef?.current?.files && imageRef.current.files[0];
-
-    // const response = await fetch(
-    //   `/api/file?filename=${file?.name}`,
-    //   {
-    //     method: 'POST',
-    //     body: file,
-    //   },
-    // );
+    router.push("/admin/banner");
   }
 
   const updateBanner = (event: ChangeEvent<HTMLInputElement>) => {
@@ -112,7 +90,6 @@ export default function Form(props: BannerFormProps) {
             autoComplete="image"
             placeholder="Image"
             required
-            onChange={imageCallback}
             ref={imageRef}
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
           />

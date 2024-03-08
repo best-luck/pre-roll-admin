@@ -4,20 +4,24 @@ import { redirect } from "next/navigation";
 import { addBlogCategory } from "../database/blogCategories";
 import { revalidatePath } from "next/cache";
 import { BlogType, createBlog, deleteBlog } from "../database/blogs";
+import { uploadFileToCloudinary } from "../functions/server/helper";
 
-export async function createBlogAction(prevState: any, formData: FormData) {
+export async function createBlogAction(formData: FormData) {
+  const imageData = formData.get("image")?.toString()||'';
+  const { secure_url } = await uploadFileToCloudinary(imageData);
   const data: BlogType = {
     title: formData.get("title")?.toString()||'',
     slug: formData.get("slug")?.toString()||'',
     content: formData.get("content")?.toString()||'',
     excerpt: formData.get("excerpt")?.toString()||'',
-    image: formData.get("image")?.toString()||'',
+    image: secure_url,
     meta_title: formData.get("metatitle")?.toString()||'',
     meta_description: formData.get("metadescription")?.toString()||'',
     author: formData.get("author")?.toString()||'',
     category_id: parseInt(formData.get("category_id")?.toString()||'-1'),
   }
   const res = await createBlog(data);
+  revalidatePath("/admin/blogs")
   return res;
 }
 

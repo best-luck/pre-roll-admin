@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'tq4op7s2k335xqoq.public.blob.vercel-storage.com'
+        hostname: 'res.cloudinary.com'
       }
     ]
   },
