@@ -10,6 +10,7 @@ export default async function handler(
 
   const blob = await put(filename, request, { // The important change, not `request.body` but `request`
     access: 'public',
+    token: process.env.BLOB_READ_WRITE_TOKEN
   });
 
   return NextResponse.json(blob);

@@ -35,29 +35,20 @@ export default function Form(props: BannerFormProps) {
     const formData = new FormData(event.currentTarget);
     const res: any = await props.saveBanner(formData);
     console.log(res);
-    // if (!res) {
-    //   router.push("/admin/banner");
-    // }
   }
 
   const imageCallback = async (e: any) => {
-    if (!e.target || !e.target.files || !e.target.files[0]) return;
+    // if (!e.target || !e.target.files || !e.target.files[0]) return;
 
-    const file = imageRef?.current?.files && imageRef.current.files[0];
+    // const file = imageRef?.current?.files && imageRef.current.files[0];
 
-    const response = await fetch(
-      `/api/file?filename=${file?.name}`,
-      {
-        method: 'POST',
-        body: file,
-      },
-    );
-
-    // const image = await convertImage(e);
-    // setBanner({
-    //   ...banner,
-    //   image
-    // })
+    // const response = await fetch(
+    //   `/api/file?filename=${file?.name}`,
+    //   {
+    //     method: 'POST',
+    //     body: file,
+    //   },
+    // );
   }
 
   const updateBanner = (event: ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +60,7 @@ export default function Form(props: BannerFormProps) {
 
   return (
     <div className="w-3/4 m-auto shadow rounded-[20px] bg-white p-5 mt-5">
-      <form action={props.saveBanner}>
+      <form onSubmit={onSubmit}>
         <div className="mt-5">
           <label className="font-bold mb-3" htmlFor="heading">Heading</label>
           <input 

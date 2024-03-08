@@ -11,12 +11,13 @@ export default async function Page() {
     'use server';
 
     const imageFile = formData.get('image') as File;
-    console.log('here', imageFile.name, imageFile);
-    const readStream = await imageFile.stream();
-    const blob = await put(imageFile.name, readStream, {
+    console.log(imageFile)
+    const fileBuffer = Buffer.from(await imageFile.arrayBuffer());
+    console.log(fileBuffer);
+    const blob = await put("/banners/"+imageFile.name, fileBuffer, {
       access: 'public',
     });
-    console.log('here1')
+    console.log('here')
     revalidatePath('/');
     return blob;
 
