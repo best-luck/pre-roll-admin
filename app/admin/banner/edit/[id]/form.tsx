@@ -23,7 +23,6 @@ export default function Form(props: BannerFormProps) {
     event.preventDefault();
     let data = banner;
     if (imageRef?.current?.files?.length) {
-      console.log('here')
       const file = imageRef?.current?.files[0];
       const base64 = await convertImage(file);
       data.image=base64;

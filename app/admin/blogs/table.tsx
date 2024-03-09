@@ -64,7 +64,7 @@ export default function Table(props: BlogTableProps) {
                     <FontAwesomeIcon icon={faTrash} />
                   </Button>
                   <Button
-                    className="bg-rose-400 mx-3"
+                    className="bg-green-400"
                     onClick={() => editBlog(blog)}
                     type="button">
                     <FontAwesomeIcon icon={faEdit} />

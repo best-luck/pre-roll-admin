@@ -6,9 +6,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function Category({
-  category
+  category,
+  image
 }: {
-  category: string
+  category: string;
+  image?: string;
 }) {
 
   const router = useRouter();
@@ -21,7 +23,7 @@ export default function Category({
     <div className="rounded-[30px] shadow-lg p-5 flex flex-col justify-between align-center border-black w-[200px] cursor-pointer"
       onClick={viewCategory}>
       <Image
-        src={`/images/categories/${category}.jfif`}
+        src={image||`/images/categories/${category}.jfif`}
         width={150}
         height={50}
         alt="category"
