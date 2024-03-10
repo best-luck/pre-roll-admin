@@ -22,7 +22,7 @@ export async function POST(
     const session = await getSessionData();
     let checkoutId = session[`checkoutid-${retailerId}`];
     if (!checkoutId) {
-      const checkout = await createCheckout(retailerId);
+      const checkout = await createCheckout();
       session[`checkoutid-${retailerId}`] = checkout.id;
       await session.save();
       checkoutId = checkout.id;

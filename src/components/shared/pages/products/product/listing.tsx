@@ -2,13 +2,16 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
-import { ProductType } from "../../../../../lib/types/product";
+import { ProductType, ProductVariantType } from "../../../../../lib/types/product";
 import Image from "next/image";
 import "./style.scss";
 import Link from "next/link";
 import { getRetailerId } from "@src/lib/functions/client/helper";
 import ProductPulse from "./pulse";
 import Variants from "@src/components/shared/common/UI/variants";
+import { useState } from "react";
+import { addItemToCart } from "@src/lib/actions/frontend/checkout";
+import { toast } from "react-toastify";
 
 interface ProductProps {
   product: ProductType
@@ -18,6 +21,20 @@ interface ProductProps {
 export default function ProductListing(props: ProductProps) {
 
   const { product, isFetching } = props;
+  const [isAdding, setIsAdding] = useState(false);
+
+  const selectVariant = (variant: ProductVariantType) => {
+    if (isAdding) return;
+    setIsAdding(true);
+    addItemToCart(product?.id||'', 1, variant?.option||'')
+      .then(() => {
+        setIsAdding(false);
+        toast.success('Added To Cart!');
+      })
+      .catch(() => {
+        setIsAdding(false);
+      })
+  }
 
   return (
     <div className="flex gap-col-10 mt-5 border-b border-gray-300 pb-5 flex-wrap">
@@ -43,7 +60,7 @@ export default function ProductListing(props: ProductProps) {
             <div className="w-full xl:w-auto m-auto">
               <Variants
                 variants={product.variants}
-                onSelect={() => {}} />
+                onSelect={selectVariant} />
             </div>
           </>
       }

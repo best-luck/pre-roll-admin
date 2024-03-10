@@ -20,7 +20,7 @@ export default async function handler(
     const session = await getSessionData();
     let checkoutId = session[`checkoutid-${retailerId}`];
     if (!checkoutId) {
-      const checkout = await createCheckout(retailerId);
+      const checkout = await createCheckout();
       session[`checkoutid-${retailerId}`] = checkout.id;
       checkoutId = checkout.id;
     }

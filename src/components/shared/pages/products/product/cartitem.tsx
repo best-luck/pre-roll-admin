@@ -48,7 +48,7 @@ export default function CartItem({ item, removeItem }: ProductProps) {
             <Link href={`/shop/product/${product.slug}`}>
               <p className="text-sm font-bold">{product.name}</p>
             </Link>
-            <p className="text-xs text-gray-500">{product?.brand.name}</p>
+            <p className="text-xs text-gray-500">{product?.brand?.name}</p>
             <div className="mt-3 text-gray-500">
               <span className="text-xs cursor-pointer">
                 {item.option}

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     retailerId: string;
   };
   if (!session[`retailer-${retailerId}-checkout-id`]) {
-    const checkout = await createCheckout(retailerId);
+    const checkout = await createCheckout();
     session[`retailer-${retailerId}-checkout-id`] = checkout;
     await session.save();
   }
