@@ -1,7 +1,10 @@
+import { getSessionData } from "@src/lib/session/getSession";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function AdminHeader() {
+
+  const session = await getSessionData();
 
   return <header className="bg-black">
     <div className="container m-auto py-4">
@@ -10,9 +13,13 @@ export default async function AdminHeader() {
           <Link href="/">
             <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
           </Link>
+          <Link className="font-bold text-md" href="/admin/">Images</Link>
           <Link className="font-bold text-md" href="/admin/blogs">Blogs</Link>
+          <Link className="font-bold text-md" href="/admin/blog-categories">Category</Link>
           <Link className="font-bold text-md" href="/admin/banner">Banner</Link>
-          <Link className="font-bold text-md" href="/admin/login">Login</Link>
+          {
+            !session.loggedIn && <Link className="font-bold text-md" href="/admin/login">Login</Link>
+          }
         </div>
       </div>
     </div>

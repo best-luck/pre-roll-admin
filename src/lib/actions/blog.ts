@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from "next/navigation";
-import { addBlogCategory } from "../database/blogCategories";
+import { addBlogCategory, deleteCategory } from "../database/blogCategories";
 import { BlogType, createBlog, deleteBlog, updateBlog } from "../database/blogs";
 import { revalidateCache, uploadFileToCloudinary } from "../functions/server/helper";
 
@@ -58,5 +58,10 @@ export async function updateBlogAction(blog: BlogType) {
   }
   const res = await updateBlog(blog);
   revalidateCache();
+  return res;
+}
+
+export async function deleteCategoryAction(id: number) {
+  const res = await deleteCategory(id);
   return res;
 }

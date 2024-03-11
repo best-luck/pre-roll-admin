@@ -1,4 +1,5 @@
 import { sql } from "@vercel/postgres";
+import { revalidateCache } from "../functions/server/helper";
 
 const createBlogCategoriesTable = async () => {
     await sql`
@@ -39,6 +40,16 @@ export async function addBlogCategory(name: string, slug: string) {
     await sql`INSERT INTO blogcategories (name, slug)
       VALUES (${name}, ${slug})
     `;
+    return true;
+  } catch(error) {
+    return false;
+  }
+}
+
+export async function deleteCategory(id: number) {
+  try {
+    await sql`DELETE FROM blogcategories WHERE id=${id}`;
+    revalidateCache();
     return true;
   } catch(error) {
     return false;
