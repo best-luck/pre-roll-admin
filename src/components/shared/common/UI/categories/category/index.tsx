@@ -27,7 +27,7 @@ export default function Category({
         width={150}
         height={50}
         alt="category"
-        style={{maxHeight: 50}}
+        style={{maxHeight: 50, objectFit: 'contain'}}
         />
       <p className="text-center font-bold uppercase text-xs mt-3">{category}</p>
     </div>
