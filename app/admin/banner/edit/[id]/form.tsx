@@ -29,8 +29,8 @@ export default function Form(props: BannerFormProps) {
     }
 
     const res = await updateBannerAction(data);
-    await router.refresh();
     router.replace("/admin/banner");
+    router.refresh();
   }
 
   const updateBanner = (event: ChangeEvent<HTMLInputElement>) => {

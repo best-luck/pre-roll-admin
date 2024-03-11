@@ -40,8 +40,8 @@ export default function Form(props: BannerFormProps) {
         body: JSON.stringify(data),
       },
     );
-    await router.refresh();
     router.replace("/admin/banner");
+    router.refresh();
   }
 
   const updateBanner = (event: ChangeEvent<HTMLInputElement>) => {

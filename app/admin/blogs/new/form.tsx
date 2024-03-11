@@ -34,6 +34,7 @@ export default function Form(props: BlogFormProps) {
     formData.set("image", image);
     const res = await createBlogAction(formData);
     router.push("/admin/blogs");
+    router.refresh();
   }
 
   const imageCallback = async (e: any) => {

@@ -42,8 +42,8 @@ export default function Form(props: BlogFormProps) {
     }
     const res = await updateBlogAction(data);
 
-    await router.refresh();
     router.replace("/admin/blogs");
+    router.refresh();
   }
 
   const updateBlogState = (field: string, value: string) => {
