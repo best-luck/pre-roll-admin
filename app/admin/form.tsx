@@ -74,7 +74,7 @@ export default function Form(props: any) {
               </div>
             </div>
           ))
-        }
+      }
       </div>
       <div className="flex justify-end">
         <Button

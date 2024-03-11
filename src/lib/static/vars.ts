@@ -1,4 +1,4 @@
-export const CATEGORIES = ["flower", "pre-rolls", "topicals", "tinctures", "cbd", "vaporizers", "concentrates", "edibles", "accessories"];
+export const CATEGORIES = ["all", "flower", "pre-rolls", "topicals", "tinctures", "cbd", "vaporizers", "concentrates", "edibles", "accessories"];
 export const RETAILER_ID="13dce279-44ac-42a2-9f79-2254dd068384";
 export const DISPENSARY_ID="651dc60a5065fe000998bb86";
 export const EFFECTS = [

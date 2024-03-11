@@ -40,7 +40,7 @@ export async function filterRetailerProducts (category: string, strainTypes: str
       let categories;
       if (category === 'pre-rolls') category='PRE_ROLLS';
       category=category.toUpperCase();
-      if (category==="")
+      if (category==="" || category==="ALL")
         categories=["ACCESSORIES", "APPAREL", "CBD", "CLONES", "CONCENTRATES", "EDIBLES", "FLOWER", "NOT_APPLICABLE", "ORALS", "PRE_ROLLS", "SEEDS", "TINCTURES", "TOPICALS", "VAPORIZERS"];
       else
         categories=[category];

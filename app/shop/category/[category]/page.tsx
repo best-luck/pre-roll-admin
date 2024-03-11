@@ -4,12 +4,13 @@ import { getRetailerCategorizedProducts } from "@src/lib/dutchie/products"
 import { RETAILER_ID } from "@src/lib/static/vars";
 import { ProductType } from "@src/lib/types/product";
 import Board from "./board";
+import { filterRetailerProductsAction } from "@src/lib/actions/products";
 
 export default async function Page({params: {category}}: {params: { category: string }}) {
 
   const id = RETAILER_ID;
   const _category = decodeURIComponent(category)
-  const products: ProductType[] = await getRetailerCategorizedProducts(_category);
+  const { products } = await filterRetailerProductsAction(_category, "", "", [], [], [], [], "");
 
   return (
     <div className="container m-auto py-10">

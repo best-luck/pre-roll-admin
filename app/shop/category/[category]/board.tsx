@@ -21,7 +21,7 @@ export default function Board(props: Props) {
   const { specials, special } = props;
 
   const [products, setProducts] = useState<ProductType[]>(props.products);
-  const [category, setCategory] = useState(props.category);
+  const [category, setCategory] = useState(props.category==="all"?"":props.category);
   const [isFetching, setIsFetching] = useState(false);
 
   const fetchProducts = async (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
