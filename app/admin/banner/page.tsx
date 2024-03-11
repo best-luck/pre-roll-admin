@@ -1,8 +1,7 @@
 import getBanners, { deleteBannerAction } from "@src/lib/database/banners"
-import { revalidatePath } from "next/cache";
 import Table from "./table";
-import { toast } from "react-toastify";
 import Link from "next/link";
+import { revalidateCache } from "@src/lib/functions/server/helper";
 
 export default async function Banner() {
 
@@ -11,7 +10,7 @@ export default async function Banner() {
   const deleteBanner = async (id: number): Promise<boolean> => {
     'use server';
     const res = await deleteBannerAction(id);
-    revalidatePath("/admin/banner", "layout");
+    revalidateCache();
     return res;
   }
 

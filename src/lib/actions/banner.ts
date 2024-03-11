@@ -1,8 +1,7 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { BannerType, updateBanner } from "../database/banners";
-import { uploadFileToCloudinary } from "../functions/server/helper";
+import { revalidateCache, uploadFileToCloudinary } from "../functions/server/helper";
 
 export async function updateBannerAction(banner: BannerType) {
   if (!banner.image.startsWith('https://')) {
@@ -10,7 +9,6 @@ export async function updateBannerAction(banner: BannerType) {
     banner.image = secure_url;
   }
   const res = await updateBanner(banner);
-  revalidatePath("/", "layout");
-  revalidatePath("/admin/banner", "layout");
+  revalidateCache();
   return res;
 }

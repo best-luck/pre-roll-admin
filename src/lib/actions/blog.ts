@@ -2,9 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { addBlogCategory } from "../database/blogCategories";
-import { revalidatePath } from "next/cache";
 import { BlogType, createBlog, deleteBlog, updateBlog } from "../database/blogs";
-import { uploadFileToCloudinary } from "../functions/server/helper";
+import { revalidateCache, uploadFileToCloudinary } from "../functions/server/helper";
 
 export async function createBlogAction(formData: FormData) {
   const imageData = formData.get("image")?.toString()||'';
@@ -21,7 +20,7 @@ export async function createBlogAction(formData: FormData) {
     category_id: parseInt(formData.get("category_id")?.toString()||'-1'),
   }
   const res = await createBlog(data);
-  revalidatePath('/', 'layout');
+  revalidateCache();
   return res;
 }
 
@@ -34,7 +33,7 @@ export async function createBlogCategoryAction(prevState: any, formData: FormDat
       error: 'Something went wrong!'
     }
   } else {
-    revalidatePath('/admin/blog-categories')
+    revalidateCache();
     redirect('/admin/blog-categories')
   }
 }
@@ -58,6 +57,6 @@ export async function updateBlogAction(blog: BlogType) {
     blog.image = secure_url;
   }
   const res = await updateBlog(blog);
-  revalidatePath("/admin/blog", "layout");
+  revalidateCache();
   return res;
 }

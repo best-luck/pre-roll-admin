@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { revalidatePath } from 'next/cache';
 import path from 'path';
 const cloudinary = require('cloudinary').v2;
 
@@ -23,4 +24,11 @@ export const saveBufferToFile = (location: string, buffer: Buffer) => {
 export const uploadFileToCloudinary = async (image: any) => {
   const uploadResponse = await cloudinary.uploader.upload(image, {});
   return uploadResponse;
+}
+
+export const revalidateCache = () => {
+  revalidatePath("/", "layout");
+  revalidatePath("/admin", "layout");
+  revalidatePath("/shop", "layout");
+  revalidatePath("/deals", "layout");
 }

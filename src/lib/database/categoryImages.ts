@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
+import { revalidateCache } from "../functions/server/helper";
 
 export interface CategoryImageType {
     id?: number;
@@ -82,7 +82,7 @@ export async function putCategoryImage(data: CategoryImageType) {
     } else {
       await createCategoryImage(data);
     }
-    revalidatePath("/admin", "layout");
+    revalidateCache();
   } catch(err) {
     console.log(err);
   }

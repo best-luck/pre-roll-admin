@@ -1,8 +1,7 @@
 //@ts-ignore
 
 import { createBanner } from '@src/lib/database/banners';
-import { uploadFileToCloudinary } from '@src/lib/functions/server/helper';
-import { revalidatePath } from 'next/cache';
+import { revalidateCache, uploadFileToCloudinary } from '@src/lib/functions/server/helper';
 import { redirect } from 'next/navigation';
 const cloudinary = require('cloudinary').v2;
 
@@ -23,8 +22,7 @@ export async function POST(request: Request) {
       image: secure_url
     };
     await createBanner(data);
-    revalidatePath('/shop', 'layout');
-    revalidatePath("/admin/banner", "page");
+    revalidateCache();
     return redirect("/admin/banner");
   } catch (err) {
     return Response.json({ err });
