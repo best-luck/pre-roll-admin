@@ -6,11 +6,11 @@ export default async function Footer() {
   return <footer className="bg-black">
     <div className="container m-auto py-10">
       <Image alt="logo" src="/images/logo.webp" width={100} height={50} />
-      <div className="flex justify-between mt-3 border-b border-gray-500 pb-10">
+      <div className="flex justify-between mt-3 border-b border-gray-500 pb-10 flex-wrap">
         <div>
           <p className="text-white">Open Daily 9am-9pm</p>
         </div>
-        <div className="flex gap-10 text-white">
+        <div className="flex gap-10 text-white w-full mt-5 md:w-auto md:mt-auto">
           <ul>
             <li className="uppercase font-bold text-gray-300">Connect with us</li>
             <li>1105 W Chisholm St</li>
@@ -36,9 +36,9 @@ export default async function Footer() {
           </ul>
         </div>
       </div>
-      <div className="mt-3 flex justify-between text-white text-sm">
+      <div className="mt-3 flex justify-between text-white text-sm flex-wrap">
         <span>@4024, PARC Cannabis, All Rights Reserved.</span>
-        <div className="flex gap-1">
+        <div className="flex gap-1 w-full md:w-auto">
           <a href="">Privacy Policy</a>
           <span>|</span>
           <a href="">Terms of Use</a>

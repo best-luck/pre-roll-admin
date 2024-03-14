@@ -20,7 +20,7 @@ export default function Category({
   }
 
   return (
-    <div className="rounded-[30px] shadow-lg p-5 flex flex-col justify-between align-center border-black w-[200px] cursor-pointer"
+    <div className="rounded-[30px] shadow-lg  py-5 flex flex-col justify-between align-center border-black w-[150px] lg:w-[200px] cursor-pointer"
       onClick={viewCategory}>
       <Image
         src={image||`/images/categories/${category}.jfif`}

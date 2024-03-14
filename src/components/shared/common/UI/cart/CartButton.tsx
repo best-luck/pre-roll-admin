@@ -15,16 +15,17 @@ export default function CartButton() {
   return (
     <>
       {
-        !showCart && <div className="cursor-pointer" onClick={toggleCart} style={{position: 'fixed', bottom: 100, right: 100, zIndex: 999}} >
+        !showCart && <div className="cursor-pointer right-[100px] right-[20px]" onClick={toggleCart} style={{position: 'fixed', bottom: 100, zIndex: 999}} >
           <span className="bg-gray-400 rounded-full text-white shadow-lg p-3">
             <FontAwesomeIcon icon={faCartPlus} />
           </span>
         </div>
       }
       
-      <SidebarCart
-        show={showCart}
-        hide={toggleCart} />
+      {
+        showCart && <SidebarCart
+          hide={toggleCart} />
+      }
     </>
   );
 }

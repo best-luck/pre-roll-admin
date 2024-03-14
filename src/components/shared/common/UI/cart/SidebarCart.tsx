@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { DISPENSARY_ID } from "@src/lib/static/vars";
 
-export default function SidebarCart({ show, hide }: { show: boolean, hide: () => void }) {
+export default function SidebarCart({ hide }: { hide: () => void }) {
 
   const [cart, setCart] = useState<CartType|null>(null);
   const [loading, setLoading] = useState(false);
@@ -44,7 +44,7 @@ export default function SidebarCart({ show, hide }: { show: boolean, hide: () =>
   }
 
   return (
-    <div className={`fixed top-0 left-0 h-screen w-screen flex flex-row-reverse z-40 ${show?"":"-translate-x-full"}`}>
+    <div className={`fixed top-0 left-0 h-screen w-screen flex flex-row-reverse z-40 animate-in slide-in-from-right`}>
       <div className={`flex flex-col w-[500px] h-screen shadow-xl overflow-y-auto bg-white dark:bg-gray-800`} tabIndex={-1} aria-labelledby="drawer-navigation-label">
         <div className="shadow-lg py-5 px-5 flex justify-between">
           <div>

@@ -8,11 +8,13 @@ export default async function Header() {
 
   return <header className="bg-black">
     <div className="container m-auto py-4">
-      <div className="flex justify-between border-b borer-gray-500 pb-3">
-        <div className="flex gap-5 text-white uppercase">
-          <Link href="/">
-            <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
-          </Link>
+      <div className="flex justify-between border-b borer-gray-500 pb-3 flex-wrap">
+        <div className="w-full md:w-auto flex gap-x-5 gap-y-3 text-white uppercase flex-wrap">
+          <div className="w-full md:w-auto">
+            <Link href="/">
+              <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
+            </Link>
+          </div>
           <Link className="font-bold text-md" href="/shop">Shop</Link>
           <Link className="font-bold text-md" href="/deals">Deals</Link>
           <Link className="font-bold text-md" href="/shop">Rewards</Link>

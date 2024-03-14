@@ -32,7 +32,7 @@ export default function Board(props: Props) {
   }
 
   return (
-    <div className="mt-5 flex">
+    <div className="mt-5 flex flex-wrap">
       <Filter
         products={products}
         category={category}

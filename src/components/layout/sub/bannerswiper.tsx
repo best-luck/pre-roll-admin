@@ -31,7 +31,7 @@ export default function BannerSwiper({ banners }: SwiperProps) {
           <SwiperSlide
             key={`product-slider-${banner.id}`}
           >
-            <div className="w-full h-[300px] rounded-[20px] flex justify-center items-center flex-col" style={{backgroundImage: `url('${banner.image}')`}}>
+            <div className="w-full h-[300px] rounded-[20px] flex justify-center items-center flex-col bg-cover bg-no-repeat" style={{backgroundImage: `url('${banner.image}')`}}>
               <h2 className="text-white text-3xl text-center mt-5">{banner.heading}</h2>
               <h3 className="text-white text-2xl text-center mt-5">{banner.subheading}</h3>
             </div>

@@ -2,39 +2,46 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ProductType } from "../../../../../lib/types/product";
 import Product from "../product";
+import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 // Import Swiper styles
 import "@src/styles/swiper/swiper.min.css";
 import "@src/styles/swiper/navigation.min.css";
 import "@src/styles/swiper/scrollbar.min.css";
 import "@src/styles/swiper/pagination.min.css";
-
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 500, itemsToShow: 2},
-  { width: 700, itemsToShow: 3},
-  { width: 900, itemsToShow: 4},
-  { width: 1200, itemsToShow: 5 },
-];
+import "./slider-style.scss";
 
 export default function ProductsSlier({ products, selectProduct }: { products: ProductType[], selectProduct: (p: ProductType) => void; }) {
+
+  const navigationPrevRef = useRef(null)
+  const navigationNextRef = useRef(null)
+  
   return (
-    <div>
+    <div className="relative">
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={5}
         slidesPerView={1}
-        navigation
+        navigation={{
+          prevEl: navigationPrevRef.current,
+          nextEl: navigationNextRef.current,
+        }}
         breakpoints={{
-          500: { slidesPerView: 1 },
+          300: { slidesPerView: 1 },
+          500: { slidesPerView: 2 },
           700: { slidesPerView: 2 },
           900: { slidesPerView: 3 },
           1200: { slidesPerView: 4 },
           1400: { slidesPerView: 5 },
         }}
-        pagination={{ clickable: true }}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}
+        onBeforeInit={(swiper: any) => {
+          swiper.params.navigation.prevEl = navigationPrevRef.current;
+          swiper.params.navigation.nextEl = navigationNextRef.current;
+        }}
       >
         {
           products.map((product, index) => (
@@ -48,6 +55,16 @@ export default function ProductsSlier({ products, selectProduct }: { products: P
             </SwiperSlide>
           ))
         }
+        <div ref={navigationPrevRef} className="h-full left-3 top-0 absolute flex items-center z-10 navigation-container">
+          <div className="drop-shadow-lg rounded-full flex justify-center items-center cursor-pointer bg-gray-200 text-xl w-[50px] h-[50px] font-extrabold">
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </div>
+        </div>
+        <div ref={navigationNextRef} className="h-full right-3 top-0 absolute flex items-center z-10 navigation-container">
+          <div className="drop-shadow-lg rounded-full flex justify-center items-center cursor-pointer bg-gray-200 text-xl w-[50px] h-[50px] font-extrabold">
+            <FontAwesomeIcon icon={faChevronRight} />
+          </div>
+        </div>
       </Swiper>
     </div>
   );

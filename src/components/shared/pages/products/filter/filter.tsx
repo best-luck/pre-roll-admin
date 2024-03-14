@@ -4,7 +4,7 @@ import { ProductType, ProductVariantType } from "@src/lib/types/product";
 import Product from "../product";
 import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { EFFECTS, TYPES } from "@src/lib/static/vars";
 import { useSearchParams } from "next/navigation";
 
@@ -48,6 +48,7 @@ export default function Filter(props: Props) {
   const [selectedTypes, setSelectedTypes] = useState<boolean[]>(Array(TYPES.length).fill(false));
   const [selectedEffects, setSelectedEffects] = useState<boolean[]>(Array(EFFECTS.length).fill(false));
   const [initialLoad, setInitialLoad] = useState(true);
+  const [showFilter, setShowFilter] = useState(true);
 
   const handleSubCategory = (subCategory: string) => {
     setSelectedSubCategory(subCategory)
@@ -65,6 +66,10 @@ export default function Filter(props: Props) {
     setSelectedEffects(selectedEffects.map((c: boolean, index: number) => (idx === index?!c:c)));
   }
 
+  const toggleFilterShow = () => {
+    setShowFilter(!showFilter);
+  }
+
   useEffect(() => {
     if (initialLoad) {
       setInitialLoad(false);
@@ -77,84 +82,89 @@ export default function Filter(props: Props) {
   }, [selectedBrands, selectedTypes, selectedEffects, selectedSubCategory, selectedWeight, query]);
 
   return (
-    <div className="border-r border-gray-400 mr-10 w-[200px]">
-      <div className="border-b border-gray-400 pb-10 pr-5">
-        <p className="uppercase text-xs font-bold">Subcategories</p>
-        <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
-        {
-          subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc}</p>)
-        }
+    <div className="lg:border-r border-gray-400 mr-0 lg:mr-10 w-full lg:w-[200px]">
+      <div className="flex lg:hidden cursor-pointer items-center mb-5 text-xl font-bold" onClick={toggleFilterShow}>
+        <span className="mr-3">Filter</span> <FontAwesomeIcon icon={!showFilter?faChevronUp:faChevronDown} />
       </div>
-      <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
-        <div className="font-bold">WEIGHTS <FontAwesomeIcon icon={faCaretDown} /></div>
-        <p className="text-xs mt-3">Display availability</p>
-        <div className="flex flex-wrap mt-2 gap-2">
+      <div className={`${showFilter?'hidden':''} lg:block animate-in slide-in-from-bottom`}>
+        <div className="border-b border-gray-400 pb-10">
+          <p className="uppercase text-xs font-bold">Subcategories</p>
+          <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
           {
-            weights.map((weight, index: number) => (
-              <div
-                key={`weight-filter-${index}`}
-                className={`border rounded border-gray-400 text-xs px-5 py-2 cursor-pointer ${weight===selectedWeight?"font-bold text-white bg-gray-700":""}`}
-                onClick={() => handleWeight(weight)}
-                >
-                {weight}
-              </div>
-            ))
+            subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc}</p>)
           }
         </div>
-      </div>
-
-      <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
-        <div className="font-bold uppercase">Brands <FontAwesomeIcon icon={faCaretDown} /></div>
-        <div className="flex flex-wrap mt-2 gap-2 flex-col">
-          {
-            brands.map((brand, index: number) => (
-              <div key={`brand-filter-${index}`} className="text-xs py-2 cursor-pointer flex">
-                <input
-                  type="checkbox"
-                  name={`brand-filter-${index}`}
-                  checked={selectedBrands[index]}
-                  onChange={() => handleBrand(index)} />
-                <label className="ml-3">{brand}</label>
-              </div>
-            ))
-          }
+        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+          <div className="font-bold">WEIGHTS <FontAwesomeIcon icon={faCaretDown} /></div>
+          <p className="text-xs mt-3">Display availability</p>
+          <div className="flex flex-wrap mt-2 gap-2">
+            {
+              weights.map((weight, index: number) => (
+                <div
+                  key={`weight-filter-${index}`}
+                  className={`border rounded border-gray-400 text-xs px-5 py-2 cursor-pointer ${weight===selectedWeight?"font-bold text-white bg-gray-700":""}`}
+                  onClick={() => handleWeight(weight)}
+                  >
+                  {weight}
+                </div>
+              ))
+            }
+          </div>
         </div>
-      </div>
 
-      <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
-        <div className="font-bold uppercase">Types <FontAwesomeIcon icon={faCaretDown} /></div>
-        <div className="flex flex-wrap mt-2 gap-2 flex-col">
-          {
-            TYPES.map((type, index: number) => (
-              <div key={`type-filter-${index}`} className="text-xs py-2 cursor-pointer flex">
-                <input
-                  type="checkbox"
-                  name={`type-filter-${index}`}
-                  checked={selectedTypes[index]}
-                  onChange={() => handleTypes(index)} />
-                <label className="ml-3">{type}</label>
-              </div>
-            ))
-          }
+        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+          <div className="font-bold uppercase">Brands <FontAwesomeIcon icon={faCaretDown} /></div>
+          <div className="flex flex-wrap mt-2 gap-2 flex-col">
+            {
+              brands.map((brand, index: number) => (
+                <div key={`brand-filter-${index}`} className="text-xs py-2 cursor-pointer flex">
+                  <input
+                    type="checkbox"
+                    name={`brand-filter-${index}`}
+                    checked={selectedBrands[index]}
+                    onChange={() => handleBrand(index)} />
+                  <label className="ml-3">{brand}</label>
+                </div>
+              ))
+            }
+          </div>
         </div>
-      </div>
 
-      <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
-        <div className="font-bold uppercase">Effects <FontAwesomeIcon icon={faCaretDown} /></div>
-        <div className="flex flex-wrap mt-2 gap-2 flex-col">
-          {
-            EFFECTS.map((effect, index: number) => (
-              <div key={`effect-filter-${index}`} className="text-xs py-2 cursor-pointer flex">
-                <input
-                  type="checkbox"
-                  name={`effect-filter-${index}`}
-                  checked={selectedEffects[index]}
-                  onChange={() => handleEffects(index)}
-                  />
-                <label className="ml-3">{effect}</label>
-              </div>
-            ))
-          }
+        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+          <div className="font-bold uppercase">Types <FontAwesomeIcon icon={faCaretDown} /></div>
+          <div className="flex flex-wrap mt-2 gap-2 flex-col">
+            {
+              TYPES.map((type, index: number) => (
+                <div key={`type-filter-${index}`} className="text-xs py-2 cursor-pointer flex">
+                  <input
+                    type="checkbox"
+                    name={`type-filter-${index}`}
+                    checked={selectedTypes[index]}
+                    onChange={() => handleTypes(index)} />
+                  <label className="ml-3">{type}</label>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+          <div className="font-bold uppercase">Effects <FontAwesomeIcon icon={faCaretDown} /></div>
+          <div className="flex flex-wrap mt-2 gap-2 flex-col">
+            {
+              EFFECTS.map((effect, index: number) => (
+                <div key={`effect-filter-${index}`} className="text-xs py-2 cursor-pointer flex">
+                  <input
+                    type="checkbox"
+                    name={`effect-filter-${index}`}
+                    checked={selectedEffects[index]}
+                    onChange={() => handleEffects(index)}
+                    />
+                  <label className="ml-3">{effect}</label>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>

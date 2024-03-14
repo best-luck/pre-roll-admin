@@ -11,6 +11,7 @@ import { ProductType } from "@src/lib/types/product";
 import { Metadata } from "next";
 import Image from "next/image";
 import RelatedItems from "./related";
+import BackButton from "@src/components/shared/common/UI/button/back";
 
 export async function generateMetadata({ params: { productId } }: { params: { productId: string } }) {
   
@@ -35,31 +36,32 @@ export default async function Page({ params: { productId } }: { params: { produc
 
   return (
     <div className="container py-5 m-auto">
-      <div className="grid grid-cols-12 gap-10">
-        <div className="col-span-4 pt-5">
+      <BackButton />
+      <div className="grid grid-cols-12 gap-0 lg:gap-10 gap-y-10">
+        <div className="col-span-12 lg:col-span-4 pt-5">
           <Image
             src={product.image}
-            width="200"
-            height="100"
+            width={200}
+            height={100}
             alt="image"
             layout="responsive"
             />
         </div>
-        <div className="col-span-8">
+        <div className="col-span-12 lg:col-span-8">
           <ProductMain
             product={product}
             />
           <div className="mt-10 text-gray-600 pb-5 border-b border-gray-200">
-            <div>
-              <span className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold">
+            <div className="flex flex-wrap gap-y-3">
+              <div className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold">
                 {product.strainType}
-              </span>
-              <span className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold mx-3">
+              </div>
+              <div className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold mx-3">
                 THC: {product.potencyThc.formatted}
-              </span>
-              <span className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold">
+              </div>
+              <div className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold">
                 CBD: {product.potencyCbd.formatted}
-              </span>
+              </div>
             </div>
             <div className="mt-10">
               { product.description }

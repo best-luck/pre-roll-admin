@@ -28,7 +28,7 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
   }
 
   return (
-    <div className="bg-white mx-3 product-container hover:shadow-lg">
+    <div className="bg-white mx-auto product-container hover:shadow-lg">
       <div className="flex justify-end pt-3">
         <span className="text-white bg-black font-bold rounded-full me-3 px-3">% OFF</span>
       </div>
