@@ -20,16 +20,16 @@ export default function Category({
   }
 
   return (
-    <div className="rounded-[30px] shadow-lg  py-5 flex flex-col justify-between align-center border-black w-[150px] lg:w-[200px] cursor-pointer"
+    <div className="home-category-image flex flex-col rounded-[30px] border-4 flex flex-col justify-between align-center border-black h-[200px] w-[200px] lg:w-[200px] cursor-pointer"
       onClick={viewCategory}>
+      <div className="img-wrapper">
       <Image
         src={image||`/images/categories/${category}.jfif`}
         width={150}
-        height={50}
-        alt="category"
-        style={{maxHeight: 50, objectFit: 'contain'}}
-        />
-      <p className="text-center font-bold uppercase text-xs mt-3">{category}</p>
+        height={80}
+        alt="category" />
+      </div>
+      <p className="text-center font-bold uppercase text-xs">{category}</p>
     </div>
   );
 }

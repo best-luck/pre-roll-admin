@@ -27,11 +27,18 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
       selectProduct(product);
   }
 
+  const hasSpecialPrice = product.variants[0].specialPriceMed !== null;
+  const productPriceClass = `product-price text-black mb-0 text-md ${
+    hasSpecialPrice ? 'line-through' : ''
+  }`;
+
   return (
     <div className="bg-white mx-auto product-container hover:shadow-lg">
+      {hasSpecialPrice && (
       <div className="flex justify-end pt-3">
-        <span className="text-white bg-black font-bold rounded-full me-3 px-3">% OFF</span>
+        <span className="text-white bg-black font-bold rounded-full me-3 px-3">{((parseFloat(product.variants[0].priceMed) - parseFloat(product.variants[0].specialPriceMed)) / parseFloat(product.variants[0].priceMed) * 100).toFixed(2)}% OFF</span>
       </div>
+      )}
       <div className="flex justify-center mt-3">
         <Link href={`/shop/product/${product.slug}`}>
           <Image
@@ -44,23 +51,24 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
         </Link>
       </div>
       <div className="px-3">
-        <p className="text-cyan-400 font-bold mb-0 text-md">
-          $ {parseInt(product.variants[0].priceMed).toFixed(2)}
-        </p>
-        <p className="text-black mb-0 line-clamp-2 text-sm font-bold">
-          {product.name}
-        </p>
-        <p className="text-black mb-0 text-sm text-gray-500 text-xs mt-2">
+        <p className="product-brand mb-0 text-sm text-xs mt-2">
           {product.brand?.name}
         </p>
-        <p className="text-black font-bold mb-0">
+        <p className="product-name text-black mb-0 line-clamp-2 text-sm">
+          {product.name}
         </p>
+        <p className={productPriceClass}>$ {parseInt(product.variants[0].priceMed).toFixed(2)}</p>
+        {hasSpecialPrice && (
+            <p className="product-special-price text-bold text-black mb-0 text-md">
+              $ {parseInt(product.variants[0].specialPriceMed).toFixed(2)}
+            </p>
+        )}
         <button
-          className="text-white bg-black w-full mt-3 rounded-lg font-bold py-1 mb-4"
+          className="btn-addcart text-white bg-black w-full mt-3  mb-4"
           onClick={addToCart}
         >
           <FontAwesomeIcon icon={faPlus} className="me-3" />
-          Shop Now
+          Add to Cart
         </button>
       </div>
     </div>

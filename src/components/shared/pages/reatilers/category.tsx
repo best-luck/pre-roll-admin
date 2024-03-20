@@ -10,7 +10,7 @@ export default function RetailerCategories({
 }) {
   return (
     <div className="mt-3">
-      <h1 className="text-3xl text-black font-bold uppercase mb-3">Shop by category</h1>
+      <h2 className="text-3xl text-black font-bold uppercase mb-3">Shop by category</h2>
       <Categories
         images={images} />
     </div>

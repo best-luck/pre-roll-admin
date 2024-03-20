@@ -1,3 +1,403 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
+* {
+    font-family: "Roboto Flex", sans-serif;
+    line-height: 1.2;
+}
+
+.agegate-wrapper {
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.2);
+}
+
+.agegate-title {
+    font-size: 3.75rem;
+    line-height: 1.2;
+    margin-top: 1.25rem;
+}
+
+.agegate-verifytext {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.agegate-wrapper button {
+    font-size: 1.125rem;
+    line-height: 1.2;
+    padding: .75rem 1.5rem .5rem;
+    font-weight: 600;
+}
+
+.btn-agegate-yes {
+    background-color: #B3B3B3;
+}
+
+.btn-agegate-no {
+    border: 2px solid #B3B3B3;
+}
+
+.home-category-image {
+    margin-bottom: 20px;
+}
+
+.home-category-image .img-wrapper {
+    flex: 0 0 calc(100% - 60px);
+    max-height: calc(100% - 60px);
+    padding-top: 1.25rem;
+}
+
+.home-category-image .img-wrapper img {
+    display: flex;
+    width: 60%;
+    height: 100%;
+    object-fit: contain;
+    margin: auto;
+}
+
+.home-category-image p {
+    flex: 0 0 60px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 1.25rem;
+}
+
+.banners-container {
+    padding: 50px 0;
+}
+
+.home-banners {
+    position: relative;
+}
+
+.home-banners .swiper {
+    width: 80%;
+    margin: auto;
+}
+
+.home-banners .swiper .swiper-slide > div {
+    border-radius: 0;
+}
+
+.site-heading {
+    color: #fff;
+    text-align: center;
+}
+
+.site-heading h1 {
+    font-size: 3.75rem;
+}
+
+.site-heading p {
+    font-size: 1.75rem;
+}
+
+.home-banners .prev-nav {
+    left: 5%;
+}
+
+.home-banners .next-nav {
+    right: 5%;
+}
+
+.menus a {
+    background-color: #B3B3B3;
+    color: #000;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 1rem 1.25rem .75rem;
+    margin: 1rem .5rem 1.5rem;
+    display: inline-block;
+}
+
+#default-search::placeholder {
+    color: rgba(255, 255, 255, .6);
+}
+
+#default-search {
+    border: 1px solid #909090;
+}
+
+.search-wrapper svg {
+    color: rgba(255, 255, 255, .6);
+}
+
+.header-main {
+    border-color: #909090;
+}
+
+.parc-features h2 {
+    font-size: 35px;
+    color: #fff;
+}
+
+.parc-features p {
+    font-size: 16px;
+    color: #fff;
+}
+
+.parc-features a {
+    font-size: 18px;
+    font-weight: 700;
+    background-color: #000;
+    border-radius: 5px;
+    border: 1px solid #B3B3B3;
+    color: #fff;
+    padding: 1rem 1.25rem .75rem;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.parc-features .img-fullcontainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.store-features {
+    background-color: #f2f2f2;
+    padding: 80px 0;
+}
+
+.store-features .feature h2 {
+    font-size: 35px;
+    color: #000;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.stars {
+    color: #000; /* Color of the stars */
+    font-size: 24px; /* Adjust the size of the stars as needed */
+}
+
+.star {
+    display: inline-block;
+}
+
+.mark {
+    margin-left: 10px; /* Adjust the spacing between stars and mark */
+    font-size: 18px; /* Adjust the size of the mark as needed */
+}
+
+.parc-review-wrapper {
+    display: flex;
+}
+
+.reviews-left {
+    flex: 0 0 65%;
+    padding-right: 100px;
+}
+
+.reviews-left li {
+    display: flex;
+    column-gap: 10px;
+    align-items: flex-start;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.reviews-left li:last-child {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.review-customer {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.review-date {
+    font-size: 16px;
+    color: #c3c3c3;
+    margin-bottom: .75rem;
+}
+
+.review-comment {
+    font-size: 16px;
+}
+
+.reviews-right {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.reviews-right p {
+    font-size: 35px;
+    color: #B3B3B3;
+    margin-bottom: 2rem;
+}
+
+.write-review {
+    display: flex;
+    align-items: center;
+}
+
+.write-review img {
+    margin-right: 1rem;
+}
+
+.write-review span {
+    text-decoration: underline;
+    font-size: 25px;
+}
+
+.parc-reviews {
+    padding: 5rem 0;
+}
+
+.parc-reviews h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.copyright {
+    font-size: 18px;
+}
+
+.policy-menu {
+    display: flex;
+    column-gap: 1rem;
+}
+
+.policy-menu a {
+    font-size: 18px;
+}
+
+.policy-menu li {
+    position: relative;
+}
+
+.policy-menu li:after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 1px;
+    background-color: #fff;
+    right: -9px;
+}
+
+.policy-menu li:last-child:after {
+    display: none;
+}
+
+.footer-right {
+    column-gap: 5rem;
+}
+
+.widget {
+    margin-bottom: 2rem;
+}
+
+.widget-socials {
+    margin-top: 2rem;
+}
+
+.widget h3 {
+    font-size: 18px;
+    margin-bottom: .5rem;
+}
+
+.widget-address address {
+    font-style: normal;
+    font-size: 18px;
+}
+
+.widget-menu li {
+    margin-bottom: .5rem;
+}
+
+.products-slider .swiper-slide {
+    border: 1px solid rgba(209, 213, 219, 1);
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.products-slider .swiper-slide .product-container {
+    box-shadow: none !important;
+    max-width: none;
+    border-radius: 10px;
+}
+
+.btn-addcart {
+    font-size: 1rem;
+    padding: .65rem 1rem;
+    border-radius: 8px;
+}
+
+.product-brand {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.product-name {
+    font-size: 1rem;
+}
+
+.product-price {
+    font-size: 16px;
+}
+
+@media (max-width: 1023px) {
+    .store-features .features-wrapper {
+        display: block;
+        text-align: center;
+    }
+
+    .store-features img {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .store-features .feature {
+        margin-bottom: 5rem;
+    }
+
+    .store-features .feature:last-child {
+        margin-bottom: 0;
+    }
+
+    .parc-review-wrapper {
+        display: block;
+    }
+
+    .parc-review-wrapper .reviews-left {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-nav {
+        margin-left: auto;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .search-wrapper {
+        margin-top: 1.25rem;
+        width: 100%;
+    }
+
+    .parc-features .grid {
+        display: block;
+    }
+
+    .parc-features .img-fullcontainer {
+        max-height: none;
+    }
+}

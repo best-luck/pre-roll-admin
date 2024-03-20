@@ -46,7 +46,7 @@ export default function ProductPurchaseModal({ product, show, hideModal }: Props
   return (
     <ModalWrapper show={show}>
       {
-        variant && product ? <div className="w-[460px] rounded-[20px] bg-white text-black p-[30px]">
+        variant && product ? <div className="w-[460px] rounded-[20px] bg-white text-black p-[30px] shadow-xl">
         <div className="flex justify-between">
           <div className="text-xl font-bold text-gray-700">Select Weight</div>
           <Button

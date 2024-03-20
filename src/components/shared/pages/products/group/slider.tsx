@@ -18,11 +18,11 @@ export default function ProductsSlier({ products, selectProduct }: { products: P
   const navigationNextRef = useRef(null)
   
   return (
-    <div className="relative">
+    <div className="products-slider relative">
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={5}
+        spaceBetween={10}
         slidesPerView={1}
         navigation={{
           prevEl: navigationPrevRef.current,
@@ -56,13 +56,13 @@ export default function ProductsSlier({ products, selectProduct }: { products: P
           ))
         }
         <div ref={navigationPrevRef} className="h-full left-3 top-0 absolute flex items-center z-10 navigation-container">
-          <div className="drop-shadow-lg rounded-full flex justify-center items-center cursor-pointer bg-gray-200 text-xl w-[50px] h-[50px] font-extrabold">
-            <FontAwesomeIcon icon={faChevronLeft} />
+          <div className="drop-shadow-lg rounded-full flex justify-center items-center cursor-pointer bg-black text-xl w-[50px] h-[50px] font-extrabold">
+            <FontAwesomeIcon icon={faChevronLeft} color="#FFFFFF" />
           </div>
         </div>
         <div ref={navigationNextRef} className="h-full right-3 top-0 absolute flex items-center z-10 navigation-container">
-          <div className="drop-shadow-lg rounded-full flex justify-center items-center cursor-pointer bg-gray-200 text-xl w-[50px] h-[50px] font-extrabold">
-            <FontAwesomeIcon icon={faChevronRight} />
+          <div className="drop-shadow-lg rounded-full flex justify-center items-center cursor-pointer bg-black text-xl w-[50px] h-[50px] font-extrabold">
+            <FontAwesomeIcon icon={faChevronRight} color="#FFFFFF" />
           </div>
         </div>
       </Swiper>

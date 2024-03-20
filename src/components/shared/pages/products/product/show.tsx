@@ -36,7 +36,7 @@ export default function ProductShow(props: ProductProps) {
           href={`/shop/product/${props.product.slug}`}
           className="font-bold"
         >
-          Shop Now
+          Add to Cart
           <FontAwesomeIcon className="ms-3" icon={faArrowRight} />
         </Link>
       </div>
