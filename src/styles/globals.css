@@ -379,6 +379,10 @@
     .parc-review-wrapper .reviews-left {
         margin-bottom: 2rem;
     }
+
+    .product-image {
+        flex: 0 0 200px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -418,5 +422,44 @@
 
     .site-heading p {
         font-size: 1.25rem;
+    }
+
+    .parc-vip {
+        padding: 0 1rem;
+    }
+
+    .parc-reviews h2,
+    .parc-features h2 {
+        font-size: 1.875rem;
+    }
+
+    .footer-right {
+        display: block;
+    }
+
+    .product-wrapper {
+        display: block;
+    }
+
+    .product-image {
+        margin-right: 0;
+        margin-bottom: .75rem;
+    }
+
+    .logo-area {
+        display: block;
+    }
+
+    .logo-area img {
+        margin: 1.5rem auto !important;
+    }
+
+    .main-nav {
+        justify-content: space-between;
+        margin: auto;
+    }
+
+    .product-image img {
+        margin: auto;
     }
 }

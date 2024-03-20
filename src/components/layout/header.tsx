@@ -9,7 +9,7 @@ export default async function Header() {
   return <header className="bg-black">
     <div className="container m-auto">
       <div className="header-main flex justify-between border-b py-5 flex-wrap">
-        <div className="w-full md:w-auto flex gap-x-5 gap-y-3 text-white uppercase flex-wrap">
+        <div className="logo-area w-full md:w-auto flex gap-x-5 gap-y-3 text-white uppercase flex-wrap">
           <div className="flex-auto">
             <Link href="/">
               <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>

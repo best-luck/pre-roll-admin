@@ -19,7 +19,7 @@ export function Variant(props: VariantComponentProps) {
 
   return (
     <div 
-      className={`overflow-hidden text-center flex flex-col justify-center rounded-lg min-h-[55px] ${selected?'border-blue-400 border-2':'border-gray-400 border'} w-[71px] text-sm cursor-pointer`}
+      className={`overflow-hidden text-center flex flex-col justify-between rounded-lg min-h-[55px] py-2 px-2 ${selected?'border-blue-400 border-2':'border-gray-400 border'} text-sm cursor-pointer`}
       onClick={selectVariant}>
       <p className={`${selected?'text-blue-400':'text-gray-800'}`}>{variant.option}</p>
       {
@@ -54,7 +54,7 @@ export default function Variants(props: VariantsComponentProps) {
   }
 
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-wrap gap-3">
       {
         variantsState.map(variant => (
           <Variant 
