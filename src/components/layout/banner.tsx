@@ -19,7 +19,7 @@ export default async function Banner() {
       <div className="m-auto container">
         <div className="site-heading">
           <h1 className="font-bold">PARC MARIJUANA<br /> RECREATIONAL DISPENSARY</h1>
-          <p className="font-bold">Alpena's favorite neighborhood recreational cannabis dispensary experience.</p>
+          <p className="font-bold">Alpena&apos;s favorite neighborhood recreational cannabis dispensary experience.</p>
           <div className="menus">
             <Link className="font-bold text-md uppercase" href="/shop">Shop Menu</Link>
             <Link className="font-bold text-md uppercase" href="/deals">Shop Deals</Link>

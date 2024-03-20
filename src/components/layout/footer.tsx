@@ -79,7 +79,7 @@ export default async function Footer() {
                   <span className="star">&#9733;</span>
                 </div>
               </div>
-              <p className="review-comment">The budtenders are very friendly and knowledgeable & Sasha took the last order I came in for & she was very polite taking care of my friends & I any time we've been in there so her and the rest of the staff are appreciated for their hard work. Keep up the good work everybody!</p>
+              <p className="review-comment">The budtenders are very friendly and knowledgeable & Sasha took the last order I came in for & she was very polite taking care of my friends & I any time we&apos;ve been in there so her and the rest of the staff are appreciated for their hard work. Keep up the good work everybody!</p>
             </div>
           </li>
           <li>
@@ -96,7 +96,7 @@ export default async function Footer() {
                   <span className="star">&#9733;</span>
                 </div>
               </div>
-              <p className="review-comment">PARC is my only staple in Alpena! Best prices and great products! I'll do you one even better, their staff is incredibly knowledgeable of their products and their interactions with their customers are top notch too!</p>
+              <p className="review-comment">PARC is my only staple in Alpena! Best prices and great products! I&apos;ll do you one even better, their staff is incredibly knowledgeable of their products and their interactions with their customers are top notch too!</p>
             </div>
           </li>
           <li>
