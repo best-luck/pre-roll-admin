@@ -74,9 +74,11 @@
     position: relative;
 }
 
-.home-banners .swiper {
-    width: 80%;
-    margin: auto;
+@media (min-width: 768px) {
+    .home-banners .swiper {
+        width: 80%;
+        margin: auto;
+    }
 }
 
 .home-banners .swiper .swiper-slide > div {
