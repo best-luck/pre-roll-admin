@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import SidebarCart from "./SidebarCart";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function CartButton() {
   const [showCart, setShowCart] = useState(false);
@@ -16,9 +17,12 @@ export default function CartButton() {
     <>
       {
         !showCart && <div className="cursor-pointer right-[100px] right-[20px]" onClick={toggleCart} style={{position: 'fixed', bottom: 100, zIndex: 999}} >
-          <span className="bg-gray-400 rounded-full text-white shadow-lg p-3">
-            <FontAwesomeIcon icon={faCartPlus} />
-          </span>
+          <Image
+              src="/images/cart.webp"
+              alt="Add to cart"
+              width={106}
+              height={106}
+          />
         </div>
       }
       
