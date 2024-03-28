@@ -29,6 +29,7 @@ export interface ProductType {
   staffPick: boolean,
   strainType: string;
   subcategory: string;
+  variants: ProductVariantType[];
   [key: string]: any;
 }
 
