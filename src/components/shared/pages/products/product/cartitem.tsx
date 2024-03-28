@@ -25,7 +25,7 @@ interface ProductProps {
 export default function CartItem({ item, removeItem }: ProductProps) {
 
   const { product } = item;
-  const [variant, setVariant] = useState<ProductVariantType>(item.product.variants.find((v: ProductVariantType) => v.option===item.option))
+  const [variant, setVariant] = useState<ProductVariantType|undefined>(item.product.variants.find((v: ProductVariantType) => v.option===item.option))
 
   const addToCart = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -70,7 +70,7 @@ export default function CartItem({ item, removeItem }: ProductProps) {
             name="quantity" />
         </div>
         <div className="text-sm flex flex-col justify-center">
-          $ {variant.priceMed * item.quantity}
+          $ {variant?.priceMed||0 * item.quantity}
         </div>
       </div>
       <div>
