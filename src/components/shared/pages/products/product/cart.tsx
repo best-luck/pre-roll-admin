@@ -36,7 +36,7 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
     <div className="bg-white mx-auto product-container hover:shadow-lg">
       {hasSpecialPrice && (
       <div className="flex justify-end pt-3">
-        <span className="text-white bg-black font-bold rounded-full me-3 px-3">{((parseFloat(product.variants[0].priceMed) - parseFloat(product.variants[0].specialPriceMed)) / parseFloat(product.variants[0].priceMed) * 100).toFixed(2)}% OFF</span>
+        <span className="text-white bg-black font-bold rounded-full me-3 px-3">{((product.variants[0].priceMed - product.variants[0].specialPriceMed) / product.variants[0].priceMed * 100).toFixed(2)}% OFF</span>
       </div>
       )}
       <div className="flex justify-center mt-3">
@@ -57,10 +57,10 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
         <p className="product-name text-black mb-0 line-clamp-2 text-sm">
           {product.name}
         </p>
-        <p className={productPriceClass}>$ {parseInt(product.variants[0].priceMed).toFixed(2)}</p>
+        <p className={productPriceClass}>$ {product.variants[0].priceMed.toFixed(2)}</p>
         {hasSpecialPrice && (
             <p className="product-special-price text-bold text-black mb-0 text-md">
-              $ {parseInt(product.variants[0].specialPriceMed).toFixed(2)}
+              $ {product.variants[0].specialPriceMed.toFixed(2)}
             </p>
         )}
         <button
