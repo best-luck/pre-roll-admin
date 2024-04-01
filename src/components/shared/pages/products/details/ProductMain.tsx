@@ -56,8 +56,8 @@ export default function ProductMain({ product }: { product: ProductType }) {
 
   return (
     <div className="pb-10 border-b">
-      <p className="text-gray-400 font-bold text-sm">{product?.brand?.name}</p>
-      <p className="font-bold text-3xl">{product.name}</p>
+      <p className="text-gray-400 text-base">{product?.brand?.name}</p>
+      <h1 className="font-bold text-3xl">{product.name}</h1>
       <div className="mt-5">
         <Variants
           variants={product.variants}
@@ -69,7 +69,7 @@ export default function ProductMain({ product }: { product: ProductType }) {
           className="w-[100px]"
           onChange={onChange}
           name="quantity" />
-        <button className="ms-5 rounded-full bg-blue-500 uppercase py-3 px-5 text-white font-bold" onClick={addToCart} disabled={isLoading}>
+        <button className="ms-5 rounded-full bg-black uppercase py-3 px-5 text-white font-bold" onClick={addToCart} disabled={isLoading}>
           {
             isLoading? "Loading...":<><FontAwesomeIcon icon={faCartArrowDown} className="me-3" /> add to cart</>
           }

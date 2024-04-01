@@ -64,7 +64,7 @@ export default function ProductListing(props: ProductProps) {
             </div>
             <div className="product-info flex justify-between flex-col">
               <div className="flex justify-center flex-col">
-                <p className="text-green-500 text-sm font-bold mb-1 mt-6">{props.product.brand?.name}</p>
+                <p className="text-gray-400 text-base mb-1 mt-6">{props.product.brand?.name}</p>
                 <Link href={`/shop/product/${props.product.slug}`}><p className="text-lg font-bold mb-1">{props.product.name}</p></Link>
                 <p className="text-xs text-gray-500"><span className="font-bold">THC</span>: {props.product.potencyThc.formatted} | <span className="font-bold">CBD</span>: {props.product.potencyCbd.formatted}</p>
               </div>
@@ -94,7 +94,7 @@ export default function ProductListing(props: ProductProps) {
                 className="w-[100px] rounded-lg product-options"
                 name="category_id"
                 />
-              <button className="btn-add-cart bg-black p-3 font-xl text-white rounded-[50px] flex items-center justify-cneter" onClick={addToCart} type="button">
+              <button className="btn-add-cart bg-black p-3 font-xl text-white rounded-[50px] flex items-center justify-center" onClick={addToCart} type="button">
                 <FontAwesomeIcon icon={faCartPlus} />
               </button>
             </div>

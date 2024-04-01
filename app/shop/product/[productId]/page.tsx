@@ -51,7 +51,7 @@ export default async function Page({ params: { productId } }: { params: { produc
           <ProductMain
             product={product}
             />
-          <div className="mt-10 text-gray-600 pb-5 border-b border-gray-200">
+          <div className="mt-10 text-gray-600 pb-5 border-gray-200">
             <div className="flex flex-wrap gap-y-3">
               <div className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold">
                 {product.strainType}
@@ -62,9 +62,6 @@ export default async function Page({ params: { productId } }: { params: { produc
               <div className="bg-gray-300 rounded-full px-5 py-3 text-sm font-bold">
                 CBD: {product.potencyCbd.formatted}
               </div>
-            </div>
-            <div className="mt-10">
-              { product.description }
             </div>
           </div>
         </div>

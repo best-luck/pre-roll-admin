@@ -51,10 +51,10 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
         </Link>
       </div>
       <div className="px-3">
-        <p className="product-brand mb-0 text-sm text-xs mt-2">
+        <p className="mb-0 text-base text-xs mt-2 text-gray-400">
           {product.brand?.name}
         </p>
-        <p className="product-name text-black mb-0 line-clamp-2 text-sm">
+        <p className="text-black mb-0 line-clamp-2 text-base">
           {product.name}
         </p>
         <p className={productPriceClass}>$ {product.variants[0].priceMed.toFixed(2)}</p>
