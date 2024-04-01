@@ -89,9 +89,9 @@ export default function Filter(props: Props) {
       <div className={`${showFilter?'hidden':''} lg:block animate-in slide-in-from-bottom`}>
         <div className="border-b border-gray-300 pb-10">
           <p className="uppercase text-xs font-bold">Subcategories</p>
-          <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
+          <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold category-selected":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
           {
-            subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc}</p>)
+            subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold category-selected":""}`}>{subc}</p>)
           }
         </div>
         <div className="pr-5 pt-5 border-b border-gray-300 pb-10">
@@ -102,7 +102,7 @@ export default function Filter(props: Props) {
               weights.map((weight, index: number) => (
                 <div
                   key={`weight-filter-${index}`}
-                  className={`border rounded border-gray-300 text-xs px-5 py-2 cursor-pointer ${weight===selectedWeight?"font-bold text-white bg-gray-700":""}`}
+                  className={`border rounded text-xs px-5 py-2 cursor-pointer ${weight===selectedWeight?"font-bold text-white weight-selected":""}`}
                   onClick={() => handleWeight(weight)}
                   >
                   {weight}

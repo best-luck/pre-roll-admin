@@ -372,8 +372,13 @@
     padding: 20px;
 }
 
-.btn-add-cart {
+.btn-add-cart,
+.weight-selected {
     background-color: #fb6536;
+}
+
+.category-selected {
+    color: #fb6536;
 }
 
 select.product-options {
