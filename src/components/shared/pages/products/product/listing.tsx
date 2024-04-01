@@ -56,7 +56,7 @@ export default function ProductListing(props: ProductProps) {
             {
               calculateDiscount(props.product) ? (
                 <span className="absolute right-[10px] top-[10px] bg-black text-white font-bold rounded-full px-3 py-2">
-                  {calculateDiscount(props.product)}% off
+                  {calculateDiscount(props.product)}% OFF
                 </span>
               ) : <></>
             }

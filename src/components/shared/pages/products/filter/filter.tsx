@@ -141,7 +141,7 @@ export default function Filter(props: Props) {
                     name={`type-filter-${index}`}
                     checked={selectedTypes[index]}
                     onChange={() => handleTypes(index)} />
-                  <label className="ml-3">{type}</label>
+                  <label className="ml-3">{type.replace(/_/g, ' ')}</label>
                 </div>
               ))
             }

@@ -19,17 +19,17 @@ export function Variant(props: VariantComponentProps) {
 
   return (
     <div 
-      className={`overflow-hidden text-center flex flex-col justify-between rounded-lg min-h-[55px] py-2 px-2 ${selected?'border-blue-400 border-2':'border-gray-400 border'} text-sm cursor-pointer`}
+      className={`overflow-hidden text-center flex flex-col justify-between rounded-lg min-h-[55px] py-2 px-2 ${selected?'border-black border-2':'border-gray-300 border-2'} text-sm cursor-pointer`}
       onClick={selectVariant}>
-      <p className={`${selected?'text-blue-400':'text-gray-800'}`}>{variant.option}</p>
+      <p className={`${selected?'text-black':'text-black'}`}>{variant.option}</p>
       {
         variant.specialPriceMed ?
           <>
-            <p className={`${selected?'text-blue-400':''} font-bold`}>${variant.specialPriceMed.toFixed(2)}</p>
-            <p className={`text-gray-400 line-through ${selected?'text-blue-400':''} font-bold`}>${variant.priceMed.toFixed(2)}</p>
-            <p className="bg-rose-500 font-bold text-white">{(100 - (variant.specialPriceMed / variant.priceMed * 100)).toFixed(0)}% off</p>
+            <p className={`${selected?'text-black':''} font-bold`}>${variant.specialPriceMed.toFixed(2)}</p>
+            <p className={`line-through ${selected?'text-black':''} font-bold`}>${variant.priceMed.toFixed(2)}</p>
+            <p className="bg-black rounded-md px-2 py-1 font-bold text-white">{(100 - (variant.specialPriceMed / variant.priceMed * 100)).toFixed(0)}% off</p>
           </> : 
-          <p className={`${selected?'text-blue-400':''} font-bold`}>${variant.priceMed.toFixed(2)}</p>   
+          <p className={`${selected?'text-black':''} font-bold`}>${variant.priceMed.toFixed(2)}</p>   
       }
     </div>
   );

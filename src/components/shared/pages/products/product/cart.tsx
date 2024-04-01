@@ -36,7 +36,7 @@ export default function ProductCart({ product, selectProduct }: ProductProps) {
     <div className="bg-white mx-auto product-container hover:shadow-lg">
       {hasSpecialPrice && (
       <div className="flex justify-end pt-3">
-        <span className="text-white bg-black font-bold rounded-full me-3 px-3">{((product.variants[0].priceMed - product.variants[0].specialPriceMed) / product.variants[0].priceMed * 100).toFixed(2)}% OFF</span>
+        <span className="text-white bg-black font-bold rounded-full me-3 px-3 py-2">{((product.variants[0].priceMed - product.variants[0].specialPriceMed) / product.variants[0].priceMed * 100).toFixed(0)}% OFF</span>
       </div>
       )}
       <div className="flex justify-center mt-3">
