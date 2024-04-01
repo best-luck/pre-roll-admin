@@ -82,19 +82,19 @@ export default function Filter(props: Props) {
   }, [selectedBrands, selectedTypes, selectedEffects, selectedSubCategory, selectedWeight, query]);
 
   return (
-    <div className="lg:border-r border-gray-400 mr-0 lg:mr-10 w-full lg:w-[200px]">
+    <div className="lg:border-r border-gray-300 mr-0 lg:mr-10 w-full lg:w-[200px]">
       <div className="flex lg:hidden cursor-pointer items-center mb-5 text-xl font-bold" onClick={toggleFilterShow}>
         <span className="mr-3">Filter</span> <FontAwesomeIcon icon={!showFilter?faChevronUp:faChevronDown} />
       </div>
       <div className={`${showFilter?'hidden':''} lg:block animate-in slide-in-from-bottom`}>
-        <div className="border-b border-gray-400 pb-10">
+        <div className="border-b border-gray-300 pb-10">
           <p className="uppercase text-xs font-bold">Subcategories</p>
-          <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
+          <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold category-selected":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
           {
-            subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc}</p>)
+            subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold category-selected":""}`}>{subc}</p>)
           }
         </div>
-        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+        <div className="pr-5 pt-5 border-b border-gray-300 pb-10">
           <div className="font-bold">WEIGHTS <FontAwesomeIcon icon={faCaretDown} /></div>
           <p className="text-xs mt-3">Display availability</p>
           <div className="flex flex-wrap mt-2 gap-2">
@@ -102,7 +102,7 @@ export default function Filter(props: Props) {
               weights.map((weight, index: number) => (
                 <div
                   key={`weight-filter-${index}`}
-                  className={`border rounded border-gray-400 text-xs px-5 py-2 cursor-pointer ${weight===selectedWeight?"font-bold text-white bg-gray-700":""}`}
+                  className={`border rounded text-xs px-5 py-2 cursor-pointer ${weight===selectedWeight?"font-bold text-white weight-selected":""}`}
                   onClick={() => handleWeight(weight)}
                   >
                   {weight}
@@ -112,7 +112,7 @@ export default function Filter(props: Props) {
           </div>
         </div>
 
-        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+        <div className="pr-5 pt-5 border-b border-gray-300 pb-10">
           <div className="font-bold uppercase">Brands <FontAwesomeIcon icon={faCaretDown} /></div>
           <div className="flex flex-wrap mt-2 gap-2 flex-col">
             {
@@ -130,7 +130,7 @@ export default function Filter(props: Props) {
           </div>
         </div>
 
-        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+        <div className="pr-5 pt-5 border-b border-gray-300 pb-10">
           <div className="font-bold uppercase">Types <FontAwesomeIcon icon={faCaretDown} /></div>
           <div className="flex flex-wrap mt-2 gap-2 flex-col">
             {
@@ -148,7 +148,7 @@ export default function Filter(props: Props) {
           </div>
         </div>
 
-        <div className="pr-5 pt-5 border-b border-gray-400 pb-10">
+        <div className="pr-5 pt-5 border-b border-gray-300 pb-10">
           <div className="font-bold uppercase">Effects <FontAwesomeIcon icon={faCaretDown} /></div>
           <div className="flex flex-wrap mt-2 gap-2 flex-col">
             {
