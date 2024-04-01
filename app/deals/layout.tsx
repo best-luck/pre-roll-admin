@@ -24,7 +24,6 @@ export default function RootLayout({
     <>
       <Header />
       <DealsBanner />
-      <Banner />
       {children}
       <Footer />
       <AgeRestrictModal />

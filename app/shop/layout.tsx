@@ -1,4 +1,3 @@
-import Banner from '@src/components/layout/banner';
 import Footer from '@src/components/layout/footer';
 import Header from '@src/components/layout/header';
 import 'src/styles/globals.css';
@@ -21,7 +20,6 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <Banner />
       {children}
       <Footer />
       <AgeRestrictModal />

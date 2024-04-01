@@ -1,3 +1,4 @@
+import Banner from "@src/components/layout/banner";
 import CartButton from "@src/components/shared/common/UI/cart/CartButton";
 import CategorizedProducts from "@src/components/shared/pages/products";
 import RetailerBanner from "@src/components/shared/pages/reatilers/banner";
@@ -29,13 +30,16 @@ export default async function Page() {
   const images = await getCategoryImages();
 
   return (
-    <div className="container py-5 m-auto">
-      <RetailerBanner retailer={retailer} />
-      <RetailerCategories
-        categories={categories}
-        images={images}
-        />
-      <CategorizedProducts products={products} categories={categories} />
-    </div>
+    <>
+      <Banner />
+      <div className="container py-5 m-auto">
+        <RetailerBanner retailer={retailer} />
+        <RetailerCategories
+          categories={categories}
+          images={images}
+          />
+        <CategorizedProducts products={products} categories={categories} />
+      </div>
+    </>
   )
 }
