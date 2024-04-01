@@ -356,7 +356,8 @@
     align-items: stretch;
 }
 
-.products-grid-container .product-wrapper {
+.products-grid-container .product-wrapper,
+.specials-wrapper {
     padding: 10px;
 }
 
