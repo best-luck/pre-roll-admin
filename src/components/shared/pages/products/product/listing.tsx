@@ -44,16 +44,18 @@ export default function ProductListing(props: ProductProps) {
       })
   }
 
+  console.log(props.product)
+
   return (
     <div className="product-wrapper">
-      <div className="product border-gray-300 flex flex-col justify-between">
+      <div className="product border-gray-300 flex flex-col justify-between relative">
       {
         isFetching ?
           <ProductPulse /> :
           <>
             {
               calculateDiscount(props.product) ? (
-                <span>
+                <span className="absolute right-[10px] top-[10px] bg-black text-white font-bold rounded-full px-3 py-2">
                   {calculateDiscount(props.product)}% off
                 </span>
               ) : <></>
