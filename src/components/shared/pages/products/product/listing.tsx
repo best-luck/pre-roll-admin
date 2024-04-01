@@ -44,7 +44,8 @@ export default function ProductListing(props: ProductProps) {
   }
 
   return (
-    <div className="product-wrapper flex gap-col-10 mt-5 border-b border-gray-300 pb-5">
+    <div className="product-wrapper">
+      <div className="product border-gray-300">
       {
         isFetching ?
           <ProductPulse /> :
@@ -79,6 +80,7 @@ export default function ProductListing(props: ProductProps) {
             </div>
           </>
       }
+      </div>
     </div>
   );
 }

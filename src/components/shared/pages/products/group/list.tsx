@@ -36,7 +36,7 @@ export default function List(props: Props) {
           category!=='Specials'?(query?`Showing result for: ${query}`:`All ${props.category}`):`Items On Special`
         }
       </h1>
-      <div>
+      <div className="products-grid-container flex flex-wrap">
         {
           products.map(product => (
             <Product

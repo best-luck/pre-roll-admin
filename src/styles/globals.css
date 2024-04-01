@@ -355,6 +355,24 @@
     font-size: 16px;
 }
 
+.products-grid-container {
+    margin: 0 -10px;
+    align-items: stretch;
+}
+
+.products-grid-container .product-wrapper {
+    flex: 0 0 33.33%;
+    padding: 10px;
+}
+
+.product-wrapper .product {
+    border-radius: .75rem;
+    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
 @media (max-width: 1023px) {
     .store-features .features-wrapper {
         display: block;
