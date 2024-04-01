@@ -194,7 +194,6 @@ query GetAllProducts(
   $strainTypes: [StrainType!]
   $brandIds: [String!]
   $effects: [Effects!]
-  $weights: [String!]
   $specialIds: [String!]
   $search: String!
 ) {
@@ -204,7 +203,6 @@ query GetAllProducts(
       strainTypes: $strainTypes,
       brandIds: $brandIds,
       effects: $effects,
-      weights: $weights,
       menuSection: {
         type: SPECIALS,
         specialId: $specialIds

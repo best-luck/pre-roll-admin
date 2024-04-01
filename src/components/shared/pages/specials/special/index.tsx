@@ -15,7 +15,7 @@ export default function Special({special, type}: {special: SpecialType, type?: s
           <p className="text-md mt-5">{special.menuDisplayConfiguration.description}</p>
         </> :
         <>
-          <p className="text-md font-bold">{special.menuDisplayConfiguration.description}</p>
+          <p className="text-md font-bold">{special.menuDisplayConfiguration.name}</p>
           <Link href={`/deals/${special.id}`} className="mt-5">
             <span className="text-sm">Shop Now</span> <FontAwesomeIcon icon={faArrowRight} />
           </Link>

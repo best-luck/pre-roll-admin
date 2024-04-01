@@ -6,7 +6,7 @@ import { ProductType, ProductVariantType } from "../../../../../lib/types/produc
 import Image from "next/image";
 import "./style.scss";
 import Link from "next/link";
-import { getRetailerId } from "@src/lib/functions/client/helper";
+import { calculateDiscount, getRetailerId } from "@src/lib/functions/client/helper";
 import ProductPulse from "./pulse";
 import Variants from "@src/components/shared/common/UI/variants";
 import { useState } from "react";
@@ -51,6 +51,13 @@ export default function ProductListing(props: ProductProps) {
         isFetching ?
           <ProductPulse /> :
           <>
+            {
+              calculateDiscount(props.product) ? (
+                <span>
+                  {calculateDiscount(props.product)}% off
+                </span>
+              ) : <></>
+            }
             <div className="product-image">
               <Link href={`/shop/product/${props.product.slug}`}>
                 <Image

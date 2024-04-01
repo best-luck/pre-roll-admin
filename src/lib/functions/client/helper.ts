@@ -1,6 +1,7 @@
 'use client';
 
 import { RETAILER_ID } from "@src/lib/static/vars";
+import { ProductType } from "@src/lib/types/product";
 
 export function getRetailerId (): string {
   return RETAILER_ID;
@@ -36,3 +37,10 @@ const readFileAsync = (file: any) => {
     FR.readAsDataURL(file);
   });
 };
+
+export const calculateDiscount = (product: ProductType) => {
+  if (product.variants[0].specialPriceMed) {
+    return ((product.variants[0].priceMed - product.variants[0].specialPriceMed) / product.variants[0].priceMed * 100).toFixed(0);
+  }
+  return 0;
+}
