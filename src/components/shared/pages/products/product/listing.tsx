@@ -25,15 +25,16 @@ export default function ProductListing(props: ProductProps) {
 
   const { product, isFetching } = props;
   const [isAdding, setIsAdding] = useState(false);
-  const options: SELECT_OPTION_TYPE[] = [...product.variants.map((variant: ProductVariantType) => ({value: variant.option, label: `$${variant.priceMed} / ${variant.option}`}))]
-  const [option, setOption] = useState<string>(product.variants[0].option)
+  const options: SELECT_OPTION_TYPE[] = [...product.variants.map((variant: ProductVariantType, idx: number) => ({value: idx, label: `${variant.option}`}))]
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariantType>(product.variants[0]);
 
-  const selectVariant = (variant: string) => {
-    setOption(variant);
+  const selectVariant = (variant: string|number) => {
+    const index = typeof variant==="string"?parseInt(variant):variant;
+    setSelectedVariant(product.variants[index]);
   }
 
   const addToCart = () => {
-    addItemToCart(product?.id||'', 1, option)
+    addItemToCart(product?.id||'', 1, selectedVariant.option)
       .then(() => {
         setIsAdding(false);
         toast.success('Added To Cart!');
@@ -66,11 +67,29 @@ export default function ProductListing(props: ProductProps) {
                 <Link href={`/shop/product/${props.product.slug}`}><p className="text-lg font-bold">{props.product.name}</p></Link>
                 <p className="text-xs text-gray-500"><span className="font-bold">THC</span>: {props.product.potencyThc.formatted} | <span className="font-bold">CBD</span>: {props.product.potencyCbd.formatted}</p>
               </div>
-              <div className="product-attributes w-full xl:w-auto mt-2 flex gap-10">
+              <div className="product-attributes w-full xl:w-auto mt-2 flex justify-between">
+                <div className="text-xl flex justify-center items-center">
+                  {
+                    selectedVariant.specialPriceMed ? (
+                      <>
+                        <span className="font-bold">
+                          ${selectedVariant.specialPriceMed}
+                        </span>
+                        <span className="line-through	ml-5 text-lg">
+                          ${selectedVariant.priceMed}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="font-bold">
+                        ${selectedVariant.priceMed}
+                      </span>
+                    )
+                  }
+                </div>
                 <Select
                   onChange={(v: string) => selectVariant(v)}
                   options={options}
-                  className="w-[200px] rounded-lg"
+                  className="w-[100px] rounded-lg"
                   name="category_id"
                   />
                 <button className="bg-black p-3 font-xl text-white rounded-[50px]" onClick={addToCart} type="button">
