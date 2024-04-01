@@ -3,7 +3,7 @@ import Special from "./special";
 
 export default function Specials({specials}: {specials: SpecialType[]}) {
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap specials-wrapper">
       {
         specials.map(special => (
           <Special
