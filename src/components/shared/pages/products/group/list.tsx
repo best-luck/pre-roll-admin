@@ -12,10 +12,12 @@ interface Props {
   category: string;
   isFetching: boolean;
   special?: SpecialType
+  loadMore: () => void;
+  noMoreProducts: boolean;
 }
 
 export default function List(props: Props) {
-  const { isFetching, products, category, special } = props;
+  const { isFetching, products, category, special, loadMore, noMoreProducts } = props;
   const searchParams = useSearchParams();
   const query = searchParams?.get("search");
 
@@ -47,6 +49,11 @@ export default function List(props: Props) {
           ))
         }
       </div>
+      {
+        !noMoreProducts ? <div className="flex justify-center">
+          <button onClick={loadMore} className="bg-black text-white px-5 py-3 rounded-full">Load More</button>
+        </div> : ''
+      }
     </div>
   );
 }

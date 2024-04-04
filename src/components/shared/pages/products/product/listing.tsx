@@ -44,8 +44,6 @@ export default function ProductListing(props: ProductProps) {
       })
   }
 
-  console.log(props.product)
-
   return (
     <div className="product-wrapper">
       <div className="product border-gray-300 flex flex-col justify-between relative">

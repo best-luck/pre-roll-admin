@@ -23,12 +23,32 @@ export default function Board(props: Props) {
   const [products, setProducts] = useState<ProductType[]>(props.products);
   const [category, setCategory] = useState(props.category==="all"?"":props.category);
   const [isFetching, setIsFetching] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [fetchMore, setFetchMore] = useState<boolean>(false);
+  const [noMoreProducts, setNoMoreProducts] = useState<boolean>(false);
+  
+  const fetchMoreProducts = async (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
+    setIsFetching(true);
+    const _offset = offset + 50;
+    const resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search, _offset);
+    setProducts([...products, ...resp.products]);
+    setIsFetching(false);
+    setFetchMore(false);
+    if (!resp.products.length)
+      setNoMoreProducts(true);
+  }
 
   const fetchProducts = async (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
     setIsFetching(true);
-    const resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search);
+    const resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search, offset);
     setProducts(resp.products);
+    if (resp.products.length < 50)
+      setNoMoreProducts(true);
     setIsFetching(false);
+  }
+
+  const loadMore = () => {
+    setFetchMore(true);
   }
 
   return (
@@ -37,12 +57,17 @@ export default function Board(props: Props) {
         products={products}
         category={category}
         fetchProducts={fetchProducts}
+        fetchMore={fetchMore}
+        fetchMoreProducts={fetchMoreProducts}
         />
       <List
         products={products}
         category={category}
         isFetching={isFetching}
-        special={special} />
+        special={special}
+        loadMore={loadMore}
+        noMoreProducts={noMoreProducts}
+        />
     </div>
   )
 };

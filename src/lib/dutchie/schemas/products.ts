@@ -103,6 +103,7 @@ query GetAllProducts(
   $effects: [Effects!]
   $weights: [String!]
   $search: String!
+  $offset: Int!
 ) {
   menu(
     retailerId: $retailerId
@@ -114,7 +115,7 @@ query GetAllProducts(
       weights: $weights,
       search: $search
   	}
-    pagination: {limit: 50, offset: 0}
+    pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
   ) {
     products {
@@ -133,6 +134,7 @@ query GetAllProducts(
   $brandIds: [String!]
   $effects: [Effects!]
   $search: String!
+  $offset: Int!
 ) {
   menu(
     retailerId: $retailerId
@@ -143,7 +145,7 @@ query GetAllProducts(
       categories: $categories,
       search: $search
   	}
-    pagination: {limit: 50, offset: 0}
+    pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
   ) {
     products {
@@ -163,6 +165,7 @@ query GetAllProducts(
   $weights: [String!]
   $specialIds: [String!]
   $search: String!
+  $offset: Int!
 ) {
   menu(
     retailerId: $retailerId
@@ -177,7 +180,7 @@ query GetAllProducts(
       },
       search: $search
   	}
-    pagination: {limit: 50, offset: 0}
+    pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
   ) {
     products {
@@ -196,6 +199,7 @@ query GetAllProducts(
   $effects: [Effects!]
   $specialIds: [String!]
   $search: String!
+  $offset: Int!
 ) {
   menu(
     retailerId: $retailerId
@@ -209,7 +213,7 @@ query GetAllProducts(
       },
       search: $search
   	}
-    pagination: {limit: 50, offset: 0}
+    pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
   ) {
     products {

@@ -12,11 +12,13 @@ interface Props {
   products: ProductType[];
   category: string;
   fetchProducts: (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[], query: string) => void;
+  fetchMoreProducts: (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[], query: string) => void;
+  fetchMore: boolean;
 }
 
 export default function Filter(props: Props) {
 
-  const { products, category } = props;
+  const { products, category, fetchMore, fetchMoreProducts } = props;
   const searchParams = useSearchParams();
   const query = searchParams?.get("search");
   const subCategories = useMemo(() => {
@@ -68,7 +70,7 @@ export default function Filter(props: Props) {
 
   const toggleFilterShow = () => {
     setShowFilter(!showFilter);
-  }
+  }  
 
   useEffect(() => {
     if (initialLoad) {
@@ -80,6 +82,15 @@ export default function Filter(props: Props) {
     const _effects = selectedEffects.reduce(((s: string[], c, index) => (c?([...s, EFFECTS[index]]):s)), [])
     props.fetchProducts(selectedSubCategory, selectedWeight, _brands, _types, _effects, [], query||'');
   }, [selectedBrands, selectedTypes, selectedEffects, selectedSubCategory, selectedWeight, query]);
+
+  useEffect(() => {
+    if (fetchMore) {
+      const _brands = selectedBrands.reduce(((s: string[], c, index) => (c?([...s, brandIds[index]]):s)), []);
+      const _types = selectedTypes.reduce(((s: string[], c, index) => (c?([...s, TYPES[index]]):s)), [])
+      const _effects = selectedEffects.reduce(((s: string[], c, index) => (c?([...s, EFFECTS[index]]):s)), [])
+      props.fetchMoreProducts(selectedSubCategory, selectedWeight, _brands, _types, _effects, [], query||'');
+    }
+  }, [fetchMore])
 
   return (
     <div className="lg:border-r border-gray-300 mr-0 lg:mr-10 w-full lg:w-[200px]">
