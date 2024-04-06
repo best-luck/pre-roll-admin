@@ -4,7 +4,6 @@ import 'src/styles/globals.css';
 import 'src/styles/fontawesome.css';
 import { ToastContainer } from 'react-toastify';
 import AgeRestrictModal from '@src/components/shared/common/UI/modals/AgeRestrict';
-import CartButton from '@src/components/shared/common/UI/cart/CartButton';
 
 export const metadata = {
   title: 'Parc Cannabis',
@@ -34,7 +33,6 @@ export default function RootLayout({
           draggable
           pauseOnHover
         />
-      <CartButton />
     </>
   );
 }

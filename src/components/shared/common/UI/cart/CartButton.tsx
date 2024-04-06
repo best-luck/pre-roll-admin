@@ -1,8 +1,5 @@
 "use client";
 
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import SidebarCart from "./SidebarCart";
 import { useState } from "react";
 import Image from "next/image";
@@ -16,12 +13,12 @@ export default function CartButton() {
   return (
     <>
       {
-        !showCart && <div className="cursor-pointer right-[100px] right-[20px]" onClick={toggleCart} style={{position: 'fixed', bottom: 100, zIndex: 999}} >
+        !showCart && <div className="cursor-pointer flex items-center" onClick={toggleCart} >
           <Image
               src="/images/cart.webp"
               alt="Add to cart"
-              width={106}
-              height={106}
+              width={40}
+              height={40}
           />
         </div>
       }
