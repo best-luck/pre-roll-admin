@@ -13,41 +13,43 @@ export default function Header() {
 
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-  return <header className="bg-black sticky top-0 w-full">
-    <div className="container m-auto">
-      <div className="header-main flex justify-between border-b py-5">
-        <div className="logo-area flex gap-x-5 gap-y-3 text-white uppercase flex-wrap">
-          <div className="flex-auto flex items-center">
-            <span className="md:hidden mr-3 md:mr-0 cursor-pointer" onClick={() => setIsSidebarVisible(true)}>
-              <FontAwesomeIcon icon={faBars} fontSize={30} />
-            </span>
-            <Link href="/">
-              <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
-            </Link>
+  return <>
+    <header className="bg-black sticky top-0 w-full">
+      <div className="container m-auto">
+        <div className="header-main flex justify-between border-b py-5">
+          <div className="logo-area flex gap-x-5 gap-y-3 text-white uppercase flex-wrap">
+            <div className="flex-auto flex items-center">
+              <span className="md:hidden mr-3 md:mr-0 cursor-pointer" onClick={() => setIsSidebarVisible(true)}>
+                <FontAwesomeIcon icon={faBars} fontSize={30} />
+              </span>
+              <Link href="/">
+                <Image alt="logo" src="/images/logo.webp" width={100} height={50}></Image>
+              </Link>
+            </div>
+            <div className="hidden md:flex flex-auto gap-x-4">
+              <Link className="font-bold text-lg" href="/shop">Shop</Link>
+              <Link className="font-bold text-lg" href="/deals">Deals</Link>
+              <Link className="font-bold text-lg" href="/shop">Rewards</Link>
+            </div>
           </div>
-          <div className="hidden md:flex flex-auto gap-x-4">
-            <Link className="font-bold text-lg" href="/shop">Shop</Link>
-            <Link className="font-bold text-lg" href="/deals">Deals</Link>
-            <Link className="font-bold text-lg" href="/shop">Rewards</Link>
-          </div>
-          {
-            isSidebarVisible &&
-              <Sidebar
-                hide={() => setIsSidebarVisible(false)}
+          <div className="flex">
+            <SearchBox
+              placeholder="Search everything at PARC Cannabis"
               />
-          }
+            <CartButton />
+          </div>
         </div>
-        <div className="flex">
-          <SearchBox
-            placeholder="Search everything at PARC Cannabis"
-            />
-          <CartButton />
+        <div className="py-5">
+          <p className="text-md text-gray-200 font-bold">PARC Alphena - 1105W Chisholm</p>
+          <p className="text-md text-gray-300">Closes at 9 pm today</p>
         </div>
       </div>
-      <div className="py-5">
-        <p className="text-md text-gray-200 font-bold">PARC Alphena - 1105W Chisholm</p>
-        <p className="text-md text-gray-300">Closes at 9 pm today</p>
-      </div>
-    </div>
-  </header>;
+    </header>
+    {
+      isSidebarVisible &&
+        <Sidebar
+          hide={() => setIsSidebarVisible(false)}
+        />
+    }
+  </>;
 }
