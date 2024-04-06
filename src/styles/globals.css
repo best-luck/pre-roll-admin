@@ -85,19 +85,6 @@
     border-radius: 0;
 }
 
-.site-heading {
-    color: #fff;
-    text-align: center;
-}
-
-.site-heading h1 {
-    font-size: 3.75rem;
-}
-
-.site-heading p {
-    font-size: 1.75rem;
-}
-
 .home-banners .prev-nav {
     left: 5%;
 }
@@ -132,16 +119,6 @@
     border-color: #909090;
 }
 
-.parc-features h2 {
-    font-size: 35px;
-    color: #fff;
-}
-
-.parc-features p {
-    font-size: 16px;
-    color: #fff;
-}
-
 .parc-features a {
     font-size: 18px;
     font-weight: 700;
@@ -163,14 +140,6 @@
 .store-features {
     background-color: #f2f2f2;
     padding: 80px 0;
-}
-
-.store-features .feature h2 {
-    font-size: 35px;
-    color: #000;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
 }
 
 .rating {
@@ -461,21 +430,8 @@ select.product-options {
         font-size: 1rem;
     }
 
-    .site-heading h1 {
-        font-size: 2.5rem;
-    }
-
-    .site-heading p {
-        font-size: 1.25rem;
-    }
-
     .parc-vip {
         padding: 0 1rem;
-    }
-
-    .parc-reviews h2,
-    .parc-features h2 {
-        font-size: 1.875rem;
     }
 
     .footer-right {

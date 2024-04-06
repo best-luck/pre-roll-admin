@@ -17,7 +17,7 @@ export default async function Footer() {
       </div>
       <div className="min-h-[360px] order-1 flex justify-center items-center" style={featureBG}>
         <div className="parc-vip">
-          <h2>
+          <h2 className="text-[28px] sm:text-3xl md:text-4xl text-white font-bold">
             Active <strong>PARC</strong><em>VIP</em> Today<br />
             For Free Weed!
           </h2>
@@ -31,8 +31,8 @@ export default async function Footer() {
       </div>
       <div className="min-h-[360px] flex justify-center items-center" style={featureBG}>
         <div className="parc-vip">
-          <h2><strong>Shop Specials & Save!</strong></h2>
-          <p>Check out everyday deals on all of our <br />
+          <h2 className="text-[28px] sm:text-3xl md:text-4xl text-white font-bold">Shop Specials & Save!</h2>
+          <p className="text-white">Check out everyday deals on all of our <br />
           favorite & most popular products.
           </p>
           <Link href="/">SHOP SPECIALS</Link>
@@ -46,15 +46,15 @@ export default async function Footer() {
       <div className="features-wrapper flex justify-between">
         <div className="feature">
           <Image alt="Order Online" src="/images/order-online.webp" width={137} height={103} />
-          <h2>ORDER<br />ONLINE</h2>
+          <h2 className="text-[28px] sm:text-3xl md:text-4xl font-bold mt-5 text-center">ORDER<br />ONLINE</h2>
         </div>
         <div className="feature">
           <Image alt="Pickup In-store" src="/images/pickup-in-store.webp" width={153} height={103} />
-          <h2>PICKUP<br />IN-STORE</h2>
+          <h2 className="text-[28px] sm:text-3xl md:text-4xl font-bold mt-5 text-center">PICKUP<br />IN-STORE</h2>
         </div>
         <div className="feature">
           <Image alt="Delivery Available" src="/images/delivery-available.webp" width={233} height={103} />
-          <h2>DELIVERY<br />AVAILABLE</h2>
+          <h2 className="text-[28px] sm:text-3xl md:text-4xl font-bold mt-5 text-center">DELIVERY<br />AVAILABLE</h2>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@ export default async function Footer() {
 
   <div className="parc-reviews">
     <div className="container m-auto">
-      <h2>PARC CUSTOMER REVIEWS</h2>
+      <h2 className="text-[28px] sm:text-3xl md:text-4xl font-bold mt-5">PARC CUSTOMER REVIEWS</h2>
       <div className="parc-review-wrapper">
         <ul className="reviews-left">
           <li>
