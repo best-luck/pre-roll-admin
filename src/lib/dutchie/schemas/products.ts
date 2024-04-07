@@ -93,7 +93,7 @@ query GetProductData(
 }
 `;
 
-export const FILTER_RETAILER_PRODUCTS = `
+export const FILTER_RETAILER_PRODUCTS = (subCategory: string) => `
 ${PRODUCT_FRAGMENT}
 query GetAllProducts(
   $retailerId: ID!
@@ -104,6 +104,7 @@ query GetAllProducts(
   $weights: [String!]
   $search: String!
   $offset: Int!
+  ${subCategory?'$subCategory: Subcategory!':''}
 ) {
   menu(
     retailerId: $retailerId
@@ -114,6 +115,7 @@ query GetAllProducts(
       categories: $categories,
       weights: $weights,
       search: $search
+      ${subCategory?',subcategory: $subCategory':''}
   	}
     pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
@@ -125,7 +127,7 @@ query GetAllProducts(
 }
 `;
 
-export const FILTER_RETAILER_PRODUCTS_WEIGHTS = `
+export const FILTER_RETAILER_PRODUCTS_WEIGHTS = (subCategory: string) => `
 ${PRODUCT_FRAGMENT}
 query GetAllProducts(
   $retailerId: ID!
@@ -135,6 +137,7 @@ query GetAllProducts(
   $effects: [Effects!]
   $search: String!
   $offset: Int!
+  ${subCategory?'$subCategory: Subcategory!':''}
 ) {
   menu(
     retailerId: $retailerId
@@ -144,6 +147,7 @@ query GetAllProducts(
       effects: $effects,
       categories: $categories,
       search: $search
+      ${subCategory?',subcategory: $subCategory':''}
   	}
     pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
@@ -155,7 +159,7 @@ query GetAllProducts(
 }
 `;
 
-export const GET_RETAILER_SPECIALS = `
+export const GET_RETAILER_SPECIALS = (subCategory: string) => `
 ${PRODUCT_FRAGMENT}
 query GetAllProducts(
   $retailerId: ID!
@@ -166,6 +170,7 @@ query GetAllProducts(
   $specialIds: [String!]
   $search: String!
   $offset: Int!
+  ${subCategory?'$subCategory: Subcategory!':''}
 ) {
   menu(
     retailerId: $retailerId
@@ -179,6 +184,7 @@ query GetAllProducts(
         specialId: $specialIds
       },
       search: $search
+      ${subCategory?',subcategory: $subCategory':''}
   	}
     pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }
@@ -190,7 +196,7 @@ query GetAllProducts(
 }
 `;
 
-export const GET_RETAILER_SPECIALS_WITHOUT_WEIGHTS = `
+export const GET_RETAILER_SPECIALS_WITHOUT_WEIGHTS = (subCategory: string) => `
 ${PRODUCT_FRAGMENT}
 query GetAllProducts(
   $retailerId: ID!
@@ -200,6 +206,7 @@ query GetAllProducts(
   $specialIds: [String!]
   $search: String!
   $offset: Int!
+  ${subCategory?"$subCategory: Subcategory!":""}
 ) {
   menu(
     retailerId: $retailerId
@@ -212,6 +219,7 @@ query GetAllProducts(
         specialId: $specialIds
       },
       search: $search
+      ${subCategory?",subcategory: $subCategory":""}
   	}
     pagination: {limit: 50, offset: $offset}
     sort: { direction: ASC, key: NAME }

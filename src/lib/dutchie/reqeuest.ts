@@ -17,5 +17,5 @@ export const callDutchie = (query: string, params: any) => {
   };
 
   return fetch(url, options)
-    .then(response => response.json());
+    .then(response => response.json())
 };

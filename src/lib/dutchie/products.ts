@@ -33,7 +33,7 @@ export  const getRetailerCategorizedProducts = async (category: string) => {
   }
 }
 
-export async function filterRetailerProducts (category: string, strainTypes: string[], brandIds: string[], effects: string[], weights: string[], specialIds: string[], search: string, offset: number=0) {
+export async function filterRetailerProducts (category: string, subCategory: string, strainTypes: string[], brandIds: string[], effects: string[], weights: string[], specialIds: string[], search: string, offset: number=0) {
   console.log(offset, 'offset')
   try {
     if (category !== "Specials") {
@@ -47,18 +47,17 @@ export async function filterRetailerProducts (category: string, strainTypes: str
 
       let res;
       if (weights.length) {
-        res = await callDutchie(FILTER_RETAILER_PRODUCTS, { categories, retailerId, strainTypes, brandIds, effects, weights, specialIds, search, offset });
+        res = await callDutchie(FILTER_RETAILER_PRODUCTS(subCategory), { categories, subCategory, retailerId, strainTypes, brandIds, effects, weights, specialIds, search, offset });
       } else {
-        res = await callDutchie(FILTER_RETAILER_PRODUCTS_WEIGHTS, { categories, retailerId, strainTypes, brandIds, effects, specialIds, search, offset });        
-        console.log(res);
+        res = await callDutchie(FILTER_RETAILER_PRODUCTS_WEIGHTS(subCategory), { categories, subCategory, retailerId, strainTypes, brandIds, effects, specialIds, search, offset });        
       }
       return res.data.menu.products
     } else {
       let res;
       if (weights.length) {
-        res = await callDutchie(GET_RETAILER_SPECIALS, { retailerId, strainTypes, brandIds, effects, weights, specialIds, search, offset });
+        res = await callDutchie(GET_RETAILER_SPECIALS(subCategory), { retailerId, subCategory, strainTypes, brandIds, effects, weights, specialIds, search, offset });
       } else {
-        res = await callDutchie(GET_RETAILER_SPECIALS_WITHOUT_WEIGHTS, { retailerId, strainTypes, brandIds, effects, specialIds, search, offset });        
+        res = await callDutchie(GET_RETAILER_SPECIALS_WITHOUT_WEIGHTS(subCategory), { retailerId, subCategory, strainTypes, brandIds, effects, specialIds, search, offset });        
       }
       return res.data.menu.products
     }

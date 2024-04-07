@@ -32,7 +32,7 @@ export async function generateMetadata({ params: { productId } }: { params: { pr
 export default async function Page({ params: { productId } }: { params: { productId: string } }) {
 
   const product = await getRetailerProduct(productId);
-  const relatedItems = await filterRetailerProducts(product.category, [], [], [], [], [], "");
+  const relatedItems = await filterRetailerProducts(product.category, "", [], [], [], [], [], "");
 
   return (
     <div className="container py-5 m-auto">

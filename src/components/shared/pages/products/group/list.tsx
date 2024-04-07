@@ -40,11 +40,11 @@ export default function List(props: Props) {
       </h1>
       <div className="products-grid-container flex flex-wrap">
         {
-          products.map(product => (
+          products.map((product, index) => (
             <Product
               display="Listing"
               product={product}
-              key={`product-list-${product.slug}`}
+              key={`product-list-${product.slug}-${index}`}
               isFetching={isFetching} />
           ))
         }
