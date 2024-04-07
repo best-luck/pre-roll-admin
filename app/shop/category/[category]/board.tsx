@@ -41,6 +41,9 @@ export default function Board(props: Props) {
   const fetchProducts = async (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
     setIsFetching(true);
     const resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search, offset);
+    setProducts(resp.products);
+    if (!resp.products.length)
+      setNoMoreProducts(true);
     setIsFetching(false);
   }
 
