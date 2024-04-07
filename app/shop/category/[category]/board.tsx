@@ -25,7 +25,7 @@ export default function Board(props: Props) {
   const [isFetching, setIsFetching] = useState(false);
   const [offset, setOffset] = useState(0);
   const [fetchMore, setFetchMore] = useState<boolean>(false);
-  const [noMoreProducts, setNoMoreProducts] = useState<boolean>(false);
+  const [noMoreProducts, setNoMoreProducts] = useState<boolean>(props.products.length < 50 ? true: false);
   
   const fetchMoreProducts = async (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
     setIsFetching(true);
@@ -42,8 +42,6 @@ export default function Board(props: Props) {
     setIsFetching(true);
     const resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search, offset);
     setProducts(resp.products);
-    if (resp.products.length < 50)
-      setNoMoreProducts(true);
     setIsFetching(false);
   }
 
