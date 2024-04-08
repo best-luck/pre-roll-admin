@@ -14,10 +14,11 @@ interface Props {
   special?: SpecialType
   loadMore: () => void;
   noMoreProducts: boolean;
+  subCategory: string;
 }
 
 export default function List(props: Props) {
-  const { isFetching, products, category, special, loadMore, noMoreProducts } = props;
+  const { isFetching, products, category, special, loadMore, noMoreProducts, subCategory } = props;
   const searchParams = useSearchParams();
   const query = searchParams?.get("search");
 
@@ -35,7 +36,7 @@ export default function List(props: Props) {
       }
       <h1 className="uppercase text-3xl font-bold border-b border-gray-300 pb-3 w-full mt-5">
         {
-          category!=='Specials'?(query?`Showing result for: ${query}`:`All ${props.category}`):`Items On Special`
+          category!=='Specials'?(query?`Showing result for: ${query}`:`All ${subCategory?subCategory.replaceAll("_", " "):props.category}`):`Items On Special`
         }
       </h1>
       <div className="products-grid-container flex flex-wrap">
