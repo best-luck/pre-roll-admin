@@ -12,6 +12,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import RelatedItems from "./related";
 import BackButton from "@src/components/shared/common/UI/button/back";
+import GenerateProductSchema from "./schema";
 
 export async function generateMetadata({ params: { productId } }: { params: { productId: string } }) {
   
@@ -67,7 +68,10 @@ export default async function Page({ params: { productId } }: { params: { produc
         </div>
       </div>
 
-      <RelatedItems products={relatedItems} />    
+      <RelatedItems products={relatedItems} />
+      <GenerateProductSchema
+        product={product}
+      />
     </div>
   )
 }

@@ -128,12 +128,18 @@ importers:
       react-elastic-carousel:
         specifier: ^0.11.5
         version: 0.11.5(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(styled-components@5.3.11)
+      react-schemaorg:
+        specifier: ^2.0.0
+        version: 2.0.0(react@18.2.0)(schema-dts@1.1.2)(typescript@5.2.2)
       react-toastify:
         specifier: ^10.0.4
         version: 10.0.4(react-dom@18.2.0)(react@18.2.0)
       sass:
         specifier: ^1.71.1
         version: 1.71.1
+      schema-dts:
+        specifier: ^1.1.2
+        version: 1.1.2(typescript@5.2.2)
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -3905,6 +3911,19 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /react-schemaorg@2.0.0(react@18.2.0)(schema-dts@1.1.2)(typescript@5.2.2):
+    resolution: {integrity: sha512-UqciFKA203ewNjn0zC09uYKuJSvMD8L75L1s/cW4rc7cS64w8l7vaI3SYkuoI/nwCBkJRmOkSJedWDUZBlYZwg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      react: '>=16.3.0'
+      schema-dts: '>=0.7.4'
+      typescript: '>=3.1.6'
+    dependencies:
+      react: 18.2.0
+      schema-dts: 1.1.2(typescript@5.2.2)
+      typescript: 5.2.2
+    dev: false
+
   /react-smooth@4.0.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-2NMXOBY1uVUQx1jBeENGA497HK20y6CPGYL1ZnJLeoQ8rrc3UfmOM82sRxtzpcoCkUMy4CS0RGylfuVhuFjBgg==}
     peerDependencies:
@@ -4136,6 +4155,14 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
+    dev: false
+
+  /schema-dts@1.1.2(typescript@5.2.2):
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
+    dependencies:
+      typescript: 5.2.2
     dev: false
 
   /semver@6.3.1:

@@ -1,0 +1,17 @@
+# ia_archiver
+User-agent: ia_archiver
+Disallow: /
+
+# GPTBot
+User-agent: GPTBot
+Disallow: /
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://pre-roll-admin-git-main-build-green-earths-projects.vercel.app
+
+# Sitemaps
+Sitemap: https://pre-roll-admin-git-main-build-green-earths-projects.vercel.app/sitemap.xml
