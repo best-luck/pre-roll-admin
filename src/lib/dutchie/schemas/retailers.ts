@@ -40,8 +40,21 @@ fragment hoursFragment on Hours {
   }
 }
 
+fragment bannerColorsFragment on BannerColorConfiguration {
+  background
+  border
+  color
+  id
+}
+
 fragment retailerFragment on Retailer {
   address
+  banner {
+    colors {
+      ...bannerColorsFragment
+    }
+    html
+  }
   deliverySettings {
     afterHoursOrderingForDelivery
     afterHoursOrderingForPickup

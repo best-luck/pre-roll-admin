@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Special({special, type}: {special: SpecialType, type?: string}) {
   return (
     <div className={`${type==="view"?"w-full":"specials-grid"}`}>
-      <div className={`flex justify-center items-center flex-col bg-cover bg-no-repeat bg-center rounded-[20px] p-5 text-white h-[200px]`} style={{backgroundImage: `linear-gradient(90deg, rgba(11, 31, 50, 0.38) 0%, rgb(11, 31, 50) 100%), url(${SPECIAL_IMAGE_HOST}${special.menuDisplayConfiguration.image})`}}>
+      <div className={`flex justify-center items-center flex-col bg-cover bg-no-repeat bg-center rounded-[20px] p-5 text-white h-[200px]`} style={{backgroundImage: `linear-gradient(90deg, rgba(11, 31, 50, 0.38) 0%, rgb(11, 31, 50) 100%), url(${special.menuDisplayConfiguration.image||"https://dutchie.com/images/default-special-card.jpg"})`}}>
         {
         type==="view" ?
           <>

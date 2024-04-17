@@ -5,7 +5,7 @@ import Product from "../product";
 import { useEffect, useMemo, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import { EFFECTS, TYPES } from "@src/lib/static/vars";
+import { CATEGORIES, EFFECTS, TYPES } from "@src/lib/static/vars";
 import { useSearchParams } from "next/navigation";
 
 interface Props {
@@ -44,7 +44,7 @@ export default function Filter(props: Props) {
   }, []);
 
   //filters
-  const [selectedSubCategory, setSelectedSubCategory] = useState("");
+  const [selectedSubCategory, setSelectedSubCategory] = useState(category===""?"all":"");
   const [selectedWeight, setSelectedWeight] = useState("");
   const [selectedBrands, setSelectedBrands] = useState<boolean[]>(Array(brands.length).fill(false));
   const [selectedTypes, setSelectedTypes] = useState<boolean[]>(Array(TYPES.length).fill(false));
@@ -98,13 +98,24 @@ export default function Filter(props: Props) {
         <span className="mr-3">Filter</span> <FontAwesomeIcon icon={!showFilter?faChevronUp:faChevronDown} />
       </div>
       <div className={`${showFilter?'hidden':''} lg:block animate-in slide-in-from-bottom`}>
-        <div className="border-b border-gray-300 pb-10">
-          <p className="uppercase text-xs font-bold">Subcategories</p>
-          <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
-          {
-            subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc}</p>)
-          }
-        </div>
+        {
+          category === "" ? (
+            <div className="border-b border-gray-300 pb-10">
+              <p className="uppercase text-xs font-bold">Categories</p>
+              {
+                CATEGORIES.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc.replace("_", " ")}</p>)
+              }
+            </div>
+          ) : (
+            <div className="border-b border-gray-300 pb-10">
+              <p className="uppercase text-xs font-bold">Subcategories</p>
+              <p className={`cursor-pointer uppercase text-sm mt-5 ${selectedSubCategory===""?"font-bold":""}`} onClick={() => handleSubCategory("")}>All {category}s</p>
+              {
+                subCategories.map((subc: string, index: number) => <p key={`subcategory-${index}`} onClick={() => handleSubCategory(subc)} className={`uppercase text-sm mt-2 cursor-pointer ${selectedSubCategory===subc?"font-bold":""}`}>{subc.replace("_", " ")}</p>)
+              }
+            </div>
+          )
+        }
         <div className="pr-5 pt-5 border-b border-gray-300 pb-10">
           <div className="font-bold">WEIGHTS <FontAwesomeIcon icon={faCaretDown} /></div>
           <p className="text-xs mt-3">Display availability</p>

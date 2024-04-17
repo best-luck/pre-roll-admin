@@ -158,6 +158,7 @@ export default function Form(props: BlogFormProps) {
             name="meta_title"
             type="text"
             value={blog.meta_title}
+            onChange={updateBlog}
             autoComplete="metatitle"
             placeholder="Meta Title"
             required

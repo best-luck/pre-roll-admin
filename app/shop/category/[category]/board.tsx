@@ -18,7 +18,7 @@ interface Props {
 
 export default function Board(props: Props) {
 
-  const { specials, special } = props;
+  const { special } = props;
 
   const [products, setProducts] = useState<ProductType[]>(props.products);
   const [category, setCategory] = useState(props.category==="all"?"":props.category);
@@ -31,21 +31,34 @@ export default function Board(props: Props) {
   const fetchMoreProducts = async (subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
     setIsFetching(true);
     const _offset = offset + 50;
-    const resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search, _offset);
+    let resp;
+    if (category === "") {
+      resp = await filterRetailerProductsAction(subCategory, "", weight, brands, types, effects, specials, search, _offset); 
+    } else {
+      resp = await filterRetailerProductsAction(category, subCategory, weight, brands, types, effects, specials, search, _offset); 
+    }
     setProducts([...products, ...resp.products]);
-    setIsFetching(false);
-    setFetchMore(false);
     if (!resp.products.length)
       setNoMoreProducts(true);
+    setIsFetching(false);
+    setFetchMore(false);
   }
 
   const fetchProducts = async (_subCategory: string, weight: string, brands: string[], types: string[], effects: string[], specials: string[]=[], search: string) => {
+    let resp;
     setIsFetching(true);
     setSubCategory(_subCategory)
-    const resp = await filterRetailerProductsAction(category, _subCategory, weight, brands, types, effects, specials, search, offset);
-    setProducts(resp.products);
-    if (resp.products.length < 50)
+    if (category === "") {
+      resp = await filterRetailerProductsAction(_subCategory, "", weight, brands, types, effects, specials, search, offset);
+    } else {
+      resp = await filterRetailerProductsAction(category, _subCategory, weight, brands, types, effects, specials, search, offset);
+    }
+    if (resp.products.length < 50) {
       setNoMoreProducts(true);
+    } else {
+      setNoMoreProducts(false);
+    }
+    setProducts(resp.products);
     setIsFetching(false);
   }
 

@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import AgeRestrictModal from '@src/components/shared/common/UI/modals/AgeRestrict';
 import CartButton from '@src/components/shared/common/UI/cart/CartButton';
 import DealsBanner from '@src/components/layout/dealsbanner';
+import PublicLayout from '@src/components/layout/publicLayout';
 
 export const metadata = {
   title: 'Parc Cannabis',
@@ -21,24 +22,8 @@ export default function RootLayout({
 }) {
 
   return (
-    <>
-      <Header />
-      <DealsBanner />
+    <PublicLayout>
       {children}
-      <Footer />
-      <AgeRestrictModal />
-      <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={true}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      <CartButton />
-    </>
+    </PublicLayout>
   );
 }

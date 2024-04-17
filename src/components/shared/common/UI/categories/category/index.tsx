@@ -16,7 +16,10 @@ export default function Category({
   const router = useRouter();
   const retailerId = RETAILER_ID;
   const viewCategory = () => {
-    router.push(`/shop/category/${category}`)
+    if (category === "all")
+      router.push(`/shop`)
+    else
+      router.push(`/shop/category/${category}`)
   }
 
   return (

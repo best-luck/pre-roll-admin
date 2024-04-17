@@ -1,0 +1,8 @@
+.privacy-listing li::before {
+  content: "\2022";
+    color: #5837fb;
+    font-weight: 700;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}

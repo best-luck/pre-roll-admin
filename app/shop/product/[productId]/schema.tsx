@@ -4,8 +4,6 @@ import { ProductType } from "@src/lib/types/product";
 import { useMemo } from "react";
 
 export default function GenerateProductSchema({ product }: { product: ProductType }) {
-  console.log(product)
-
   const jsonLd: WithContext<Product> = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "Product",

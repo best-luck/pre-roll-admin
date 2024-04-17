@@ -2,8 +2,9 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import { GoogleReviews } from "@src/lib/types/googlereviews";
 
-export default async function Footer() {
+export default async function Footer({ reviews }: { reviews: GoogleReviews[] }) {
   const featureBG = {
     backgroundImage: 'url("/images/home-bg.webp")',
     backgroundSize:'cover'
@@ -65,57 +66,27 @@ export default async function Footer() {
       <h2 className="text-[28px] sm:text-3xl md:text-4xl font-bold mt-5">PARC CUSTOMER REVIEWS</h2>
       <div className="parc-review-wrapper">
         <ul className="reviews-left">
-          <li>
-            <Image alt="Harley Hamby" src="/images/Harley-Hamby.webp" width={50} height={50} />
-            <div className="customer-review-info">
-              <h3 className="review-customer">Harley Hamby</h3>
-              <p className="review-date">5 days ago</p>
-              <div className="rating">
-                <div className="stars">
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
+          {
+            reviews.map((review, idx: number) => (
+              <li key={`review-${idx}`}>
+                <Image alt={review.author_name} src={review.profile_photo_url} width={50} height={50} />
+                <div className="customer-review-info">
+                  <h3 className="review-customer">{ review.author_name }</h3>
+                  <p className="review-date">{ review.relative_time_description }</p>
+                  <div className="rating">
+                    <div className="stars">
+                      <span className="star">&#9733;</span>
+                      <span className="star">&#9733;</span>
+                      <span className="star">&#9733;</span>
+                      <span className="star">&#9733;</span>
+                      <span className="star">&#9733;</span>
+                    </div>
+                  </div>
+                  <p className="review-comment">{ review.text }</p>
                 </div>
-              </div>
-              <p className="review-comment">The budtenders are very friendly and knowledgeable & Sasha took the last order I came in for & she was very polite taking care of my friends & I any time we&apos;ve been in there so her and the rest of the staff are appreciated for their hard work. Keep up the good work everybody!</p>
-            </div>
-          </li>
-          <li>
-            <Image alt="Yvette Gordon" src="/images/Yvette-Gordon.webp" width={50} height={50} />
-            <div className="customer-review-info">
-              <h3 className="review-customer">Yvette Gordon</h3>
-              <p className="review-date">a week ago</p>
-              <div className="rating">
-                <div className="stars">
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                </div>
-              </div>
-              <p className="review-comment">PARC is my only staple in Alpena! Best prices and great products! I&apos;ll do you one even better, their staff is incredibly knowledgeable of their products and their interactions with their customers are top notch too!</p>
-            </div>
-          </li>
-          <li>
-            <Image alt="Ericka Wodkowski Hill" src="/images/Ericka-Wodkowski-Hill.webp" width={50} height={50} />
-            <div className="customer-review-info">
-              <h3 className="review-customer">Ericka Wodkowski Hill</h3>
-              <p className="review-date">a month ago</p>
-              <div className="rating">
-                <div className="stars">
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                  <span className="star">&#9733;</span>
-                </div>
-              </div>
-              <p className="review-comment">I always leave happy and confident with what I buy. The employees are very helpful and nice. They have awesome deals and prices. Thank you PARC CANNABIS !!</p>
-            </div>
-          </li>
+              </li>
+            ))
+          }
         </ul>
         <div className="reviews-right">
           <p>We love hearing feedback from our customers, thank you for taking time to share your experience!</p>
@@ -128,9 +99,12 @@ export default async function Footer() {
   <footer className="bg-black">
     <div className="container m-auto py-10">
       <Image alt="logo" src="/images/logo.webp" width={100} height={50} />
-      <div className="footer-area flex justify-between mt-3 border-b border-gray-500 pb-10 flex-wrap">
+      <div className="flex justify-between mt-3 border-b border-gray-500 pb-10 flex-wrap gap-10">
         <div>
           <p className="text-white">Open Daily 9am-9pm</p>
+        </div>
+        <div className="flex-1 min-w-[350px]">
+          <iframe className="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11270.67612440253!2d-83.444968!3d45.0722246!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d335d3c295d94ed%3A0xb81b28fd933165b4!2sParc%20Cannabis!5e0!3m2!1sen!2sus!4v1713259056050!5m2!1sen!2sus" width="600" height="450" style={{border:0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div className="footer-right flex text-white w-full mt-5 md:w-auto md:mt-auto">
           <div className="widget widget-address">
@@ -141,18 +115,13 @@ export default async function Footer() {
               info@parccannabis.com
             </address>
             <div className="widget widget-socials flex gap-3">
-              <a href="https://www.instagram.com/parcmichigan/?igshid=YmMyMTA2M2Y%3D"><FontAwesomeIcon icon={faInstagram} className="text-2xl" /></a>
-              <a href=""><FontAwesomeIcon icon={faFacebook} className="text-2xl" /></a>
-              <a href=""><FontAwesomeIcon icon={faTwitter} className="text-2xl" /></a>
+              <a target="_blank" href="https://www.instagram.com/parcmichigan/?igshid=YmMyMTA2M2Y%3D"><FontAwesomeIcon icon={faInstagram} className="text-2xl" /></a>
             </div>
           </div>
           <ul className="widget widget-menu">
             <li className="uppercase font-bold">QUICK LINKS</li>
             <li><a href="">Shop</a></li>
             <li><a href="">Deals</a></li>
-            <li><a href="">Rewards</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Career</a></li>
             <li><a href="">Contact Us</a></li>
           </ul>
         </div>
@@ -161,9 +130,9 @@ export default async function Footer() {
         <span className="copyright">© 2024. PARC Cannabis. All Rights Reserved.</span>
         <div className="flex gap-1 w-full md:w-auto">
           <ul className="policy-menu">
-            <li><a href="">Privacy Policy</a></li>
-            <li><a href="">Terms of Use</a></li>
-            <li><a href="">EULA</a></li>
+            <li><Link href="/privacy-policy">Privacy Policy</Link></li>
+            <li><Link href="/terms-of-service">Terms of Use</Link></li>
+            {/* <li><a href="">EULA</a></li> */}
           </ul>
         </div>
       </div>

@@ -8,7 +8,6 @@ export default async function AdminLayout({ children }: { children: React.ReactE
     <>
       <AdminHeader />
       {children}
-      <Footer />
       <ToastContainer
           position="top-right"
           autoClose={5000}
