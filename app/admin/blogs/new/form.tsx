@@ -40,15 +40,6 @@ export default function Form(props: BlogFormProps) {
   const imageCallback = async (e: any) => {
     if (!e.target || !e.target.files || !e.target.files[0]) return;
 
-    // if ( e.target.files[0].size > 2097152 ) {
-    //     toast({
-    //         title: 'Error',
-    //         description: 'Image must be below 2MB',
-    //         status: 'error'
-    //     });
-    //     return;
-    // }
-
     const FR = new FileReader();
         
     FR.addEventListener("load", function(evt: any) {

@@ -17,6 +17,9 @@ importers:
       '@ckeditor/ckeditor5-react':
         specifier: ^6.2.0
         version: 6.2.0(@ckeditor/ckeditor5-core@41.1.0)(@ckeditor/ckeditor5-editor-multi-root@41.1.0)(@ckeditor/ckeditor5-engine@41.1.0)(@ckeditor/ckeditor5-utils@41.1.0)(@ckeditor/ckeditor5-watchdog@41.1.0)(react@18.2.0)
+      '@ckeditor/ckeditor5-upload':
+        specifier: ^41.3.1
+        version: 41.3.1
       '@cloudinary/react':
         specifier: ^1.13.0
         version: 1.13.0(react@18.2.0)
@@ -554,6 +557,14 @@ packages:
       lodash-es: 4.17.21
     dev: false
 
+  /@ckeditor/ckeditor5-core@41.3.1:
+    resolution: {integrity: sha512-h+PgPtCpS2vjO3HbKMYtddRPW+B3AJx9qpixmHJnUZMiFCmRjUZjXATjpi3j+kSQISs4L2Yghq+lsAQxyGHb+A==}
+    dependencies:
+      '@ckeditor/ckeditor5-engine': 41.3.1
+      '@ckeditor/ckeditor5-utils': 41.3.1
+      lodash-es: 4.17.21
+    dev: false
+
   /@ckeditor/ckeditor5-easy-image@41.1.0:
     resolution: {integrity: sha512-m8JPIutEz/rXiR1x7W1u8ty+fYmb0NrZ7Z8x6WCvLSo77b2K++yDmUGQ5KLazR50pQB6Xi8juoSZGm5mcUeoJA==}
     dependencies:
@@ -578,6 +589,13 @@ packages:
     resolution: {integrity: sha512-YYZKXESH6iml9BT3EIlYgKgkH/DqeW2Xe0IzhuC+T7OqemBYp5x/HMP7tQMjsRGImc4+4iyTZ+8pJTAlU5pJyQ==}
     dependencies:
       '@ckeditor/ckeditor5-utils': 41.1.0
+      lodash-es: 4.17.21
+    dev: false
+
+  /@ckeditor/ckeditor5-engine@41.3.1:
+    resolution: {integrity: sha512-Me4cnkCrknDH50db/jPczuhgzaxUhHbkh2gv8N8Ypken9ZnOPvMD9W1gCFFTLaxikpPmBQwk3u1BSjOKk3r6kw==}
+    dependencies:
+      '@ckeditor/ckeditor5-utils': 41.3.1
       lodash-es: 4.17.21
     dev: false
 
@@ -721,8 +739,21 @@ packages:
       '@ckeditor/ckeditor5-utils': 41.1.0
     dev: false
 
+  /@ckeditor/ckeditor5-upload@41.3.1:
+    resolution: {integrity: sha512-ugTgGEgA9qsSl5+qptTmawdfYaONr6b3uTG4byZ76JMdf0qiniZjBF/TtGAVmBkCipcVWFoaZKteiz0fhQMHjA==}
+    dependencies:
+      '@ckeditor/ckeditor5-core': 41.3.1
+      '@ckeditor/ckeditor5-utils': 41.3.1
+    dev: false
+
   /@ckeditor/ckeditor5-utils@41.1.0:
     resolution: {integrity: sha512-2WtcUHbZ7wJoDVKb1AHeB4OSdf0ZLg1PMemr46yjCHDCf7NunGp/n+suZWloIKPuyG9OPkp9lhIBI4MHeDNHYw==}
+    dependencies:
+      lodash-es: 4.17.21
+    dev: false
+
+  /@ckeditor/ckeditor5-utils@41.3.1:
+    resolution: {integrity: sha512-jJu9ndn6Y7+ffBYdDCRXX7OnV9Ddgms2HSF1pmhjZN0uoL96XworuUOn8hx3Zs/KBPjJEwbtYWJMjG9aohrgaQ==}
     dependencies:
       lodash-es: 4.17.21
     dev: false

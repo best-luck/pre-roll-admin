@@ -10,7 +10,7 @@ export async function createBlogAction(formData: FormData) {
   const { secure_url } = await uploadFileToCloudinary(imageData);
   const data: BlogType = {
     title: formData.get("title")?.toString()||'',
-    slug: formData.get("slug")?.toString()||'',
+    slug: formData.get("slug")?.toString().replace(" ", "-")||'',
     content: formData.get("content")?.toString()||'',
     excerpt: formData.get("excerpt")?.toString()||'',
     image: secure_url,
@@ -56,6 +56,7 @@ export async function updateBlogAction(blog: BlogType) {
     const { secure_url } = await uploadFileToCloudinary(blog.image);
     blog.image = secure_url;
   }
+  blog.slug = blog.slug.replace(" ", "-");
   const res = await updateBlog(blog);
   revalidateCache();
   return res;

@@ -12,6 +12,7 @@
     "@apollo/client": "^3.9.5",
     "@ckeditor/ckeditor5-build-classic": "^41.1.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
+    "@ckeditor/ckeditor5-upload": "^41.3.1",
     "@cloudinary/react": "^1.13.0",
     "@cloudinary/url-gen": "^1.19.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

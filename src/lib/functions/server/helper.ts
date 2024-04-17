@@ -22,7 +22,7 @@ export const saveBufferToFile = (location: string, buffer: Buffer) => {
 };
 
 export const uploadFileToCloudinary = async (image: any) => {
-  const uploadResponse = await cloudinary.uploader.upload(image, {});
+  const uploadResponse = await cloudinary.uploader.upload(image, {timeout:120000});
   return uploadResponse;
 }
 
