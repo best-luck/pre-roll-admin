@@ -26,7 +26,7 @@ export default async function Page() {
 
         <div className="mt-5">
           <h2 className="text-red-500 text-2xl font-bold">Information We Collect</h2>
-          <p className="mt-10">Certainly! Here is the modified text with "SunnySide," "sunnyside," and "Sunnyside" replaced with "Hashly":</p>
+          <p className="mt-10">Certainly! Here is the modified text with &rdquo;SunnySide,&rdquo; &rdquo;sunnyside,&rdquo; and &rdquo;Sunnyside&rdquo; replaced with &rdquo;Hashly&rdquo;:</p>
           <p className="mt-0">We may collect or may have collected the following categories of information about you. In some cases, the information we collect may fall within more than one category:</p>
           <ul className="text-red-500 mt-5 privacy-listing">
             <li>Contact information and personal identifiers, such as your name, address, email address, telephone number, and username or social media handle.</li>
