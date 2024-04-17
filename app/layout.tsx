@@ -20,14 +20,14 @@ export default function RootLayout({
     <html lang="en" className="min-h-full">
       <head>
         <LocalSchema />
-          <Script async src="https://www.googletagmanager.com/gtag/js?id=G-D2SV29S9P4"></Script>
-          <Script>
-            {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        <Script id="g-tag-manager" async src="https://www.googletagmanager.com/gtag/js?id=G-D2SV29S9P4"></Script>
+        <Script id="g-tag-script">
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-            gtag('config', 'G-D2SV29S9P4');`}
-          </Script>
+          gtag('config', 'G-D2SV29S9P4');`}
+        </Script>
       </head>
       <body className="min-h-full">
         {children}
