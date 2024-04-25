@@ -12,7 +12,7 @@ export default async function Page() {
         {
           blogs.map((blog: BlogType) => (
             <Link
-              href={`/shop/blog/${blog.slug}`} key={`blog-index-${blog.id}`}>
+              href={`/blog/${blog.slug}`} key={`blog-index-${blog.id}`}>
               <div className="shadow-lg h-full flex flex-col justify-between">
                 <Image
                   alt="blog"

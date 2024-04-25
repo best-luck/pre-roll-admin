@@ -29,6 +29,7 @@ export default function Header() {
             <div className="hidden lg:flex flex-auto gap-x-4">
               <Link className="font-bold text-lg" href="/">Shop</Link>
               <Link className="font-bold text-lg" href="/deals">Deals</Link>
+              <Link className="font-bold text-lg" href="/blog">Blogs</Link>
             </div>
           </div>
           <div className="flex gap-2 lg:gap-4 items-center">
