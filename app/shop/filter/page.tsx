@@ -13,7 +13,7 @@ export default async function Page({ searchParams }: { searchParams: any }) {
       <Board
         search={search}
         products={res.products}
-        category=""
+        category="all"
         />
     </div>
   )
