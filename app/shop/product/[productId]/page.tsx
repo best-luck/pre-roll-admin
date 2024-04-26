@@ -1,14 +1,7 @@
-import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select from "@src/components/shared/common/UI/select";
-import Variants from "@src/components/shared/common/UI/variants";
 import ProductMain from "@src/components/shared/pages/products/details/ProductMain";
-import ProductsSlier from "@src/components/shared/pages/products/group/slider";
 import { filterRetailerProducts, getRetailerProduct } from "@src/lib/dutchie/products";
 import { RETAILER_ID } from "@src/lib/static/vars";
-import { SELECT_OPTION_TYPE } from "@src/lib/types/general";
 import { ProductType } from "@src/lib/types/product";
-import { Metadata } from "next";
 import Image from "next/image";
 import RelatedItems from "./related";
 import BackButton from "@src/components/shared/common/UI/button/back";
