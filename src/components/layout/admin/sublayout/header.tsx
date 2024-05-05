@@ -15,7 +15,7 @@ export default async function AdminHeader() {
           </Link>
           <Link className="font-bold text-md" href="/admin/">Images</Link>
           <Link className="font-bold text-md" href="/admin/blogs">Blogs</Link>
-          <Link className="font-bold text-md" href="/admin/google-analytics">Google Analytics</Link>
+          <Link className="font-bold text-md" href="/admin/settings">Settings</Link>
           <Link className="font-bold text-md" href="/admin/banner">Banner</Link>
           {
             !session.loggedIn && <Link className="font-bold text-md" href="/admin/login">Login</Link>
